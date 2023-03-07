@@ -23,7 +23,7 @@
         "ProjectImage": {
           "Url": "Https://random.com"
         },
-        "IndustryModel": [
+        "Industry": 
           {
             "Name": "Artificial Intelligence",
             "Projects": [
@@ -32,21 +32,13 @@
               }
             ]
           }
-        ],
+        ,
         "Tags": [
           {
             "TagName": "CS"
           }
         ],
-        "ChatModel": [
-          {
-            "Message": [
-              {
-                "MessageContent": "hello"
-              }
-            ]
-          }
-        ],
+     
         "UsersMembers": [
           {
             "Username": "Tom bufa"
@@ -58,7 +50,7 @@
             "Username": "Tam adsd"
           }
         ],
-        "MessageBoards": [
+        "ChatMessagesBoards": [
           {
             "Title": "Hello world",
             "Body": "I love programming",
@@ -93,7 +85,7 @@
         "ProjectImage": {
           "Url": "Https://random.com"
         },
-        "IndustryModel": [
+        "Industry": 
           {
             "Name": "Web Developement",
             "Projects": [
@@ -102,21 +94,13 @@
               }
             ]
           }
-        ],
+        ,
         "Tags": [
           {
             "TagName": "CS"
           }
         ],
-        "ChatModel": [
-          {
-            "Message": [
-              {
-                "MessageContent": "hello"
-              }
-            ]
-          }
-        ],
+      
         "UsersMembers": [
           {
             "Username": "Tom"
@@ -128,7 +112,7 @@
             "Username": "Tam"
           }
         ],
-        "MessageBoards": [
+        "ChatMessagesBoards": [
           {
             "Title": "Hello world",
             "Body": "I love programming",
@@ -163,7 +147,7 @@
         "ProjectImage": {
           "Url": "Https://random.com"
         },
-        "IndustryModel": [
+        "Industry": 
           {
             "Name": "Automation",
             "Projects": [
@@ -172,21 +156,13 @@
               }
             ]
           }
-        ],
+        ,
         "Tags": [
           {
             "TagName": "CS"
           }
         ],
-        "ChatModel": [
-          {
-            "Message": [
-              {
-                "MessageContent": "hello"
-              }
-            ]
-          }
-        ],
+
         "UsersMembers": [
           {
             "Username": "Slave 1"
@@ -198,7 +174,7 @@
             "Username": "Slave 3"
           }
         ],
-        "MessageBoards": [
+        "ChatMessagesBoards": [
           {
             "Title": "Hello world",
             "Body": "I love programming",
@@ -232,7 +208,7 @@
         "ProjectImage": {
           "Url": "Https://random.com"
         },
-        "IndustryModel": [
+        "Industry": 
           {
             "Name": "Earth is flat society",
             "Projects": [
@@ -241,21 +217,13 @@
               }
             ]
           }
-        ],
+        ,
         "Tags": [
           {
             "TagName": "CS"
           }
         ],
-        "ChatModel": [
-          {
-            "Message": [
-              {
-                "MessageContent": "hello"
-              }
-            ]
-          }
-        ],
+    
         "UsersMembers": [
           {
             "Username": "BUBA"
@@ -267,7 +235,7 @@
             "Username": "BOBO"
           }
         ],
-        "MessageBoards": [
+        "ChatMessagesBoards": [
           {
             "Title": "Hello world",
             "Body": "I love programming",
@@ -302,7 +270,7 @@
         "ProjectImage": {
           "Url": "Https://random.com"
         },
-        "IndustryModel": [
+        "Industry": 
           {
             "Name": "Music",
             "Projects": [
@@ -311,21 +279,13 @@
               }
             ]
           }
-        ],
+        ,
         "Tags": [
           {
             "TagName": "CS"
           }
         ],
-        "ChatModel": [
-          {
-            "Message": [
-              {
-                "MessageContent": "hello"
-              }
-            ]
-          }
-        ],
+      
         "UsersMembers": [
           {
             "Username": "Tomtom"
@@ -337,7 +297,7 @@
             "Username": "Tamtom"
           }
         ],
-        "MessageBoards": [
+        "ChatMessagesBoards": [
           {
             "Title": "Hello world",
             "Body": "I love programming",
@@ -372,7 +332,7 @@
         "ProjectImage": {
           "Url": "Https://random.com"
         },
-        "IndustryModel": [
+        "Industry": 
           {
             "Name": "Art",
             "Projects": [
@@ -381,21 +341,13 @@
               }
             ]
           }
-        ],
+        ,
         "Tags": [
           {
             "TagName": "CS"
           }
         ],
-        "ChatModel": [
-          {
-            "Message": [
-              {
-                "MessageContent": "hello"
-              }
-            ]
-          }
-        ],
+        
         "UsersMembers": [
           {
             "Username": "noice"
@@ -407,7 +359,7 @@
             "Username": "neice"
           }
         ],
-        "MessageBoards": [
+        "ChatMessagesBoards": [
           {
             "Title": "Hello world",
             "Body": "I love programming",

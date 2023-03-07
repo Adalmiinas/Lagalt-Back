@@ -12,7 +12,7 @@ using lagalt;
 namespace lagalt.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230307161856_init")]
+    [Migration("20230307165702_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -77,7 +77,7 @@ namespace lagalt.Migrations
                     b.Property<int>("ChatId")
                         .HasColumnType("int");
 
-                    b.Property<string>("MessageContent")
+                    b.Property<string>("ChatMessagesContent")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
@@ -121,7 +121,7 @@ namespace lagalt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("IndustryName")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
