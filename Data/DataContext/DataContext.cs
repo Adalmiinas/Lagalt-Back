@@ -1,18 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using lagaltApp;
 using Microsoft.EntityFrameworkCore;
 
-namespace lagalt.Data.DataContext
+namespace lagalt
 {
   public class DataContext : DbContext
   {
     public DataContext(DbContextOptions options) : base(options)
     {
     }
-    // public DbSet<User> Users { get; set; }
-    // public DbSet<Project> Projects { get; set; }
+    public DbSet<UserModel> Users { get; set; }
+    // public DbSet<SearchWordModel> searchWords { get; set; }
+    //  public DbSet<SkillModel> skills { get; set; }
+     public DbSet<ProjectModel> Projects { get; set; }
 
 
   }

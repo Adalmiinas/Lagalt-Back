@@ -1,201 +1,236 @@
 [
   {
-    "FullName": "Lisa",
-    "Gender": "female",
-    "Alias": "Lisa",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Lisa",
+    "Email": "female",
+    "Title": "Test 1",
+    "Password": "Lisa",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Skills": [
+      {
+        "Name": "Agile man"
+      }
+    ],
+    "SearchWords": [
+      {
+        "Name": "Web Developement"
+      }
+    ],
+    "Projects": [
       {
         "Title": "Who let the dogs",
-        "Genre": "Comedy",
-        "ReleaseYear": 2003,
-        "Director": "Candice Fit",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/watch?v=7GhAre4xqow",
-        "Franchise": {
-          "Name": "Marvels",
-          "Description": "Legendary francise makes very woke movies box office is more over 1 dollar, and its multi dollar company"
-        }
+
+        "Description": "Test 1",
+        "Category": "Music",
+        "Industry": "Pop music",
+        "Tags": [
+          {
+            "Name": "Art"
+          }
+        ],
+        "Owner": "Candice Fit",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Karen",
-    "Gender": "female",
-    "Alias": "Karen",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Karen",
+    "Email": "female",
+    "Title": "Test 1",
+    "Password": "Karen",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "SeedsOfMen",
-        "Genre": "Horror",
-        "ReleaseYear": 2003,
-        "Director": "Candice Nutterheim Fiitinass",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Moby dick the whale",
-          "Description": "Legendary francise makes very woke movies box office is more over 1 dollar, and its multi dollar company"
-        }
+        "Title": "proj 2",
+
+        "Description": "Test 2",
+        "Category": "Science",
+        "Industry": "Pop science music",
+        "Tags": [
+          {
+            "Name": "Art science"
+          }
+        ],
+        "Owner": "Karen",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Margo",
-    "Gender": "female",
-    "Alias": "Margo",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Margo",
+    "Email": "female",
+    "Title": "Test 1",
+    "Password": "Margo",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "bigger the better",
-        "Genre": "Horror",
-        "ReleaseYear": 2003,
-        "Director": "Candice Nutterheim Fiitinass",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "alilama",
-          "Description": "Legendary francise makes very woke movies box office is more over 1 dollar, and its multi dollar company"
-        }
+        "Title": "Full stack app",
+
+        "Description": "Test 3",
+        "Category": "Science",
+        "Industry": "Web Developement",
+        "Tags": [
+          {
+            "Name": "Code"
+          }
+        ],
+        "Owner": "Margo",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Lois",
-    "Gender": "female",
-    "Alias": "Lois",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Lois",
+    "Email": "female",
+    "Title": "Test 1",
+    "Password": "Lois",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "Teletabbies return",
-        "Genre": "Horror",
-        "ReleaseYear": 2003,
-        "Director": "Candice Nutterheim Fiitinass",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Horror House",
-          "Description": "Small Indie Company"
-        }
+        "Title": "test 4",
+        "Description": "Test 5",
+        "Category": "Musicad",
+        "Industry": "Pop music",
+        "Tags": [
+          {
+            "Name": "Art"
+          }
+        ],
+        "Owner": "Lois",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Ruthie",
-    "Gender": "female",
-    "Alias": "Ruthie",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Ruthie",
+    "Email": "female",
+    "Title": "Test 1",
+    "Password": "Ruthie",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "Shark Tornado",
-        "Genre": "Horror",
-        "ReleaseYear": 2010,
-        "Director": "Mark zackeberg",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Shark Tornado",
-          "Description": "Movies about sharks and tornadoes"
-        }
+        "Title": "Who let the dogsdsdasd",
+        "Description": "Test 1dads",
+        "Category": "Musicsadasd",
+        "Industry": "Pop musisdasdc",
+        "Tags": [
+          {
+            "Name": "Arsdadst"
+          }
+        ],
+        "Owner": "Ruthie",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Todd",
-    "Gender": "male",
-    "Alias": "Todd",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Todd",
+    "Email": "male",
+    "Title": "Test 1",
+    "Password": "Todd",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "Spooderman",
-        "Genre": "Action",
-        "ReleaseYear": 2023,
-        "Director": "Adolf Clinton",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Spooderman universe",
-          "Description": "Alternate universe of spiderman but spooderman"
-        }
+        "Title": "Whosdasdsd let the dogdadsdss",
+
+        "Description": "Test 1sdadssa",
+        "Category": "Music",
+        "Industry": "Pop music",
+        "Tags": [
+          {
+            "Name": "Ardsadst"
+          }
+        ],
+        "Owner": "Todd",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Porter",
-    "Gender": "male",
-    "Alias": "Porter",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Porter",
+    "Email": "male",
+    "Title": "Test 1",
+    "Password": "Porter",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "Main craft",
-        "Genre": "Slice of life",
-        "ReleaseYear": 2003,
-        "Director": "Philip dunkerbun",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Mine Craft",
-          "Description": "Pixel ppeople pixeling the way"
-        }
+        "Title": "Who let the dogs",
+        "Description": "Test 133",
+        "Category": "Musicdsadas",
+        "Industry": "Pop sdasddmusic",
+        "Tags": [
+          {
+            "Name": "Asdasddrt"
+          }
+        ],
+        "Owner": "Porter",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Mayo",
-    "Gender": "male",
-    "Alias": "Mayo",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Mayo",
+    "Email": "male",
+    "Title": "Test 1",
+    "Password": "Mayo",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "i ate the ginger",
-        "Genre": "Horror",
-        "ReleaseYear": 2003,
-        "Director": "Candice Nutterheim Fiitinass",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Moby darwin",
-          "Description": "Legendary francise makes very woke movies box office is more over 1 dollar, and its multi dollar company"
-        }
+        "Title": "Who leadsadsdadasdadt the dogs",
+        "Description": "Test 1",
+        "Category": "Music",
+        "Industry": "Pop music",
+        "Tags": [
+          {
+            "Name": "Art"
+          }
+        ],
+        "Owner": "Mayo",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Skinner",
-    "Gender": "male",
-    "Alias": "Skinner",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Skinner",
+    "Email": "male",
+    "Title": "Test 1",
+    "Password": "Skinner",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "Muta mutaa!!",
-        "Genre": "Horror",
-        "ReleaseYear": 2003,
-        "Director": "Candice Nutterheim Fiitinass",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "ZAA Xaa",
-          "Description": "Martial world"
-        }
+        "Title": "Whosdsadsadsad let thdasddae dogs",
+        "Description": "Test 1",
+        "Category": "Music",
+        "Industry": "Pop music",
+        "Tags": [
+          {
+            "Name": "Art"
+          }
+        ],
+        "Owner": "Skinner",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   },
   {
-    "FullName": "Davis",
-    "Gender": "male",
-    "Alias": "Davis",
-    "PictureUrl": "https://randomuser.me/api/portraits/men/93.jpg",
-    "Movies": [
+    "Username": "Davis",
+    "Email": "male",
+    "Title": "Test 1",
+    "Password": "Davis",
+    "Photo": "https://randomuser.me/api/portraits/men/93.jpg",
+    "Projects": [
       {
-        "Title": "Pippas Return",
-        "Genre": "Horror",
-        "ReleaseYear": 2003,
-        "Director": "Pippa pig",
-        "PictureUrl": "https://randomuser.me/api/portraits/women/50.jpg",
-        "TrailerUrl": "https://www.youtube.com/shorts/8TIxnz5LDY8",
-        "Franchise": {
-          "Name": "Pippa pig",
-          "Description": "Pippa pig universe where pigs are the dominant creatures and enslave hoomans"
-        }
+        "Title": "Whodsadsadd let tsdadsdahe dogs",
+
+        "Description": "Test 1",
+        "Category": "Music",
+        "Industry": "Pop music",
+        "Tags": [
+          {
+            "Name": "Art"
+          }
+        ],
+        "Owner": "Davis",
+        "Photo": "https://randomuser.me/api/portraits/women/50.jpg"
       }
     ]
   }
