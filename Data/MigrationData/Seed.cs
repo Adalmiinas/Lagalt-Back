@@ -11,12 +11,12 @@ namespace lagalt
     // / </summary>
     // / <param name="context"></param>
     // / <returns></returns>
-    public static async Task SeedCharacters(DataContext context)
+    public static async Task SeedUsers(DataContext context)
     {
-      if (await context.Users.AnyAsync()) return;
+      if (await context.Projects.AnyAsync()) return;
 
-      var userData = await File.ReadAllTextAsync("Data/DummyDataForSeeding/Seeding.json");
-
+      Console.WriteLine("Viisiting seeding");
+      var userData = await File.ReadAllTextAsync("Data/MigrationData/UserSeed.json");
       var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
       var users = JsonSerializer.Deserialize<List<UserModel>>(userData);

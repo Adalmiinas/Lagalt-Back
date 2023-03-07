@@ -1,0 +1,421 @@
+[
+  {
+    "Username": "Jmike",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+    
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "Projects": [
+      {
+        "Title": "Davolt did",
+        "Description": "Full stack app,",
+        "GitRepositoryUrl": "Https://github.com",
+        "ProjectImage": {
+          "Url": "Https://random.com"
+        },
+        "IndustryModel": [
+          {
+            "Name": "Artificial Intelligence",
+            "Projects": [
+              {
+                "Title": "Devolt did"
+              }
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "TagName": "CS"
+          }
+        ],
+        "ChatModel": [
+          {
+            "Message": [
+              {
+                "MessageContent": "hello"
+              }
+            ]
+          }
+        ],
+        "UsersMembers": [
+          {
+            "Username": "Tom bufa"
+          },
+          {
+            "Username": "Tim lol"
+          },
+          {
+            "Username": "Tam adsd"
+          }
+        ],
+        "MessageBoards": [
+          {
+            "Title": "Hello world",
+            "Body": "I love programming",
+            "Username": "Tom bufa"
+          }
+        ]
+        
+      }
+    ]
+  },
+  {
+    "Username": "John Doe",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+    
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "Projects": [
+      {
+        "Title": "Davolt",
+        "Description": "Full stack app,",
+        "GitRepositoryUrl": "Https://github.com",
+        "ProjectImage": {
+          "Url": "Https://random.com"
+        },
+        "IndustryModel": [
+          {
+            "Name": "Web Developement",
+            "Projects": [
+              {
+                "Title": "Devolt"
+              }
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "TagName": "CS"
+          }
+        ],
+        "ChatModel": [
+          {
+            "Message": [
+              {
+                "MessageContent": "hello"
+              }
+            ]
+          }
+        ],
+        "UsersMembers": [
+          {
+            "Username": "Tom"
+          },
+          {
+            "Username": "Tim"
+          },
+          {
+            "Username": "Tam"
+          }
+        ],
+        "MessageBoards": [
+          {
+            "Title": "Hello world",
+            "Body": "I love programming",
+            "Username": "Tom"
+          }
+        ]
+      
+      }
+    ]
+  },
+  {
+    "Username": "Elisabet",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+   
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "Projects": [
+      {
+        "Title": "MonkeRule",
+        "Description": "Full stack app,",
+        "GitRepositoryUrl": "Https://github.com",
+        "ProjectImage": {
+          "Url": "Https://random.com"
+        },
+        "IndustryModel": [
+          {
+            "Name": "Automation",
+            "Projects": [
+              {
+                "Title": "MonkeRule"
+              }
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "TagName": "CS"
+          }
+        ],
+        "ChatModel": [
+          {
+            "Message": [
+              {
+                "MessageContent": "hello"
+              }
+            ]
+          }
+        ],
+        "UsersMembers": [
+          {
+            "Username": "Slave 1"
+          },
+          {
+            "Username": "Slave 2"
+          },
+          {
+            "Username": "Slave 3"
+          }
+        ],
+        "MessageBoards": [
+          {
+            "Title": "Hello world",
+            "Body": "I love programming",
+            "Username": "Slave 1"
+          }
+        ]
+     
+      }
+    ]
+  },
+  {
+    "Username": "Cuckerino",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "Projects": [
+      {
+        "Title": "Banana",
+        "Description": "Full stack app,",
+        "GitRepositoryUrl": "Https://github.com",
+        "ProjectImage": {
+          "Url": "Https://random.com"
+        },
+        "IndustryModel": [
+          {
+            "Name": "Earth is flat society",
+            "Projects": [
+              {
+                "Title": "Banana"
+              }
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "TagName": "CS"
+          }
+        ],
+        "ChatModel": [
+          {
+            "Message": [
+              {
+                "MessageContent": "hello"
+              }
+            ]
+          }
+        ],
+        "UsersMembers": [
+          {
+            "Username": "BUBA"
+          },
+          {
+            "Username": "BIBI"
+          },
+          {
+            "Username": "BOBO"
+          }
+        ],
+        "MessageBoards": [
+          {
+            "Title": "Hello world",
+            "Body": "I love programming",
+            "Username": "BIBI"
+          }
+        ]
+  
+      }
+    ]
+  },
+  {
+    "Username": "John mow",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "Projects": [
+      {
+        "Title": "Sigma",
+        "Description": "Full stack app,",
+        "GitRepositoryUrl": "Https://github.com",
+        "ProjectImage": {
+          "Url": "Https://random.com"
+        },
+        "IndustryModel": [
+          {
+            "Name": "Music",
+            "Projects": [
+              {
+                "Title": "Sigma"
+              }
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "TagName": "CS"
+          }
+        ],
+        "ChatModel": [
+          {
+            "Message": [
+              {
+                "MessageContent": "hello"
+              }
+            ]
+          }
+        ],
+        "UsersMembers": [
+          {
+            "Username": "Tomtom"
+          },
+          {
+            "Username": "Timtom"
+          },
+          {
+            "Username": "Tamtom"
+          }
+        ],
+        "MessageBoards": [
+          {
+            "Title": "Hello world",
+            "Body": "I love programming",
+            "Username": "Tomtom"
+          }
+        ]
+      
+      }
+    ]
+  },
+  {
+    "Username": "candice",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "Projects": [
+      {
+        "Title": "To the moon",
+        "Description": "Full stack app,",
+        "GitRepositoryUrl": "Https://github.com",
+        "ProjectImage": {
+          "Url": "Https://random.com"
+        },
+        "IndustryModel": [
+          {
+            "Name": "Art",
+            "Projects": [
+              {
+                "Title": "Art"
+              }
+            ]
+          }
+        ],
+        "Tags": [
+          {
+            "TagName": "CS"
+          }
+        ],
+        "ChatModel": [
+          {
+            "Message": [
+              {
+                "MessageContent": "hello"
+              }
+            ]
+          }
+        ],
+        "UsersMembers": [
+          {
+            "Username": "noice"
+          },
+          {
+            "Username": "naice"
+          },
+          {
+            "Username": "neice"
+          }
+        ],
+        "MessageBoards": [
+          {
+            "Title": "Hello world",
+            "Body": "I love programming",
+            "Username": "Tom"
+          }
+        ]
+       
+      }
+    ]
+  }
+]

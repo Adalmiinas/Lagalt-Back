@@ -9,10 +9,18 @@ namespace lagalt
     {
     }
     public DbSet<UserModel> Users { get; set; }
-    // public DbSet<SearchWordModel> searchWords { get; set; }
-    //  public DbSet<SkillModel> skills { get; set; }
-     public DbSet<ProjectModel> Projects { get; set; }
+    public DbSet<PhotoModel> Photos { get; set; }
+    public DbSet<SearchWordModel> searchWords { get; set; }
 
+    public DbSet<ProjectModel> Projects { get; set; }
+
+    public DbSet<MessageBoardModel> MessageBoards { get; set; }
+    public DbSet<ProjectImageModel> projectImages { get; set; }
+    public DbSet<IndustryModel> Industries { get; set; }
+    public DbSet<TagModel> Tags { get; set; }
+    public DbSet<ChatModel> Chats { get; set; }
+    public DbSet<ChatMessageModel> ChatMessages { get; set; }
+    public DbSet<SkillModel> skills { get; set; }
 
   }
 }

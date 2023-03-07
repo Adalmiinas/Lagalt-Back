@@ -11,7 +11,7 @@ namespace lagalt.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "IndustryModel",
+                name: "Industries",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -20,7 +20,7 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IndustryModel", x => x.Id);
+                    table.PrimaryKey("PK_Industries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -31,8 +31,8 @@ namespace lagalt.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CareerTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Portfolio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -47,7 +47,6 @@ namespace lagalt.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    OwnerId = table.Column<int>(type: "int", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GitRepositoryUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -57,14 +56,14 @@ namespace lagalt.Migrations
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Projects_IndustryModel_IndustryId",
+                        name: "FK_Projects_Industries_IndustryId",
                         column: x => x.IndustryId,
-                        principalTable: "IndustryModel",
+                        principalTable: "Industries",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "PhotoModel",
+                name: "Photos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -74,9 +73,9 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PhotoModel", x => x.Id);
+                    table.PrimaryKey("PK_Photos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PhotoModel_Users_UserModelId",
+                        name: "FK_Photos_Users_UserModelId",
                         column: x => x.UserModelId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -84,7 +83,27 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChatModel",
+                name: "searchWords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Word = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_searchWords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_searchWords_Users_userId",
+                        column: x => x.userId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Chats",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -94,16 +113,16 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChatModel", x => x.Id);
+                    table.PrimaryKey("PK_Chats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChatModel_Projects_ProjectModelId",
+                        name: "FK_Chats_Projects_ProjectModelId",
                         column: x => x.ProjectModelId,
                         principalTable: "Projects",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "MessageBoardModel",
+                name: "MessageBoards",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -118,21 +137,21 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MessageBoardModel", x => x.Id);
+                    table.PrimaryKey("PK_MessageBoards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MessageBoardModel_Projects_ProjectModelId",
+                        name: "FK_MessageBoards_Projects_ProjectModelId",
                         column: x => x.ProjectModelId,
                         principalTable: "Projects",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MessageBoardModel_Users_UserModelId",
+                        name: "FK_MessageBoards_Users_UserModelId",
                         column: x => x.UserModelId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectImageModel",
+                name: "projectImages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -142,9 +161,9 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectImageModel", x => x.Id);
+                    table.PrimaryKey("PK_projectImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectImageModel_Projects_ProjectModelId",
+                        name: "FK_projectImages_Projects_ProjectModelId",
                         column: x => x.ProjectModelId,
                         principalTable: "Projects",
                         principalColumn: "Id",
@@ -176,7 +195,33 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SkillModel",
+                name: "ProjectOwnerModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    ProjectModelId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectOwnerModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProjectOwnerModel_Projects_ProjectModelId",
+                        column: x => x.ProjectModelId,
+                        principalTable: "Projects",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ProjectOwnerModel_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "skills",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -187,15 +232,15 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SkillModel", x => x.Id);
+                    table.PrimaryKey("PK_skills", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SkillModel_Projects_ProjectId",
+                        name: "FK_skills_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SkillModel_Users_UserId",
+                        name: "FK_skills_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -203,7 +248,7 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TagModel",
+                name: "Tags",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -213,9 +258,9 @@ namespace lagalt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TagModel", x => x.Id);
+                    table.PrimaryKey("PK_Tags", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TagModel_Projects_ProjectId",
+                        name: "FK_Tags_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
@@ -223,26 +268,26 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ChatMessageModel",
+                name: "ChatMessages",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ChatId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChatMessageModel", x => x.Id);
+                    table.PrimaryKey("PK_ChatMessages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ChatMessageModel_ChatModel_ChatId",
+                        name: "FK_ChatMessages_Chats_ChatId",
                         column: x => x.ChatId,
-                        principalTable: "ChatModel",
+                        principalTable: "Chats",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ChatMessageModel_Users_UserId",
+                        name: "FK_ChatMessages_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -250,39 +295,39 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatMessageModel_ChatId",
-                table: "ChatMessageModel",
+                name: "IX_ChatMessages_ChatId",
+                table: "ChatMessages",
                 column: "ChatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatMessageModel_UserId",
-                table: "ChatMessageModel",
+                name: "IX_ChatMessages_UserId",
+                table: "ChatMessages",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChatModel_ProjectModelId",
-                table: "ChatModel",
+                name: "IX_Chats_ProjectModelId",
+                table: "Chats",
                 column: "ProjectModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MessageBoardModel_ProjectModelId",
-                table: "MessageBoardModel",
+                name: "IX_MessageBoards_ProjectModelId",
+                table: "MessageBoards",
                 column: "ProjectModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MessageBoardModel_UserModelId",
-                table: "MessageBoardModel",
+                name: "IX_MessageBoards_UserModelId",
+                table: "MessageBoards",
                 column: "UserModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhotoModel_UserModelId",
-                table: "PhotoModel",
+                name: "IX_Photos_UserModelId",
+                table: "Photos",
                 column: "UserModelId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectImageModel_ProjectModelId",
-                table: "ProjectImageModel",
+                name: "IX_projectImages_ProjectModelId",
+                table: "projectImages",
                 column: "ProjectModelId",
                 unique: true);
 
@@ -292,23 +337,38 @@ namespace lagalt.Migrations
                 column: "UsersMembersId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProjectOwnerModel_ProjectModelId",
+                table: "ProjectOwnerModel",
+                column: "ProjectModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectOwnerModel_UserId",
+                table: "ProjectOwnerModel",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projects_IndustryId",
                 table: "Projects",
                 column: "IndustryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillModel_ProjectId",
-                table: "SkillModel",
+                name: "IX_searchWords_userId",
+                table: "searchWords",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_skills_ProjectId",
+                table: "skills",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SkillModel_UserId",
-                table: "SkillModel",
+                name: "IX_skills_UserId",
+                table: "skills",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TagModel_ProjectId",
-                table: "TagModel",
+                name: "IX_Tags_ProjectId",
+                table: "Tags",
                 column: "ProjectId");
         }
 
@@ -316,28 +376,34 @@ namespace lagalt.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ChatMessageModel");
+                name: "ChatMessages");
 
             migrationBuilder.DropTable(
-                name: "MessageBoardModel");
+                name: "MessageBoards");
 
             migrationBuilder.DropTable(
-                name: "PhotoModel");
+                name: "Photos");
 
             migrationBuilder.DropTable(
-                name: "ProjectImageModel");
+                name: "projectImages");
 
             migrationBuilder.DropTable(
                 name: "ProjectModelUserModel");
 
             migrationBuilder.DropTable(
-                name: "SkillModel");
+                name: "ProjectOwnerModel");
 
             migrationBuilder.DropTable(
-                name: "TagModel");
+                name: "searchWords");
 
             migrationBuilder.DropTable(
-                name: "ChatModel");
+                name: "skills");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
+
+            migrationBuilder.DropTable(
+                name: "Chats");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -346,7 +412,7 @@ namespace lagalt.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "IndustryModel");
+                name: "Industries");
         }
     }
 }
