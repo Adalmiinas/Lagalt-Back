@@ -44,10 +44,11 @@ namespace lagalt.Data.Extensions
       //   c.IncludeXmlComments(xmlPath);
       // });
       // services.AddSwaggerExamplesFromAssemblyOf<Program>();
-       services.AddCors();
+      services.AddCors();
       // services.AddScoped<ICharacterRepository, CharacterRepository>();
       // services.AddScoped<IMovieRepository, MovieRepository>();
-
+      services.AddScoped<IUserAccountRepository, RegisterUserRepository>();
+      services.AddScoped<IProjectRepository, ProjectRepository>();
 
       //automapper
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

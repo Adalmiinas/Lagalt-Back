@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace lagalt.Controllers
+namespace lagalt
 {
-    public class RegisterController
-    {
-        
-    }
+  public class SkillDto
+  {
+
+    public string SkillName { get; set; }
+
+
+  }
 }

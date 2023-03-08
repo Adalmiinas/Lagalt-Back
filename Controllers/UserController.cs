@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt.Controllers
 {
-    public class UserController
+  public class UserController : BaseApiController
     {
-        
+        //get all
+
+
+        // //get id
     }
 }
