@@ -12,7 +12,7 @@ using lagalt;
 namespace lagalt.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230307165702_init")]
+    [Migration("20230308075856_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,47 +24,6 @@ namespace lagalt.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ProjectModelUserModel", b =>
-                {
-                    b.Property<int>("ProjectsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersMembersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjectsId", "UsersMembersId");
-
-                    b.HasIndex("UsersMembersId");
-
-                    b.ToTable("ProjectModelUserModel");
-                });
-
-            modelBuilder.Entity("lagalt.Data.Models.ProjectOwnerModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProjectModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectModelId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ProjectOwnerModel");
-                });
 
             modelBuilder.Entity("lagaltApp.ChatMessageModel", b =>
                 {
@@ -228,6 +187,9 @@ namespace lagalt.Migrations
                     b.Property<int?>("IndustryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -236,6 +198,29 @@ namespace lagalt.Migrations
                     b.HasIndex("IndustryId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("lagaltApp.ProjectUserModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProjectUsers");
                 });
 
             modelBuilder.Entity("lagaltApp.SearchWordModel", b =>
@@ -330,44 +315,11 @@ namespace lagalt.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ProjectModelUserModel", b =>
-                {
-                    b.HasOne("lagaltApp.ProjectModel", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("lagaltApp.UserModel", null)
-                        .WithMany()
-                        .HasForeignKey("UsersMembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("lagalt.Data.Models.ProjectOwnerModel", b =>
-                {
-                    b.HasOne("lagaltApp.ProjectModel", "ProjectModel")
-                        .WithMany("ProjectOwner")
-                        .HasForeignKey("ProjectModelId");
-
-                    b.HasOne("lagaltApp.UserModel", "User")
-                        .WithMany("ProjectOwner")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProjectModel");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("lagaltApp.ChatMessageModel", b =>
@@ -444,6 +396,25 @@ namespace lagalt.Migrations
                     b.Navigation("Industry");
                 });
 
+            modelBuilder.Entity("lagaltApp.ProjectUserModel", b =>
+                {
+                    b.HasOne("lagaltApp.ProjectModel", "Project")
+                        .WithMany("ProjectUsers")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lagaltApp.UserModel", "User")
+                        .WithMany("ProjectUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("lagaltApp.SearchWordModel", b =>
                 {
                     b.HasOne("lagaltApp.UserModel", "User")
@@ -501,7 +472,7 @@ namespace lagalt.Migrations
 
                     b.Navigation("MessageBoards");
 
-                    b.Navigation("ProjectOwner");
+                    b.Navigation("ProjectUsers");
 
                     b.Navigation("Skills");
 
@@ -514,7 +485,7 @@ namespace lagalt.Migrations
                 {
                     b.Navigation("Photo");
 
-                    b.Navigation("ProjectOwner");
+                    b.Navigation("ProjectUsers");
 
                     b.Navigation("SearchWords");
 

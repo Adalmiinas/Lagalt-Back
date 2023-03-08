@@ -9,55 +9,40 @@
     "Photo": {
       "Url": "https://randomPic.com"
     },
-    
+
     "SearchWordList": [
       {
         "Word": "Web Developement"
       }
     ],
-    "Projects": [
+    "ProjectUsers": [
       {
-        "Title": "Davolt did",
-        "Description": "Full stack app,",
-        "GitRepositoryUrl": "Https://github.com",
-        "ProjectImage": {
-          "Url": "Https://random.com"
-        },
-        "Industry": 
-          {
-            "Name": "Artificial Intelligence",
-            "Projects": [
+        "UserId": 1,
+          "Project": {
+            "Title": "To the moosdadsn dsdsdaddad",
+            "ProjectOwner": 1,
+            "Description": "Full stack app,",
+            "GitRepositoryUrl": "Https://github.com",
+            "ProjectImage": {
+              "Url": "Https://random.com"
+            },
+            "Industry": {
+              "Name": "Art"
+            },
+            "Tags": [
               {
-                "Title": "Devolt did"
+                "TagName": "CS"
+              }
+            ],
+            "ChatMessagesBoards": [
+              {
+                "Title": "Hello world",
+                "Body": "I love programming",
+                "Username": "Tomtom"
               }
             ]
+
           }
-        ,
-        "Tags": [
-          {
-            "TagName": "CS"
-          }
-        ],
-     
-        "UsersMembers": [
-          {
-            "Username": "Tom bufa"
-          },
-          {
-            "Username": "Tim lol"
-          },
-          {
-            "Username": "Tam adsd"
-          }
-        ],
-        "ChatMessagesBoards": [
-          {
-            "Title": "Hello world",
-            "Body": "I love programming",
-            "Username": "Tom bufa"
-          }
-        ]
-        
       }
     ]
   },
@@ -71,55 +56,40 @@
     "Photo": {
       "Url": "https://randomPic.com"
     },
-    
+
     "SearchWordList": [
       {
         "Word": "Web Developement"
       }
     ],
-    "Projects": [
+    "ProjectUsers": [
       {
-        "Title": "Davolt",
-        "Description": "Full stack app,",
-        "GitRepositoryUrl": "Https://github.com",
-        "ProjectImage": {
-          "Url": "Https://random.com"
-        },
-        "Industry": 
-          {
-            "Name": "Web Developement",
-            "Projects": [
+        "UserId": 2,
+          "Project": {
+            "Title": "To the moosdadsn dsadsdsas",
+            "ProjectOwner": 2,
+            "Description": "Full stack app,",
+            "GitRepositoryUrl": "Https://github.com",
+            "ProjectImage": {
+              "Url": "Https://random.com"
+            },
+            "Industry": {
+              "Name": "Art"
+            },
+            "Tags": [
               {
-                "Title": "Devolt"
+                "TagName": "CS"
+              }
+            ],
+            "ChatMessagesBoards": [
+              {
+                "Title": "Hello world",
+                "Body": "I love programming",
+                "Username": "Tomtom"
               }
             ]
+
           }
-        ,
-        "Tags": [
-          {
-            "TagName": "CS"
-          }
-        ],
-      
-        "UsersMembers": [
-          {
-            "Username": "Tom"
-          },
-          {
-            "Username": "Tim"
-          },
-          {
-            "Username": "Tam"
-          }
-        ],
-        "ChatMessagesBoards": [
-          {
-            "Title": "Hello world",
-            "Body": "I love programming",
-            "Username": "Tom"
-          }
-        ]
-      
       }
     ]
   },
@@ -133,55 +103,40 @@
     "Photo": {
       "Url": "https://randomPic.com"
     },
-   
+
     "SearchWordList": [
       {
         "Word": "Web Developement"
       }
     ],
-    "Projects": [
+    "ProjectUsers": [
       {
-        "Title": "MonkeRule",
-        "Description": "Full stack app,",
-        "GitRepositoryUrl": "Https://github.com",
-        "ProjectImage": {
-          "Url": "Https://random.com"
-        },
-        "Industry": 
-          {
-            "Name": "Automation",
-            "Projects": [
+        "UserId": 3,
+          "Project": {
+            "Title": "Toadsdadsd the moosdadsn",
+            "ProjectOwner": 3,
+            "Description": "Full stack app,",
+            "GitRepositoryUrl": "Https://github.com",
+            "ProjectImage": {
+              "Url": "Https://random.com"
+            },
+            "Industry": {
+              "Name": "Art"
+            },
+            "Tags": [
               {
-                "Title": "MonkeRule"
+                "TagName": "CS"
+              }
+            ],
+            "ChatMessagesBoards": [
+              {
+                "Title": "Hello world",
+                "Body": "I love programming",
+                "Username": "Tomtom"
               }
             ]
-          }
-        ,
-        "Tags": [
-          {
-            "TagName": "CS"
-          }
-        ],
 
-        "UsersMembers": [
-          {
-            "Username": "Slave 1"
-          },
-          {
-            "Username": "Slave 2"
-          },
-          {
-            "Username": "Slave 3"
           }
-        ],
-        "ChatMessagesBoards": [
-          {
-            "Title": "Hello world",
-            "Body": "I love programming",
-            "Username": "Slave 1"
-          }
-        ]
-     
       }
     ]
   },
@@ -200,49 +155,34 @@
         "Word": "Web Developement"
       }
     ],
-    "Projects": [
+    "ProjectUsers": [
       {
-        "Title": "Banana",
-        "Description": "Full stack app,",
-        "GitRepositoryUrl": "Https://github.com",
-        "ProjectImage": {
-          "Url": "Https://random.com"
-        },
-        "Industry": 
-          {
-            "Name": "Earth is flat society",
-            "Projects": [
+        "UserId": 4,
+          "Project": {
+            "Title": "To the moosddasdsadsadsn",
+            "ProjectOwner": 4,
+            "Description": "Full stack app,",
+            "GitRepositoryUrl": "Https://github.com",
+            "ProjectImage": {
+              "Url": "Https://random.com"
+            },
+            "Industry": {
+              "Name": "Art"
+            },
+            "Tags": [
               {
-                "Title": "Banana"
+                "TagName": "CS"
+              }
+            ],
+            "ChatMessagesBoards": [
+              {
+                "Title": "Hello world",
+                "Body": "I love programming",
+                "Username": "Tomtom"
               }
             ]
+
           }
-        ,
-        "Tags": [
-          {
-            "TagName": "CS"
-          }
-        ],
-    
-        "UsersMembers": [
-          {
-            "Username": "BUBA"
-          },
-          {
-            "Username": "BIBI"
-          },
-          {
-            "Username": "BOBO"
-          }
-        ],
-        "ChatMessagesBoards": [
-          {
-            "Title": "Hello world",
-            "Body": "I love programming",
-            "Username": "BIBI"
-          }
-        ]
-  
       }
     ]
   },
@@ -262,52 +202,40 @@
         "Word": "Web Developement"
       }
     ],
-    "Projects": [
+    "ProjectUsers": [
       {
-        "Title": "Sigma",
-        "Description": "Full stack app,",
-        "GitRepositoryUrl": "Https://github.com",
-        "ProjectImage": {
-          "Url": "Https://random.com"
-        },
-        "Industry": 
-          {
-            "Name": "Music",
-            "Projects": [
+          "UserId": 5,
+          "Project": {
+            "Title": "To the moosdadsn",
+            "ProjectOwner": 5,
+            "Description": "Full stack app,",
+            "GitRepositoryUrl": "Https://github.com",
+            "ProjectImage": {
+              "Url": "Https://random.com"
+            },
+            "Industry": {
+              "Name": "Art"
+            },
+            "Tags": [
               {
-                "Title": "Sigma"
+                "TagName": "CS"
+              }
+            ],
+            "ChatMessagesBoards": [
+              {
+                "Title": "Hello world",
+                "Body": "I love programming",
+                "Username": "Tomtom"
               }
             ]
+
           }
-        ,
-        "Tags": [
-          {
-            "TagName": "CS"
-          }
-        ],
-      
-        "UsersMembers": [
-          {
-            "Username": "Tomtom"
-          },
-          {
-            "Username": "Timtom"
-          },
-          {
-            "Username": "Tamtom"
-          }
-        ],
-        "ChatMessagesBoards": [
-          {
-            "Title": "Hello world",
-            "Body": "I love programming",
-            "Username": "Tomtom"
-          }
-        ]
-      
-      }
-    ]
-  },
+        }
+          ]
+
+         
+        
+      },
   {
     "Username": "candice",
     "Email": "Test@lol.com",
@@ -324,50 +252,36 @@
         "Word": "Web Developement"
       }
     ],
-    "Projects": [
+    "ProjectUsers": [
       {
-        "Title": "To the moon",
-        "Description": "Full stack app,",
-        "GitRepositoryUrl": "Https://github.com",
-        "ProjectImage": {
-          "Url": "Https://random.com"
-        },
-        "Industry": 
-          {
-            "Name": "Art",
-            "Projects": [
-              {
-                "Title": "Art"
-              }
-            ]
-          }
-        ,
-        "Tags": [
-          {
-            "TagName": "CS"
-          }
-        ],
-        
-        "UsersMembers": [
-          {
-            "Username": "noice"
+        "UserId": 6,
+        "Project": {
+          "Title": "To the moosdadsn",
+          "ProjectOwner": 6,
+          "Description": "Full stack app,",
+          "GitRepositoryUrl": "Https://github.com",
+          "ProjectImage": {
+            "Url": "Https://random.com"
           },
-          {
-            "Username": "naice"
+          "Industry": {
+            "Name": "Art"
           },
-          {
-            "Username": "neice"
-          }
-        ],
-        "ChatMessagesBoards": [
-          {
-            "Title": "Hello world",
-            "Body": "I love programming",
-            "Username": "Tom"
-          }
-        ]
-       
-      }
+          "Tags": [
+            {
+              "TagName": "CS"
+            }
+          ],
+          "ChatMessagesBoards": [
+            {
+              "Title": "Hello world",
+              "Body": "I love programming",
+              "Username": "Tomtom"
+            }
+          ]
+
+        }
+        }
+      
     ]
   }
 ]

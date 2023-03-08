@@ -1,15 +1,9 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using lagalt.Data.Models;
-
 namespace lagaltApp
 {
   public class UserModel
   {
 
     public int Id { get; set; }
-
-    [Required]
     public string Username { get; set; }
     public string CareerTitle { get; set; }
 
@@ -23,11 +17,10 @@ namespace lagaltApp
     public string Description { get; set; }
 
 
-    public List<ProjectOwnerModel> ProjectOwner { get; set; }
     public List<SearchWordModel> SearchWords { get; set; } = new();
 
 
-    public List<ProjectModel> Projects { get; set; } = new();
+    public List<ProjectUserModel> ProjectUsers { get; set; }
     public List<SkillModel> Skills { get; set; } = new();
 
     public PhotoModel Photo { get; set; }

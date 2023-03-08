@@ -13,6 +13,7 @@ namespace lagalt
     public DbSet<SearchWordModel> searchWords { get; set; }
 
     public DbSet<ProjectModel> Projects { get; set; }
+    public DbSet<ProjectUserModel> ProjectUsers { get; set; }
 
     public DbSet<MessageBoardModel> MessageBoards { get; set; }
     public DbSet<ProjectImageModel> projectImages { get; set; }
