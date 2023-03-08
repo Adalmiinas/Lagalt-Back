@@ -20,7 +20,7 @@
         "UserId": 1,
           "Project": {
             "Title": "To the moosdadsn dsdsdaddad",
-            "ProjectOwner": 1,
+            "OwnerId": 1,
             "Description": "Full stack app,",
             "GitRepositoryUrl": "Https://github.com",
             "ProjectImage": {
@@ -67,7 +67,7 @@
         "UserId": 2,
           "Project": {
             "Title": "To the moosdadsn dsadsdsas",
-            "ProjectOwner": 2,
+            "OwnerId": 2,
             "Description": "Full stack app,",
             "GitRepositoryUrl": "Https://github.com",
             "ProjectImage": {
@@ -114,7 +114,7 @@
         "UserId": 3,
           "Project": {
             "Title": "Toadsdadsd the moosdadsn",
-            "ProjectOwner": 3,
+            "OwnerId": 3,
             "Description": "Full stack app,",
             "GitRepositoryUrl": "Https://github.com",
             "ProjectImage": {
@@ -160,7 +160,7 @@
         "UserId": 4,
           "Project": {
             "Title": "To the moosddasdsadsadsn",
-            "ProjectOwner": 4,
+            "OwnerId": 4,
             "Description": "Full stack app,",
             "GitRepositoryUrl": "Https://github.com",
             "ProjectImage": {
@@ -207,7 +207,7 @@
           "UserId": 5,
           "Project": {
             "Title": "To the moosdadsn",
-            "ProjectOwner": 5,
+            "OwnerId": 5,
             "Description": "Full stack app,",
             "GitRepositoryUrl": "Https://github.com",
             "ProjectImage": {
@@ -257,7 +257,7 @@
         "UserId": 6,
         "Project": {
           "Title": "To the moosdadsn",
-          "ProjectOwner": 6,
+          "OwnerId": 6,
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {

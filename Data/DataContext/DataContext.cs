@@ -8,6 +8,13 @@ namespace lagalt
     public DataContext(DbContextOptions options) : base(options)
     {
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<ProjectModel>()
+      .HasOne(p => p.Owner) 
+      .WithMany()
+      .HasForeignKey(p => p.OwnerId);
+    }
     public DbSet<UserModel> Users { get; set; }
     public DbSet<PhotoModel> Photos { get; set; }
     public DbSet<SearchWordModel> searchWords { get; set; }
