@@ -93,7 +93,7 @@ namespace lagalt.Controllers
       }
     }
 
-    [HttpPatch("{ownerId}/User")]
+    [HttpPatch("owner/{ownerId}/waitlist")]
     public async Task<IActionResult> AcceptOrRemoveUserFromProject(int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
     {
       try
@@ -103,7 +103,7 @@ namespace lagalt.Controllers
       catch (Exception ex)
       {
 
-        throw new Exception("Bad request", ex);
+        throw new Exception("Bad request CANNOT UPDATE USER LIST STATE", ex);
 
       }
     }

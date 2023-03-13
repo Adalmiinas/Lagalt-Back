@@ -23,42 +23,29 @@ namespace lagalt
       //check project id
       var Owner = await _dataContext.ProjectUsers.Include(pu => pu.Project).ThenInclude(p => p.WaitList).FirstOrDefaultAsync(pu => pu.UserId == ownerId && pu.IsOwner == true && pu.ProjectId == userInWaitingList.ProjectId);
       var ApplyingUser = await _dataContext.Users.FindAsync(userInWaitingList.UserId);
-      var ChangeStatus = ApplyingUser.UsersInWaitingLists.FirstOrDefault(uw => uw.WaitList.Id == Owner.Project.WaitListId);
-      var FindApplyingUser = Owner.Project.WaitList.UserWaitingLists.FirstOrDefault(uw => uw.User == ApplyingUser);
+      var exisitingProject = await _dataContext.Projects.Include(p => p.WaitList).FirstOrDefaultAsync(p => p.Id == userInWaitingList.ProjectId);
+      // var ChangeStatus = exisitingProject.WaitList.UserWaitingLists.FirstOrDefault(p => p.UserId == ApplyingUser.Id);
+      var WaitList = await _dataContext.UsersInWaitingLists.FirstOrDefaultAsync(uw => uw.UserId == userInWaitingList.UserId);
+      var IsDuplicate = await _dataContext.ProjectUsers.Include(pu => pu.Project).FirstOrDefaultAsync(p => p.UserId == userInWaitingList.UserId && p.ProjectId == userInWaitingList.ProjectId && p.IsOwner == false);
       var ApplyingUserDto = _mapper.Map<ProjectUserDto>(ApplyingUser);
-      if (ApplyingUser == null)
-      {
-        throw new Exception("Invalid User id, user does not exist");
-      }
 
+      if (ApplyingUser == null) throw new Exception("Invalid User id, user does not exist");
 
-      if (Owner == null)
-      {
-        throw new Exception("Invalid Owner Id / Invalid Project");
-      }
-      //we know sender is valid now check if the change is valid
-      //check the status pending
-      if (userInWaitingList.PendingStatus == true)
-      {
-        //true = nothing happened > early throw err
-        throw new Exception("Nothing was changed...false patching");
-      }
+      if (WaitList == null) throw new Exception("User  not is  in the list");
+
+      if (IsDuplicate != null) throw new Exception("User is already part of the project");
+
+      if (Owner == null) throw new Exception("Invalid Owner Id / Invalid Project");
+
+      if (userInWaitingList.PendingStatus == true) throw new Exception("Nothing was changed...false patching");
+
       if (userInWaitingList.PendingStatus == false)
       {
-        //add user to project user list of the current project
-        Owner.Project.ProjectUsers.Add(_mapper.Map<ProjectUserModel>(ApplyingUserDto));
-
-        ChangeStatus.PendingStatus = false;
-
+        Owner.Project.ProjectUsers.Add(_mapper.Map<ProjectUserModel>(ApplyingUser));
       }
-      //and we just remove user because its 
-      Owner.Project.WaitList.UserWaitingLists.Remove(FindApplyingUser);
-      _dataContext.Entry(ApplyingUser.UsersInWaitingLists).State = EntityState.Modified;
-      _mapper.Map(ChangeStatus, Owner.Project.WaitList.UserWaitingLists);
+      _dataContext.UsersInWaitingLists.Remove(WaitList);
       await _dataContext.SaveChangesAsync();
-
       return new NoContentResult();
-
     }
 
     public async Task<IActionResult> AddUserToWaitListAsync(int Id, UserInWaitingListDto waitList)

@@ -5,7 +5,7 @@ namespace lagaltApp
   public class UserModel
   {
 
-    public int Id { get; set; }
+    public int Id { get; set; } = new();
     public string Username { get; set; }
     public string CareerTitle { get; set; }
 
@@ -25,7 +25,7 @@ namespace lagaltApp
 
     public PhotoModel Photo { get; set; }
 
-    public List<UserInWaitingListModel> UsersInWaitingLists { get; set; }
+    public List<UserInWaitingListModel> UsersInWaitingLists { get; set; } = new();
 
     //WIP 
     // public List<AppliedProjectHistoryModel> AppliedProjectHistories { get; set; }

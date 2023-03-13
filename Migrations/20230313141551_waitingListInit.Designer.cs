@@ -12,7 +12,7 @@ using lagalt;
 namespace lagalt.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230313101555_waitingListInit")]
+    [Migration("20230313141551_waitingListInit")]
     partial class waitingListInit
     {
         /// <inheritdoc />

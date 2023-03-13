@@ -6,7 +6,17 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
-    "UserWaitingLists": [],
+    "UserWaitingLists": [
+      {
+        "PendingStatus": true,
+        "UserId": 1
+    
+      },
+      {
+        "PendingStatus": true,
+        "UserId": 1
+      }
+    ],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -26,14 +36,14 @@
         "UserId": 1,
         "IsOwner": true,
         "Project": {
-          "Title": "To the moosdadsn dsdsdaddad",
+          "Title": "Doom app 😁",
           "Description": "Full stack app,",
-          "WaitListId": 1,
-          "WaitLists": {
-            "Id": 1,
+          "WaitList": {
             "UserWaitingLists": [
               {
-                "Id": null
+                "projectId": 1,
+                "PendingStatus": true,
+                "UserId": 5
               }
             ]
           },
@@ -67,7 +77,16 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
-    "UserWaitingLists": [],
+    "UserWaitingLists": [
+      {
+        "PendingStatus": true,
+        "UserId": 2
+      },
+      {
+        "PendingStatus": true,
+        "UserId": 2
+      }
+    ],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -87,12 +106,18 @@
       {
         "UserId": 2,
         "IsOwner": true,
+
         "Project": {
-          "WaitListId": null,
-          "WaitLists": {
-            "Id": null
+          "WaitList": {
+            "UserWaitingLists": [
+              {
+                "projectId": 2,
+                "PendingStatus": true,
+                "UserId": 6
+              }
+            ]
           },
-          "Title": "To the moosdadsn dsadsdsas",
+          "Title": "Hello world with momoko 🙄",
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
@@ -129,7 +154,12 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
-    "UserWaitingLists": [],
+    "UserWaitingLists": [
+      {
+        "PendingStatus": true,
+        "UserId": 3
+      }
+    ],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -150,10 +180,15 @@
                 "projectId": 3,
                 "PendingStatus": true,
                 "UserId": 1
+              },
+              {
+                "projectId": 3,
+                "PendingStatus": true,
+                "UserId": 2
               }
             ]
           },
-          "Title": "Toadsdadsd the moosdadsn",
+          "Title": "Finance app",
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
@@ -185,7 +220,12 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
-    "UserWaitingLists": [],
+    "UserWaitingLists": [
+      {
+        "PendingStatus": true,
+        "UserId": 4
+      }
+    ],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -199,11 +239,15 @@
         "UserId": 4,
         "IsOwner": true,
         "Project": {
-          "WaitListId": null,
-          "WaitLists": {
-            "Id": null
+          "WaitList": {
+            "UserWaitingLists": [
+              {
+                "projectId": 4,
+                "PendingStatus": true
+              }
+            ]
           },
-          "Title": "To the moosddasdsadsadsn",
+          "Title": "Sad song app",
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
@@ -235,7 +279,16 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
-    "UserWaitingLists": [],
+    "UserWaitingLists": [
+      {
+        "PendingStatus": true,
+        "UserId": 5
+      },
+      {
+        "PendingStatus": true,
+        "UserId": 5
+      }
+    ],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -250,11 +303,21 @@
         "UserId": 5,
         "IsOwner": true,
         "Project": {
-          "WaitListId": null,
-          "WaitLists": {
-            "Id": null
+          "WaitList": {
+            "UserWaitingLists": [
+              {
+                "projectId": 5,
+                "PendingStatus": true,
+                "UserId": 4
+              },
+              {
+                "projectId": 5,
+                "PendingStatus": true,
+                "UserId": 2
+              }
+            ]
           },
-          "Title": "To the moosdadsn",
+          "Title": "Roblox mmo rpg",
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
@@ -276,13 +339,6 @@
             }
           ]
         }
-      },
-      {
-        "UserId": 3,
-        "IsOwner": false,
-        "Project": {
-          "id": 5
-        }
       }
     ]
   },
@@ -293,7 +349,16 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
-    "UserWaitingLists": [],
+    "UserWaitingLists": [
+      {
+        "PendingStatus": true,
+        "UserId": 6
+      },
+      {
+        "PendingStatus": true,
+        "UserId": 6
+      }
+    ],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -308,11 +373,16 @@
         "UserId": 6,
         "IsOwner": true,
         "Project": {
-          "WaitListId": null,
-          "WaitLists": {
-            "Id": null
+          "WaitList": {
+            "UserWaitingLists": [
+              {
+                "projectId": 6,
+                "PendingStatus": true,
+                "UserId": 1
+              }
+            ]
           },
-          "Title": "To the moosdadsn",
+          "Title": "Golf ball gps app",
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
@@ -333,13 +403,6 @@
               "Username": "Tomtom"
             }
           ]
-        }
-      },
-      {
-        "UserId": 5,
-        "IsOwner": false,
-        "Project": {
-          "id": 6
         }
       }
     ]

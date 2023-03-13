@@ -68,6 +68,11 @@ namespace lagalt
       //project userr get users projects for profile page
 
       CreateMap<ProjectUserModel, ProjectUserDto>();
+      CreateMap<UserModel, ProjectUserDto>()
+      .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
+      CreateMap<ProjectUserDto, ProjectUserModel>();
+      CreateMap<UserModel, ProjectUserModel>()
+      .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
 
       //update project details
       CreateMap<UpdateProjectDetailsDto, ProjectModel>()
