@@ -1,20 +1,16 @@
-namespace lagalt
+using lagalt;
+
+namespace Lagalt
 {
-  public class SkillDto
+  public class ProjectUserDto
   {
-
     public int Id { get; set; }
-    public string SkillName { get; set; }
-
-
 
     public int UserId { get; set; }
     public UserDto User { get; set; }
-
-
     public int ProjectId { get; set; }
     public ProjectDto Project { get; set; }
 
-
+    public bool IsOwner { get; set; }
   }
 }

@@ -6,6 +6,7 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
+    "UserWaitingLists": [],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -15,34 +16,47 @@
         "Word": "Web Developement"
       }
     ],
+    "Skills": [
+      {
+        "SkillName": "Fast man"
+      }
+    ],
     "ProjectUsers": [
       {
         "UserId": 1,
-          "Project": {
-            "Title": "To the moosdadsn dsdsdaddad",
-            "OwnerId": 1,
-            "Description": "Full stack app,",
-            "GitRepositoryUrl": "Https://github.com",
-            "ProjectImage": {
-              "Url": "Https://random.com"
-            },
-            "Industry": {
-              "Name": "Art"
-            },
-            "Tags": [
+        "IsOwner": true,
+        "Project": {
+          "Title": "To the moosdadsn dsdsdaddad",
+          "Description": "Full stack app,",
+          "WaitListId": 1,
+          "WaitLists": {
+            "Id": 1,
+            "UserWaitingLists": [
               {
-                "TagName": "CS"
-              }
-            ],
-            "ChatMessagesBoards": [
-              {
-                "Title": "Hello world",
-                "Body": "I love programming",
-                "Username": "Tomtom"
+                "Id": null
               }
             ]
-
-          }
+          },
+          "GitRepositoryUrl": "Https://github.com",
+          "ProjectImage": {
+            "Url": "Https://random.com"
+          },
+          "Industry": {
+            "Name": "Art"
+          },
+          "Tags": [
+            {
+              "TagName": "CS"
+            }
+          ],
+          "ChatMessagesBoards": [
+            {
+              "Title": "Hello world",
+              "Body": "I love programming",
+              "Username": "Tomtom"
+            }
+          ]
+        }
       }
     ]
   },
@@ -53,6 +67,7 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
+    "UserWaitingLists": [],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -62,34 +77,48 @@
         "Word": "Web Developement"
       }
     ],
+    "Skills": [
+      {
+        "SkillName": "aoe coder"
+      }
+    ],
+
     "ProjectUsers": [
       {
         "UserId": 2,
-          "Project": {
-            "Title": "To the moosdadsn dsadsdsas",
-            "OwnerId": 2,
-            "Description": "Full stack app,",
-            "GitRepositoryUrl": "Https://github.com",
-            "ProjectImage": {
-              "Url": "Https://random.com"
-            },
-            "Industry": {
-              "Name": "Art"
-            },
-            "Tags": [
-              {
-                "TagName": "CS"
-              }
-            ],
-            "ChatMessagesBoards": [
-              {
-                "Title": "Hello world",
-                "Body": "I love programming",
-                "Username": "Tomtom"
-              }
-            ]
-
-          }
+        "IsOwner": true,
+        "Project": {
+          "WaitListId": null,
+          "WaitLists": {
+            "Id": null
+          },
+          "Title": "To the moosdadsn dsadsdsas",
+          "Description": "Full stack app,",
+          "GitRepositoryUrl": "Https://github.com",
+          "ProjectImage": {
+            "Url": "Https://random.com"
+          },
+          "Industry": {
+            "Name": "Art"
+          },
+          "Tags": [
+            {
+              "TagName": "CS"
+            }
+          ],
+          "Skills": [
+            {
+              "SkillName": "Full stack"
+            }
+          ],
+          "ChatMessagesBoards": [
+            {
+              "Title": "Hello world",
+              "Body": "I love programming",
+              "Username": "Tomtom"
+            }
+          ]
+        }
       }
     ]
   },
@@ -100,6 +129,7 @@
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
+    "UserWaitingLists": [],
     "Photo": {
       "Url": "https://randomPic.com"
     },
@@ -112,152 +142,18 @@
     "ProjectUsers": [
       {
         "UserId": 3,
-          "Project": {
-            "Title": "Toadsdadsd the moosdadsn",
-            "OwnerId": 3,
-            "Description": "Full stack app,",
-            "GitRepositoryUrl": "Https://github.com",
-            "ProjectImage": {
-              "Url": "Https://random.com"
-            },
-            "Industry": {
-              "Name": "Art"
-            },
-            "Tags": [
-              {
-                "TagName": "CS"
-              }
-            ],
-            "ChatMessagesBoards": [
-              {
-                "Title": "Hello world",
-                "Body": "I love programming",
-                "Username": "Tomtom"
-              }
-            ]
-
-          }
-      }
-    ]
-  },
-  {
-    "Username": "Cuckerino",
-    "Email": "Test@lol.com",
-    "Password": "test123",
-    "Portfolio": "portfolio.pdf",
-    "Description": "I'm flash",
-    "CareerTitle": ".net full stack developer",
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
-    "SearchWordList": [
-      {
-        "Word": "Web Developement"
-      }
-    ],
-    "ProjectUsers": [
-      {
-        "UserId": 4,
-          "Project": {
-            "Title": "To the moosddasdsadsadsn",
-            "OwnerId": 4,
-            "Description": "Full stack app,",
-            "GitRepositoryUrl": "Https://github.com",
-            "ProjectImage": {
-              "Url": "Https://random.com"
-            },
-            "Industry": {
-              "Name": "Art"
-            },
-            "Tags": [
-              {
-                "TagName": "CS"
-              }
-            ],
-            "ChatMessagesBoards": [
-              {
-                "Title": "Hello world",
-                "Body": "I love programming",
-                "Username": "Tomtom"
-              }
-            ]
-
-          }
-      }
-    ]
-  },
-  {
-    "Username": "John mow",
-    "Email": "Test@lol.com",
-    "Password": "test123",
-    "Portfolio": "portfolio.pdf",
-    "Description": "I'm flash",
-    "CareerTitle": ".net full stack developer",
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
-
-    "SearchWordList": [
-      {
-        "Word": "Web Developement"
-      }
-    ],
-    "ProjectUsers": [
-      {
-          "UserId": 5,
-          "Project": {
-            "Title": "To the moosdadsn",
-            "OwnerId": 5,
-            "Description": "Full stack app,",
-            "GitRepositoryUrl": "Https://github.com",
-            "ProjectImage": {
-              "Url": "Https://random.com"
-            },
-            "Industry": {
-              "Name": "Art"
-            },
-            "Tags": [
-              {
-                "TagName": "CS"
-              }
-            ],
-            "ChatMessagesBoards": [
-              {
-                "Title": "Hello world",
-                "Body": "I love programming",
-                "Username": "Tomtom"
-              }
-            ]
-
-          }
-        }
-          ]
-
-         
-        
-      },
-  {
-    "Username": "candice",
-    "Email": "Test@lol.com",
-    "Password": "test123",
-    "Portfolio": "portfolio.pdf",
-    "Description": "I'm flash",
-    "CareerTitle": ".net full stack developer",
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
-
-    "SearchWordList": [
-      {
-        "Word": "Web Developement"
-      }
-    ],
-    "ProjectUsers": [
-      {
-        "UserId": 6,
+        "IsOwner": true,
         "Project": {
-          "Title": "To the moosdadsn",
-          "OwnerId": 6,
+          "WaitList": {
+            "UserWaitingLists": [
+              {
+                "projectId": 3,
+                "PendingStatus": true,
+                "UserId": 1
+              }
+            ]
+          },
+          "Title": "Toadsdadsd the moosdadsn",
           "Description": "Full stack app,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
@@ -278,10 +174,174 @@
               "Username": "Tomtom"
             }
           ]
+        }
+      }
+    ]
+  },
+  {
+    "Username": "Cuckerino",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "UserWaitingLists": [],
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "ProjectUsers": [
+      {
+        "UserId": 4,
+        "IsOwner": true,
+        "Project": {
+          "WaitListId": null,
+          "WaitLists": {
+            "Id": null
+          },
+          "Title": "To the moosddasdsadsadsn",
+          "Description": "Full stack app,",
+          "GitRepositoryUrl": "Https://github.com",
+          "ProjectImage": {
+            "Url": "Https://random.com"
+          },
+          "Industry": {
+            "Name": "Art"
+          },
+          "Tags": [
+            {
+              "TagName": "CS"
+            }
+          ],
+          "ChatMessagesBoards": [
+            {
+              "Title": "Hello world",
+              "Body": "I love programming",
+              "Username": "Tomtom"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Username": "John mow",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "UserWaitingLists": [],
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
 
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "ProjectUsers": [
+      {
+        "UserId": 5,
+        "IsOwner": true,
+        "Project": {
+          "WaitListId": null,
+          "WaitLists": {
+            "Id": null
+          },
+          "Title": "To the moosdadsn",
+          "Description": "Full stack app,",
+          "GitRepositoryUrl": "Https://github.com",
+          "ProjectImage": {
+            "Url": "Https://random.com"
+          },
+          "Industry": {
+            "Name": "Art"
+          },
+          "Tags": [
+            {
+              "TagName": "CS"
+            }
+          ],
+          "ChatMessagesBoards": [
+            {
+              "Title": "Hello world",
+              "Body": "I love programming",
+              "Username": "Tomtom"
+            }
+          ]
         }
+      },
+      {
+        "UserId": 3,
+        "IsOwner": false,
+        "Project": {
+          "id": 5
         }
-      
+      }
+    ]
+  },
+  {
+    "Username": "candice",
+    "Email": "Test@lol.com",
+    "Password": "test123",
+    "Portfolio": "portfolio.pdf",
+    "Description": "I'm flash",
+    "CareerTitle": ".net full stack developer",
+    "UserWaitingLists": [],
+    "Photo": {
+      "Url": "https://randomPic.com"
+    },
+
+    "SearchWordList": [
+      {
+        "Word": "Web Developement"
+      }
+    ],
+    "ProjectUsers": [
+      {
+        "UserId": 6,
+        "IsOwner": true,
+        "Project": {
+          "WaitListId": null,
+          "WaitLists": {
+            "Id": null
+          },
+          "Title": "To the moosdadsn",
+          "Description": "Full stack app,",
+          "GitRepositoryUrl": "Https://github.com",
+          "ProjectImage": {
+            "Url": "Https://random.com"
+          },
+          "Industry": {
+            "Name": "Art"
+          },
+          "Tags": [
+            {
+              "TagName": "CS"
+            }
+          ],
+          "ChatMessagesBoards": [
+            {
+              "Title": "Hello world",
+              "Body": "I love programming",
+              "Username": "Tomtom"
+            }
+          ]
+        }
+      },
+      {
+        "UserId": 5,
+        "IsOwner": false,
+        "Project": {
+          "id": 6
+        }
+      }
     ]
   }
 ]

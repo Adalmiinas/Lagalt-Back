@@ -12,8 +12,8 @@ using lagalt;
 namespace lagalt.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230308075856_init")]
-    partial class init
+    [Migration("20230313101555_waitingListInit")]
+    partial class waitingListInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,90 @@ namespace lagalt.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Lagalt.UserInWaitingListModel", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<bool>("PendingStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WaitListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("WaitListId");
+
+                    b.ToTable("UsersInWaitingLists");
+                });
+
+            modelBuilder.Entity("Lagalt.WaitListModel", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WaitLists");
+                });
+
+            modelBuilder.Entity("ProjectModelSkillModel", b =>
+                {
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectId", "SkillsId");
+
+                    b.HasIndex("SkillsId");
+
+                    b.ToTable("ProjectModelSkillModel");
+                });
+
+            modelBuilder.Entity("ProjectModelTagModel", b =>
+                {
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("ProjectModelTagModel");
+                });
+
+            modelBuilder.Entity("SkillModelUserModel", b =>
+                {
+                    b.Property<int>("SkillsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SkillsId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SkillModelUserModel");
+                });
 
             modelBuilder.Entity("lagaltApp.ChatMessageModel", b =>
                 {
@@ -187,15 +271,17 @@ namespace lagalt.Migrations
                     b.Property<int?>("IndustryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("WaitListId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IndustryId");
+
+                    b.HasIndex("WaitListId");
 
                     b.ToTable("Projects");
                 });
@@ -207,6 +293,9 @@ namespace lagalt.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsOwner")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
@@ -252,20 +341,10 @@ namespace lagalt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SkillName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("skills");
                 });
@@ -278,15 +357,10 @@ namespace lagalt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
                     b.Property<string>("TagName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
 
                     b.ToTable("Tags");
                 });
@@ -320,6 +394,68 @@ namespace lagalt.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Lagalt.UserInWaitingListModel", b =>
+                {
+                    b.HasOne("lagaltApp.UserModel", "User")
+                        .WithMany("UsersInWaitingLists")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Lagalt.WaitListModel", "WaitList")
+                        .WithMany("UserWaitingLists")
+                        .HasForeignKey("WaitListId");
+
+                    b.Navigation("User");
+
+                    b.Navigation("WaitList");
+                });
+
+            modelBuilder.Entity("ProjectModelSkillModel", b =>
+                {
+                    b.HasOne("lagaltApp.ProjectModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lagaltApp.SkillModel", null)
+                        .WithMany()
+                        .HasForeignKey("SkillsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjectModelTagModel", b =>
+                {
+                    b.HasOne("lagaltApp.ProjectModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lagaltApp.TagModel", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SkillModelUserModel", b =>
+                {
+                    b.HasOne("lagaltApp.SkillModel", null)
+                        .WithMany()
+                        .HasForeignKey("SkillsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lagaltApp.UserModel", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("lagaltApp.ChatMessageModel", b =>
@@ -393,7 +529,13 @@ namespace lagalt.Migrations
                         .WithMany("Projects")
                         .HasForeignKey("IndustryId");
 
+                    b.HasOne("Lagalt.WaitListModel", "WaitList")
+                        .WithMany()
+                        .HasForeignKey("WaitListId");
+
                     b.Navigation("Industry");
+
+                    b.Navigation("WaitList");
                 });
 
             modelBuilder.Entity("lagaltApp.ProjectUserModel", b =>
@@ -426,34 +568,9 @@ namespace lagalt.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("lagaltApp.SkillModel", b =>
+            modelBuilder.Entity("Lagalt.WaitListModel", b =>
                 {
-                    b.HasOne("lagaltApp.ProjectModel", "Project")
-                        .WithMany("Skills")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("lagaltApp.UserModel", "User")
-                        .WithMany("Skills")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("lagaltApp.TagModel", b =>
-                {
-                    b.HasOne("lagaltApp.ProjectModel", "Project")
-                        .WithMany("Tags")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
+                    b.Navigation("UserWaitingLists");
                 });
 
             modelBuilder.Entity("lagaltApp.ChatModel", b =>
@@ -474,10 +591,6 @@ namespace lagalt.Migrations
 
                     b.Navigation("ProjectUsers");
 
-                    b.Navigation("Skills");
-
-                    b.Navigation("Tags");
-
                     b.Navigation("projectImage");
                 });
 
@@ -489,7 +602,7 @@ namespace lagalt.Migrations
 
                     b.Navigation("SearchWords");
 
-                    b.Navigation("Skills");
+                    b.Navigation("UsersInWaitingLists");
                 });
 #pragma warning restore 612, 618
         }

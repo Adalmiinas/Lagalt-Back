@@ -1,3 +1,5 @@
+using Lagalt;
+
 namespace lagaltApp
 {
   public class UserModel
@@ -17,13 +19,17 @@ namespace lagaltApp
     public string Description { get; set; }
 
 
-    public List<SearchWordModel> SearchWords { get; set; } = new();
-
-
+    public List<SearchWordModel> SearchWords { get; set; }
     public List<ProjectUserModel> ProjectUsers { get; set; }
-    public List<SkillModel> Skills { get; set; } = new();
+    public List<SkillModel> Skills { get; set; }
 
     public PhotoModel Photo { get; set; }
+
+    public List<UserInWaitingListModel> UsersInWaitingLists { get; set; }
+
+    //WIP 
+    // public List<AppliedProjectHistoryModel> AppliedProjectHistories { get; set; }
+    // public List<ClickedProjectHistoryModel> ClickedProjectHistories { get; set; }
 
   }
 

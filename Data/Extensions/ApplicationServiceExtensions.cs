@@ -1,3 +1,4 @@
+using Lagalt;
 using Microsoft.EntityFrameworkCore;
 
 namespace lagalt.Data.Extensions
@@ -49,6 +50,7 @@ namespace lagalt.Data.Extensions
       // services.AddScoped<IMovieRepository, MovieRepository>();
       services.AddScoped<IUserAccountRepository, RegisterUserRepository>();
       services.AddScoped<IProjectRepository, ProjectRepository>();
+      services.AddScoped<IAppUserRepository, AppUserRepository>();
 
       //automapper
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

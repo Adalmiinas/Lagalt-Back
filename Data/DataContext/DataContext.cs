@@ -1,3 +1,4 @@
+using Lagalt;
 using lagaltApp;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,13 +9,7 @@ namespace lagalt
     public DataContext(DbContextOptions options) : base(options)
     {
     }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-      modelBuilder.Entity<ProjectModel>()
-      .HasOne(p => p.Owner) 
-      .WithMany()
-      .HasForeignKey(p => p.OwnerId);
-    }
+
     public DbSet<UserModel> Users { get; set; }
     public DbSet<PhotoModel> Photos { get; set; }
     public DbSet<SearchWordModel> searchWords { get; set; }
@@ -29,6 +24,10 @@ namespace lagalt
     public DbSet<ChatModel> Chats { get; set; }
     public DbSet<ChatMessageModel> ChatMessages { get; set; }
     public DbSet<SkillModel> skills { get; set; }
+
+
+    public DbSet<UserInWaitingListModel> UsersInWaitingLists { get; set; }
+    public DbSet<WaitListModel> WaitLists { get; set; }
 
   }
 }

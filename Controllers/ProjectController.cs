@@ -1,3 +1,4 @@
+using Lagalt;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt.Controllers
@@ -10,8 +11,8 @@ namespace lagalt.Controllers
       _projectRepository = projectRepository;
     }
 
-    [HttpGet("Projects")]
-    public async Task<List<ProjectDto>> Projects()
+    [HttpGet("List")]
+    public async Task<List<ProjectListDto>> Projects()
     {
       try
       {
@@ -23,8 +24,21 @@ namespace lagalt.Controllers
         throw new Exception("Couldn't fetch the projects");
       }
     }
+    [HttpGet("Names")]
+    public async Task<List<ProjectListDto>> ProjectNames(string name)
+    {
+      try
+      {
+        return await _projectRepository.GetProjectsAsync(name);
+      }
+      catch (Exception)
+      {
+
+        throw new Exception("Couldn't fetch the projects");
+      }
+    }
     [HttpGet("{id}")]
-    public async Task<ProjectDto> ProjectId(int id)
+    public async Task<ProjectDto> GetProjectAsync(int id)
     {
       try
       {
@@ -34,6 +48,78 @@ namespace lagalt.Controllers
       {
 
         throw new Exception("Id was not found", ex);
+      }
+    }
+
+    [HttpPost("")]
+    public async Task<IActionResult> CreateProjectAsync(int id, [FromBody] CreateProjectDto createProjectDto)
+    {
+      try
+      {
+        return await _projectRepository.CreateProjectAsync(id, createProjectDto);
+      }
+      catch (Exception ex)
+      {
+
+        throw new Exception("Couldn't create project", ex);
+      }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProjectAsync(int id, [FromBody] UpdateProjectDetailsDto updateProjectDetails)
+    {
+      try
+      {
+        return await _projectRepository.UpdateProjectAsync(id, updateProjectDetails);
+      }
+      catch (Exception ex)
+      {
+
+        throw new Exception("Couldnt update the project ", ex);
+      }
+    }
+
+    [HttpDelete("{Id}/projectUser")]
+    public async Task<IActionResult> RemoveUserFromProject(int Id, [FromBody] int userId)
+    {
+      try
+      {
+        return await _projectRepository.RemoveCharacterFromProject(Id, userId);
+      }
+      catch (Exception ex)
+      {
+
+        throw new Exception("Problem happened removing character", ex);
+      }
+    }
+
+    [HttpPatch("{ownerId}/User")]
+    public async Task<IActionResult> AcceptOrRemoveUserFromProject(int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
+    {
+      try
+      {
+        return await _projectRepository.AddOrRemoveUserFromProjectListAsync(ownerId, usersInWaitingList);
+      }
+      catch (Exception ex)
+      {
+
+        throw new Exception("Bad request", ex);
+
+      }
+    }
+
+    [HttpPost("User/WaitList")]
+
+    public async Task<IActionResult> AddUserToWaitListAsync(int userId, [FromBody] UserInWaitingListDto waitList)
+    {
+      try
+      {
+        return await _projectRepository.AddUserToWaitListAsync(userId, waitList);
+      }
+      catch (Exception)
+      {
+
+        throw new Exception("BAD REQUEST");
       }
     }
   }

@@ -2,7 +2,7 @@ namespace lagalt
 {
   public class UserDto
   {
-
+    public int Id { get; set; }
     public string Username { get; set; }
     public string CareerTitle { get; set; }
 
@@ -17,7 +17,7 @@ namespace lagalt
 
 
     public List<ProjectDto> ProjectUsers { get; set; }
-     public List<SkillDto> Skills { get; set; } = new();
+    public List<SkillDto> Skills { get; set; } = new();
 
     // public PhotoModel Photo { get; set; }
 

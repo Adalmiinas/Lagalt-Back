@@ -1,22 +1,16 @@
-using Lagalt;
-
-namespace lagalt
+namespace Lagalt
 {
-  public class ProjectDto
+  public class ProjectListDto
   {
     public int Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public string GitRepositoryUrl { get; set; }
 
-    public List<ProjectListUserDto> ProjectUsers { get; set; } = new();
+    public List<ProjectListUserDto> ProjectUsers { get; set; }
     public IndustryNameDto Industry { get; set; }
     public List<TagNameDto> Tags { get; set; }
-    public List<SkillNameDto> Skills { get; set; }
-
-    public int? WaitListId { get; set; }
-    public WaitListDto WaitList { get; set; }
-
-
+    public List<ProjectSkillListDto> Skills { get; set; }
+    // public List<WaitListDto> waii { get; set; }
   }
 }
