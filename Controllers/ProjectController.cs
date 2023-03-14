@@ -81,7 +81,7 @@ namespace lagalt.Controllers
     /// <param name="createProjectDto"></param>
     /// <returns></returns>
     [HttpPost("")]
-    public async Task<IActionResult> CreateProjectAsync(int id, [FromBody] CreateProjectDto createProjectDto)
+    public async Task<IActionResult> CreateProjectAsync([FromHeader] int id, [FromBody] CreateProjectDto createProjectDto)
     {
       try
       {

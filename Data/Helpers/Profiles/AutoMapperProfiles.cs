@@ -123,6 +123,10 @@ namespace lagalt
       //  .ForMember(dest => dest.PendingStatus, opt => opt.Ignore());
       // .ForMember(dest => dest.PendingStatus, opt)
 
+      //update user
+      CreateMap<UserModel, UpdateAppUserDto>();
+      CreateMap<UpdateAppUserDto, UserModel>();
+
 
       CreateMap<WaitListModel, UserModel>().ReverseMap();
       CreateMap<WaitListModel, ProjectModel>().ReverseMap();
