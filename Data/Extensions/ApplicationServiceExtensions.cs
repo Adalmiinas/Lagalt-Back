@@ -1,5 +1,7 @@
 using Lagalt;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace lagalt.Data.Extensions
 {
@@ -30,24 +32,23 @@ namespace lagalt.Data.Extensions
       });
 
       //swagger for documentation
-      // services.AddSwaggerGen(c =>
-      // {
-      //   c.SwaggerDoc("v1", new OpenApiInfo
-      //   {
-      //     Version = "v1",
-      //     Title = "CHARACTER MOVIE API",
-      //     Description = "Web api application to add characters , movies and fransises to sql database",
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo
+        {
+          Version = "v1",
+          Title = "CUAPP",
+          Description = "Web apis for creating projects",
 
-      //   });
-      //   c.ExampleFilters();
-      //   var xmlFile = "./bin/MovieCharacterApi.xml";
-      //   var xmlPath = Path.Combine(xmlFile);
-      //   c.IncludeXmlComments(xmlPath);
-      // });
-      // services.AddSwaggerExamplesFromAssemblyOf<Program>();
+        });
+        c.ExampleFilters();
+        var xmlFile = "./bin/LagalDocument.xml";
+        var xmlPath = Path.Combine(xmlFile);
+        c.IncludeXmlComments(xmlPath);
+      });
+      services.AddSwaggerExamplesFromAssemblyOf<Program>();
       services.AddCors();
-      // services.AddScoped<ICharacterRepository, CharacterRepository>();
-      // services.AddScoped<IMovieRepository, MovieRepository>();
+
       services.AddScoped<IUserAccountRepository, RegisterUserRepository>();
       services.AddScoped<IProjectRepository, ProjectRepository>();
       services.AddScoped<IAppUserRepository, AppUserRepository>();

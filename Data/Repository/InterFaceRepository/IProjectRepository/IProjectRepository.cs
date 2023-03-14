@@ -5,9 +5,9 @@ namespace lagalt
 {
   public interface IProjectRepository
   {
-    Task<List<ProjectListDto>> GetProjectsAsync();
-    Task<ProjectDto> GetProjectAsync(int id);
-    Task<List<ProjectListDto>> GetProjectsAsync(string name);
+    Task<ActionResult<List<ProjectListDto>>> GetProjectsAsync();
+    Task<ActionResult<ProjectDto>> GetProjectAsync(int id);
+    Task<ActionResult<List<ProjectListDto>>> GetProjectsAsync(string name);
 
     Task<IActionResult> CreateProjectAsync(int id, CreateProjectDto createProjectDto);
 
@@ -19,6 +19,6 @@ namespace lagalt
 
     Task<IActionResult> AddOrRemoveUserFromProjectListAsync(int ownerId, UserInWaitingListDto userInWaitingList);
 
-    Task<IActionResult> AddUserToWaitListAsync(int Id, UserInWaitingListDto waitList);
+    Task<IActionResult> AddUserToWaitListAsync(int Id, ApplyProjectDto applyProject);
   }
 }

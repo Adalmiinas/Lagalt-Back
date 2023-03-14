@@ -1,6 +1,7 @@
 using AutoMapper;
 using Lagalt;
 using lagaltApp;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace lagalt
 {
@@ -107,11 +108,18 @@ namespace lagalt
       //userinwaitinglist
       CreateMap<UserInWaitingListDto, ProjectUserModel>();
 
-      CreateMap<UserInWaitingListModel, UserModel>();
+      CreateMap<UserInWaitingListModel, UserModel>()
+     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+
+      CreateMap<WaitListModel, UserInWaitingListModel>()
+      .ForMember(dest => dest.WaitListId, opt => opt.MapFrom(src => src.Id));
+      CreateMap<UserInWaitingListModel, ProjectModel>();
       //  .ForMember(dest => dest, opt => opt.Ignore());
       //  .ForMember(dest => dest., opt => opt.MapFrom(src => src.Id))
 
-      CreateMap<UserModel, UserInWaitingListModel>();
+      CreateMap<UserModel, UserInWaitingListModel>()
+      .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
+      .ForMember(dest => dest.PendingStatus, opt => opt.Ignore());
       //  .ForMember(dest => dest.PendingStatus, opt => opt.Ignore());
       // .ForMember(dest => dest.PendingStatus, opt)
 

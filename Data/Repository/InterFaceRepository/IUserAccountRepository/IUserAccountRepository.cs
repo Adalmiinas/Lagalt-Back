@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace lagalt
 {
 
@@ -6,8 +8,8 @@ namespace lagalt
   /// </summary>
   public interface IUserAccountRepository
   {
-    Task<RegisterAppUserDto> RegisterAsync(RegisterAppUserDto registerAppUserDto);
+    Task<ActionResult<RegisterAppUserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto);
 
-    Task<UserDto> LoginAsync(LoginDto loginDto);
+    Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto);
   }
 }

@@ -3,20 +3,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt.Controllers
 {
+  /// <summary>
+  /// Project controller to handle project related commands
+  /// </summary>
   public class ProjectController : BaseApiController
   {
     private readonly IProjectRepository _projectRepository;
+
+    /// <summary>
+    /// Inject project interface
+    /// </summary>
+    /// <param name="projectRepository"></param>
     public ProjectController(IProjectRepository projectRepository)
     {
       _projectRepository = projectRepository;
     }
 
+    /// <summary>
+    /// Get list of projects
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("List")]
-    public async Task<List<ProjectListDto>> Projects()
+    public async Task<ActionResult<List<ProjectListDto>>> Projects()
     {
       try
       {
         return await _projectRepository.GetProjectsAsync();
+
       }
       catch (Exception)
       {
@@ -24,8 +37,14 @@ namespace lagalt.Controllers
         throw new Exception("Couldn't fetch the projects");
       }
     }
+
+    /// <summary>
+    /// Get projects by name 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     [HttpGet("Names")]
-    public async Task<List<ProjectListDto>> ProjectNames(string name)
+    public async Task<ActionResult<List<ProjectListDto>>> ProjectNames(string name)
     {
       try
       {
@@ -34,11 +53,16 @@ namespace lagalt.Controllers
       catch (Exception)
       {
 
-        throw new Exception("Couldn't fetch the projects");
+        throw new Exception("Problem occured while fetching projects");
       }
     }
+    /// <summary>
+    /// Get project by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
-    public async Task<ProjectDto> GetProjectAsync(int id)
+    public async Task<ActionResult<ProjectDto>> GetProjectAsync(int id)
     {
       try
       {
@@ -46,11 +70,16 @@ namespace lagalt.Controllers
       }
       catch (Exception ex)
       {
-
-        throw new Exception("Id was not found", ex);
+        throw new Exception("Problems fetching project with id", ex);
       }
     }
 
+    /// <summary>
+    /// Create project, feed current user id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="createProjectDto"></param>
+    /// <returns></returns>
     [HttpPost("")]
     public async Task<IActionResult> CreateProjectAsync(int id, [FromBody] CreateProjectDto createProjectDto)
     {
@@ -65,6 +94,12 @@ namespace lagalt.Controllers
       }
     }
 
+    /// <summary>
+    /// Update project details, only owner can update, id has to match owner
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="updateProjectDetails"></param>
+    /// <returns></returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateProjectAsync(int id, [FromBody] UpdateProjectDetailsDto updateProjectDetails)
     {
@@ -78,7 +113,12 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update the project ", ex);
       }
     }
-
+    /// <summary>
+    /// Remove user from project, only owner can remove
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <param name="userId"></param>
+    /// <returns></returns>
     [HttpDelete("{Id}/projectUser")]
     public async Task<IActionResult> RemoveUserFromProject(int Id, [FromBody] int userId)
     {
@@ -92,7 +132,12 @@ namespace lagalt.Controllers
         throw new Exception("Problem happened removing character", ex);
       }
     }
-
+    /// <summary>
+    /// Accept or remove user from waiting list only owner can do this
+    /// </summary>
+    /// <param name="ownerId"></param>
+    /// <param name="usersInWaitingList"></param>
+    /// <returns></returns>
     [HttpPatch("owner/{ownerId}/waitlist")]
     public async Task<IActionResult> AcceptOrRemoveUserFromProject(int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
     {
@@ -108,13 +153,19 @@ namespace lagalt.Controllers
       }
     }
 
-    [HttpPost("User/WaitList")]
 
-    public async Task<IActionResult> AddUserToWaitListAsync(int userId, [FromBody] UserInWaitingListDto waitList)
+    /// <summary>
+    /// Add User to waiting list > takes user id and project id in body 
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="applyProject"></param>
+    /// <returns></returns>
+    [HttpPost("User/WaitList")]
+    public async Task<IActionResult> AddUserToWaitListAsync(int userId, [FromBody] ApplyProjectDto applyProject)
     {
       try
       {
-        return await _projectRepository.AddUserToWaitListAsync(userId, waitList);
+        return await _projectRepository.AddUserToWaitListAsync(userId, applyProject);
       }
       catch (Exception)
       {

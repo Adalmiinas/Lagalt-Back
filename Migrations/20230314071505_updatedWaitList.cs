@@ -5,7 +5,7 @@
 namespace lagalt.Migrations
 {
     /// <inheritdoc />
-    public partial class waitingListInit : Migration
+    public partial class updatedWaitList : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -177,7 +177,7 @@ namespace lagalt.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PendingStatus = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     WaitListId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -187,8 +187,7 @@ namespace lagalt.Migrations
                         name: "FK_UsersInWaitingLists_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_UsersInWaitingLists_WaitLists_WaitListId",
                         column: x => x.WaitListId,

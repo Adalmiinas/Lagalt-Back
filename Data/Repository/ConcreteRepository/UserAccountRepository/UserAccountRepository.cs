@@ -16,40 +16,34 @@ namespace lagalt
       _dataContext = dataContext;
     }
 
-    public async Task<UserDto> LoginAsync(LoginDto loginDto)
+    public async Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto)
     {
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Username == loginDto.Username && u.Password == loginDto.Password);
-
       if (IsUser == null)
       {
-        throw new Exception();
+        return null;
       }
-      else
-      {
-        var existingUser = _mapper.Map<UserDto>(IsUser);
+      var existingUser = _mapper.Map<UserDto>(IsUser);
+      return existingUser;
 
-        return existingUser;
-      }
     }
 
-    public async Task<RegisterAppUserDto> RegisterAsync(RegisterAppUserDto registerAppUserDto)
+    public async Task<ActionResult<RegisterAppUserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
-      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Username == registerAppUserDto.Username);
-      if (IsUser != null)
+      var IsUser = await _dataContext.Users.AnyAsync(u => u.Username == registerAppUserDto.Username);
+      if (IsUser)
       {
-        throw new Exception();
+        return new BadRequestObjectResult("Username taken");
       }
-      else
+      var newUser = _mapper.Map<UserModel>(registerAppUserDto);
+      _dataContext.Users.Add(newUser);
+      await _dataContext.SaveChangesAsync();
+      return new RegisterAppUserDto
       {
-        var newUser = _mapper.Map<UserModel>(registerAppUserDto);
-        _dataContext.Users.Add(newUser);
-        await _dataContext.SaveChangesAsync();
-        return new RegisterAppUserDto
-        {
-          Username = newUser.Username,
-          Password = "Created user sucess"
-        };
-      }
+        Username = newUser.Username,
+        Password = newUser.Password,
+      };
+
     }
   }
 }

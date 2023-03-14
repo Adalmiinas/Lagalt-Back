@@ -1,5 +1,8 @@
 namespace lagaltApp
 {
+  /// <summary>
+  /// 
+  /// </summary>
   public class ProjectUserModel
   {
     public int Id { get; set; }

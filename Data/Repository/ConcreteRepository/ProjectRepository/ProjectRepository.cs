@@ -29,15 +29,15 @@ namespace lagalt
       var IsDuplicate = await _dataContext.ProjectUsers.Include(pu => pu.Project).FirstOrDefaultAsync(p => p.UserId == userInWaitingList.UserId && p.ProjectId == userInWaitingList.ProjectId && p.IsOwner == false);
       var ApplyingUserDto = _mapper.Map<ProjectUserDto>(ApplyingUser);
 
-      if (ApplyingUser == null) throw new Exception("Invalid User id, user does not exist");
+      if (ApplyingUser == null) return new BadRequestObjectResult("Invalid User id, user does not exist");
 
-      if (WaitList == null) throw new Exception("User  not is  in the list");
+      if (WaitList == null) return new BadRequestObjectResult("User  not is  in the list");
 
-      if (IsDuplicate != null) throw new Exception("User is already part of the project");
+      if (IsDuplicate != null) return new BadRequestObjectResult("User is already part of the project");
 
-      if (Owner == null) throw new Exception("Invalid Owner Id / Invalid Project");
+      if (Owner == null) return new BadRequestObjectResult("Invalid Owner Id / Invalid Project");
 
-      if (userInWaitingList.PendingStatus == true) throw new Exception("Nothing was changed...false patching");
+      if (userInWaitingList.PendingStatus == true) return new BadRequestObjectResult("Nothing was changed...false patching");
 
       if (userInWaitingList.PendingStatus == false)
       {
@@ -48,22 +48,27 @@ namespace lagalt
       return new NoContentResult();
     }
 
-    public async Task<IActionResult> AddUserToWaitListAsync(int Id, UserInWaitingListDto waitList)
+    public async Task<IActionResult> AddUserToWaitListAsync(int Id, ApplyProjectDto applyProject)
     {
       //find user 
       //find 
       var exisitingUser = await _dataContext.Users.FindAsync(Id);
-      var existingWaitList = await _dataContext.Projects.Include(p => p.WaitList).FirstOrDefaultAsync(p => p.Id == waitList.ProjectId);
-      var userInWaiting = _mapper.Map<UserInWaitingListModel>(exisitingUser);
-      if (exisitingUser == null) throw new Exception("Incorrect user id");
-      if (existingWaitList == null)
+      var existingWaitList = await _dataContext.Projects.Include(p => p.WaitList).ThenInclude(uw => uw.UserWaitingLists).FirstOrDefaultAsync(p => p.Id == applyProject.ProjectId);
+      // var existingProjectWaitLIst = await _dataContext.WaitLists.FirstOrDefaultAsync(uw => uw.Id == existingWaitList.WaitList.Id);
+      var wl = await _dataContext.WaitLists.Include(wl => wl.UserWaitingLists).FirstOrDefaultAsync(wl => wl.Id == existingWaitList.WaitListId);
+      var userInWaiting = new UserInWaitingListModel()
       {
-        throw new Exception("Bad id wait list does not exist");
-      }
-      existingWaitList.WaitList.UserWaitingLists.Add(userInWaiting);
-      _dataContext.Entry(existingWaitList).State = EntityState.Modified;
+        PendingStatus = true,
+        WaitListId = existingWaitList.Id,
+        WaitList = existingWaitList.WaitList,
+        UserId = exisitingUser.Id,
+        User = exisitingUser,
+      };
+      if (exisitingUser == null) return new BadRequestObjectResult("Incorrect user id");
+      if (existingWaitList == null) return new BadRequestObjectResult("User does not exist in list");
+      // wl.UserWaitingLists.Add(userInWaiting);
+      _dataContext.UsersInWaitingLists.Add(userInWaiting);
       await _dataContext.SaveChangesAsync();
-
       return new OkResult();
     }
 
@@ -85,10 +90,8 @@ namespace lagalt
       .Select(tn => tn.TagName).Contains(t.TagName)).ToListAsync();
 
       var exisitingUser = await _dataContext.Users.FindAsync(id);
-      if (exisitingUser == null)
-      {
-        throw new Exception("Incorrect id / Id does not exist");
-      }
+      if (exisitingUser == null) return new BadRequestObjectResult("Incorrect id / Id does not exist");
+
 
       var newProject = _mapper.Map<ProjectModel>(createProjectDto);
       newProject.Skills = new List<SkillModel>();
@@ -129,7 +132,7 @@ namespace lagalt
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<ProjectDto> GetProjectAsync(int id)
+    public async Task<ActionResult<ProjectDto>> GetProjectAsync(int id)
     {
       var findProject = await _dataContext.Projects
       .Include(pu => pu.ProjectUsers)
@@ -141,9 +144,9 @@ namespace lagalt
       .Include(t => t.Tags)
       .FirstOrDefaultAsync(p => p.Id == id);
 
-      if (findProject == null) throw new Exception(message: "Bad id");
+      if (findProject == null) return new BadRequestObjectResult("Bad id");
 
-      return _mapper.Map<ProjectDto>(findProject);
+      return new OkObjectResult(_mapper.Map<ProjectDto>(findProject));
     }
 
     /// <summary>
@@ -151,7 +154,7 @@ namespace lagalt
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public async Task<List<ProjectListDto>> GetProjectsAsync(string name)
+    public async Task<ActionResult<List<ProjectListDto>>> GetProjectsAsync(string name)
     {
       var findProject = await _dataContext.Projects
       .Include(pu => pu.ProjectUsers)
@@ -161,16 +164,16 @@ namespace lagalt
       .Include(t => t.Tags)
       .Where(pn => pn.Title == name).ToListAsync();
 
-      if (findProject == null) throw new Exception(message: "Bad id");
+      if (findProject.ToArray().Length <= 0) return new EmptyResult();
 
-      return _mapper.Map<List<ProjectListDto>>(findProject);
+      return new OkObjectResult(_mapper.Map<List<ProjectListDto>>(findProject));
     }
 
     /// <summary>
     /// Get list of all projects
     /// </summary>
     /// <returns></returns>
-    public async Task<List<ProjectListDto>> GetProjectsAsync()
+    public async Task<ActionResult<List<ProjectListDto>>> GetProjectsAsync()
     {
       var findAll = await _dataContext.Projects
       .Include(pu => pu.ProjectUsers)
@@ -180,13 +183,13 @@ namespace lagalt
       .Include(t => t.Tags)
       .ToListAsync();
 
-      if (findAll == null)
+      if (findAll.ToArray().Length <= 0)
       {
-        throw new Exception(message: "no projects exist, create new projects!");
+        return new EmptyResult();
       }
       else
       {
-        return _mapper.Map<List<ProjectListDto>>(findAll);
+        return new OkObjectResult(_mapper.Map<List<ProjectListDto>>(findAll));
       }
     }
 
@@ -198,7 +201,7 @@ namespace lagalt
       var existingProject = await _dataContext.Projects
       .Include(p => p.ProjectUsers)
       .FirstOrDefaultAsync(p => p.Id == projectId);
-      if (existingProject == null) throw new Exception("Incorrect project id");
+      if (existingProject == null) return new BadRequestObjectResult("Incorrect project id");
 
       var exisitingUser = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && pu.IsOwner == false);
       if (exisitingUser == null) throw new Exception("User cannot be removed / User does not exist");

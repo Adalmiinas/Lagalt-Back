@@ -3,10 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt
 {
+
+  /// <summary>
+  /// Control login and register
+  /// </summary>
   public class AccountController : BaseApiController
   {
     private readonly DataContext _dataContext;
     private readonly IUserAccountRepository _userAccountRepository;
+
+    /// <summary>
+    /// Inject datacontext and account interface
+    /// </summary>
+    /// <param name="dataContext"></param>
+    /// <param name="userAccountRepository"></param>
     public AccountController(DataContext dataContext, IUserAccountRepository userAccountRepository)
     {
       _userAccountRepository = userAccountRepository;
@@ -14,35 +24,38 @@ namespace lagalt
       _dataContext = dataContext;
     }
 
+    /// <summary>
+    /// Register user 
+    /// </summary>
+    /// <param name="registerAppUserDto"></param>
+    /// <returns></returns>
     [HttpPost("register")]
     public async Task<ActionResult<RegisterAppUserDto>> Register(RegisterAppUserDto registerAppUserDto)
     {
-      try
-      {
-        return await _userAccountRepository.RegisterAsync(registerAppUserDto);
-      }
-      catch (Exception ex)
-      {
 
-        throw new Exception("Username is already taken try again", ex);
-      }
+      var IsTaken = await _userAccountRepository.RegisterAsync(registerAppUserDto);
+      return IsTaken;
+
 
     }
 
     //change to use keycloak
+
+    /// <summary>
+    /// Login user with correct login data
+    /// </summary>
+    /// <param name="loginDto"></param>
+    /// <returns></returns>
     [HttpPost("login")]
-    public async Task<UserDto> Login([FromBody] LoginDto loginDto)
+    public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
     {
-      try
-      {
-        return await _userAccountRepository.LoginAsync(loginDto);
-      }
-      catch (Exception ex)
-      {
 
-        throw new Exception("Incorrect Login password or Username", ex);
+      var IsAuhtorised = await _userAccountRepository.LoginAsync(loginDto);
+      if (IsAuhtorised == null)
+      {
+        return Unauthorized("Invalid Password / Username");
       }
-
+      return IsAuhtorised;
     }
   }
 }

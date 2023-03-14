@@ -3,16 +3,29 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt.Controllers
 {
+  /// <summary>
+  /// Handles Login and register
+  /// </summary>
   public class AppUserController : BaseApiController
   {
     private readonly IAppUserRepository _appUserRepository;
+
+    /// <summary>
+    /// Inject app user Repository
+    /// </summary>
+    /// <param name="appUserRepository"></param>
     public AppUserController(IAppUserRepository appUserRepository)
     {
       _appUserRepository = appUserRepository;
     }
 
-    //get all
 
+
+    /// <summary>
+    /// Get projects where user is owner 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("User/{id}/AdminProjects")]
     public async Task<ActionResult<List<ProjectUserDto>>> AppUserAdminProjects(int id)
     {
@@ -27,6 +40,12 @@ namespace lagalt.Controllers
         throw new Exception("User does not match existing user. Check current id", ex);
       }
     }
+
+    /// <summary>
+    /// Get projects where user is part of
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("User/{id}/Projects")]
     public async Task<ActionResult<List<ProjectUserDto>>> AppUserProjects(int id)
     {

@@ -33,7 +33,7 @@ namespace lagalt.Migrations
                     b.Property<bool>("PendingStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int?>("WaitListId")
@@ -397,9 +397,7 @@ namespace lagalt.Migrations
                 {
                     b.HasOne("lagaltApp.UserModel", "User")
                         .WithMany("UsersInWaitingLists")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.HasOne("Lagalt.WaitListModel", "WaitList")
                         .WithMany("UserWaitingLists")
@@ -527,7 +525,7 @@ namespace lagalt.Migrations
                         .HasForeignKey("IndustryId");
 
                     b.HasOne("Lagalt.WaitListModel", "WaitList")
-                        .WithMany()
+                        .WithMany("Projects")
                         .HasForeignKey("WaitListId");
 
                     b.Navigation("Industry");
@@ -567,6 +565,8 @@ namespace lagalt.Migrations
 
             modelBuilder.Entity("Lagalt.WaitListModel", b =>
                 {
+                    b.Navigation("Projects");
+
                     b.Navigation("UserWaitingLists");
                 });
 
