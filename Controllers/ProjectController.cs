@@ -80,7 +80,7 @@ namespace lagalt.Controllers
     /// <param name="id"></param>
     /// <param name="createProjectDto"></param>
     /// <returns></returns>
-    [HttpPost("")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateProjectAsync([FromHeader] int id, [FromBody] CreateProjectDto createProjectDto)
     {
       try
@@ -100,8 +100,8 @@ namespace lagalt.Controllers
     /// <param name="id"></param>
     /// <param name="updateProjectDetails"></param>
     /// <returns></returns>
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProjectAsync(int id, [FromBody] UpdateProjectDetailsDto updateProjectDetails)
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateProjectAsync([FromHeader] int id, [FromBody] UpdateProjectDetailsDto updateProjectDetails)
     {
       try
       {
@@ -119,8 +119,8 @@ namespace lagalt.Controllers
     /// <param name="Id"></param>
     /// <param name="userId"></param>
     /// <returns></returns>
-    [HttpDelete("{Id}/projectUser")]
-    public async Task<IActionResult> RemoveUserFromProject(int Id, [FromBody] int userId)
+    [HttpDelete("projectUser/{Id}")]
+    public async Task<IActionResult> RemoveUserFromProject([FromHeader] int Id, [FromBody] int userId)
     {
       try
       {
@@ -139,7 +139,7 @@ namespace lagalt.Controllers
     /// <param name="usersInWaitingList"></param>
     /// <returns></returns>
     [HttpPatch("owner/{ownerId}/waitlist")]
-    public async Task<IActionResult> AcceptOrRemoveUserFromProject(int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
+    public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
     {
       try
       {
@@ -160,8 +160,8 @@ namespace lagalt.Controllers
     /// <param name="userId"></param>
     /// <param name="applyProject"></param>
     /// <returns></returns>
-    [HttpPost("User/WaitList")]
-    public async Task<IActionResult> AddUserToWaitListAsync(int userId, [FromBody] ApplyProjectDto applyProject)
+    [HttpPost("User/WaitList/{userId}")]
+    public async Task<IActionResult> AddUserToWaitListAsync([FromHeader] int userId, [FromBody] ApplyProjectDto applyProject)
     {
       try
       {
