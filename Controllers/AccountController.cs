@@ -30,7 +30,7 @@ namespace lagalt
     /// <param name="registerAppUserDto"></param>
     /// <returns></returns>
     [HttpPost("register")]
-    public async Task<ActionResult<RegisterAppUserDto>> Register(RegisterAppUserDto registerAppUserDto)
+    public async Task<ActionResult<RegisterAppUserDto>> Register([FromBody] RegisterAppUserDto registerAppUserDto)
     {
 
       var IsTaken = await _userAccountRepository.RegisterAsync(registerAppUserDto);

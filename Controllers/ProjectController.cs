@@ -119,7 +119,7 @@ namespace lagalt.Controllers
     /// <param name="Id"></param>
     /// <param name="userId"></param>
     /// <returns></returns>
-    [HttpDelete("projectUser/{Id}")]
+    [HttpDelete("projectUser")]
     public async Task<IActionResult> RemoveUserFromProject([FromHeader] int Id, [FromBody] int userId)
     {
       try
@@ -138,7 +138,7 @@ namespace lagalt.Controllers
     /// <param name="ownerId"></param>
     /// <param name="usersInWaitingList"></param>
     /// <returns></returns>
-    [HttpPatch("owner/{ownerId}/waitlist")]
+    [HttpPatch("owner/waitlist")]
     public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
     {
       try
@@ -160,7 +160,7 @@ namespace lagalt.Controllers
     /// <param name="userId"></param>
     /// <param name="applyProject"></param>
     /// <returns></returns>
-    [HttpPost("User/WaitList/{userId}")]
+    [HttpPost("User/WaitList")]
     public async Task<IActionResult> AddUserToWaitListAsync([FromHeader] int userId, [FromBody] ApplyProjectDto applyProject)
     {
       try
