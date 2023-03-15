@@ -18,7 +18,7 @@ namespace Lagalt
     /// <param name="applyProject"></param>
     /// <returns></returns>
     [HttpPost("User/WaitList")]
-    public async Task<IActionResult> AddUserToWaitListAsync(int userId, [FromBody] ApplyProjectDto applyProject)
+    public async Task<IActionResult> AddUserToWaitListAsync([FromHeader] int userId, [FromBody] ApplyProjectDto applyProject)
     {
       try
       {
@@ -38,7 +38,7 @@ namespace Lagalt
     /// <param name="usersInWaitingList"></param>
     /// <returns></returns>
     [HttpPatch("owner/{ownerId}/waitlist")]
-    public async Task<IActionResult> AcceptOrRemoveUserFromProject(int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
+    public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
     {
       try
       {
