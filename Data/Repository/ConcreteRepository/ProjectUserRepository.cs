@@ -63,6 +63,7 @@ namespace Lagalt
         WaitList = existingWaitList.WaitList,
         UserId = exisitingUser.Id,
         User = exisitingUser,
+        MotivationLetter = applyProject.MotivationLetter
       };
       if (exisitingUser == null) return new BadRequestObjectResult("Incorrect user id");
       if (existingWaitList == null) return new BadRequestObjectResult("User does not exist in list");
