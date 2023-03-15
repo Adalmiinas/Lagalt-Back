@@ -9,6 +9,8 @@ namespace Lagalt
     public int UserId { get; set; }
     //false
     public bool? PendingStatus { get; set; }
+
+    public string MotivationLetter { get; set; }
     //id we want to accept
 
 
