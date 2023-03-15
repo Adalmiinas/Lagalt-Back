@@ -14,12 +14,21 @@ namespace lagalt
       CreateMap<UserModel, LoginDto>().ReverseMap();
       //user misc
 
-      CreateMap<UserModel, UserDto>().ReverseMap();
+      CreateMap<UserModel, UserDto>();
+      // .ForMember(dest => dest.ProjectUsers, opt => opt.MapFrom(src => src.ProjectUsers))
+      // .ForMember(dest => dest.userInWaitingLists, opt => opt.MapFrom(src => src.UsersInWaitingLists));
+
+
+      CreateMap<UserDto, UserModel>()
+      .ForMember(dest => dest.Password, opt => opt.Ignore())
+      .ForMember(dest => dest.Photo, opt => opt.Ignore())
+      .ForMember(dest => dest.SearchWords, opt => opt.Ignore());
+
       CreateMap<List<UserModel>, UserDto>().ReverseMap();
       CreateMap<UserModel, UserNameDto>().ReverseMap();
       CreateMap<UserDto, UserNameDto>().ReverseMap();
+      CreateMap<ProjectUserModel, List<ProjectDto>>();
 
-      CreateMap<UserModel, List<ProjectUserModel>>().ReverseMap();
       CreateMap<ProjectModel, List<ProjectUserModel>>().ReverseMap();
 
       //skills
@@ -39,6 +48,9 @@ namespace lagalt
       .ForMember(dest => dest.WaitList, opt => opt.MapFrom(src => src.WaitList));
       CreateMap<ProjectModel, UpdateProjectDetailsDto>().ReverseMap();
       CreateMap<ProjectDto, ProjectModel>();
+
+      CreateMap<ProjectUserModel, ProjectUserWithoutUserDataDto>()
+      .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Project.Title));
 
 
       //Project list
@@ -69,9 +81,11 @@ namespace lagalt
       //project userr get users projects for profile page
 
       CreateMap<ProjectUserModel, ProjectUserDto>();
+      CreateMap<ProjectUserDto, ProjectUserModel>();
+
       CreateMap<UserModel, ProjectUserDto>()
       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
-      CreateMap<ProjectUserDto, ProjectUserModel>();
+
 
       CreateMap<UserModel, ProjectUserModel>()
       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
@@ -111,10 +125,15 @@ namespace lagalt
       CreateMap<UserInWaitingListDto, ProjectUserModel>();
 
       CreateMap<UserInWaitingListModel, UserModel>()
-     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+      .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+      //  .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username));
+      CreateMap<UserInWaitingListDto, UserModel>()
+     .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username));
 
       CreateMap<WaitListModel, UserInWaitingListModel>()
       .ForMember(dest => dest.WaitListId, opt => opt.MapFrom(src => src.Id));
+
+
       CreateMap<UserInWaitingListModel, ProjectModel>();
       //  .ForMember(dest => dest, opt => opt.Ignore());
       //  .ForMember(dest => dest., opt => opt.MapFrom(src => src.Id))
@@ -122,8 +141,7 @@ namespace lagalt
       CreateMap<UserModel, UserInWaitingListModel>()
       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
       .ForMember(dest => dest.PendingStatus, opt => opt.Ignore());
-      //  .ForMember(dest => dest.PendingStatus, opt => opt.Ignore());
-      // .ForMember(dest => dest.PendingStatus, opt)
+
 
       //update user
       CreateMap<UserModel, UpdateAppUserDto>();
@@ -136,7 +154,9 @@ namespace lagalt
       CreateMap<ProjectDto, WaitListModel>().ReverseMap();
       CreateMap<ProjectDto, WaitListDto>().ReverseMap();
       CreateMap<WaitListModel, WaitListDto>().ReverseMap();
-      CreateMap<UserInWaitingListModel, UserInWaitingListDto>().ReverseMap();
+      CreateMap<UserInWaitingListModel, UserInWaitingListDto>()
+      .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));
+
 
       CreateMap<WaitListModel, UserInWaitingListModel>().ReverseMap();
 

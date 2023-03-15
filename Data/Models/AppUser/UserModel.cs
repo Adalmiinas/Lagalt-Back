@@ -2,9 +2,6 @@ using Lagalt;
 
 namespace lagaltApp
 {
-  /// <summary>
-  /// 
-  /// </summary>
   public class UserModel
   {
 

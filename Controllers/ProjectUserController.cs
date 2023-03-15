@@ -35,14 +35,14 @@ namespace Lagalt
     /// Accept or remove user from waiting list only owner can do this
     /// </summary>
     /// <param name="ownerId"></param>
-    /// <param name="usersInWaitingList"></param>
+    /// <param name="userPendingRequest"></param>
     /// <returns></returns>
     [HttpPatch("owner/waitlist/users")]
-    public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
+    public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserPendingRequestDto userPendingRequest)
     {
       try
       {
-        return await _projectUserRepository.AddOrRemoveUserFromProjectListAsync(ownerId, usersInWaitingList);
+        return await _projectUserRepository.AddOrRemoveUserFromProjectListAsync(ownerId, userPendingRequest);
       }
       catch (Exception ex)
       {

@@ -4,7 +4,7 @@ namespace Lagalt
 {
   public class UpdateAppUserDto
   {
-    
+
     public string Username { get; set; }
     public string CareerTitle { get; set; }
 
@@ -19,7 +19,7 @@ namespace Lagalt
 
 
     // public List<ProjectDto> ProjectUsers { get; set; }
-    // public List<SkillDto> Skills { get; set; } = new();
+    public List<SkillDto> Skills { get; set; } = new();
 
   }
 }

@@ -4,15 +4,14 @@ namespace Lagalt
 {
   public class UserInWaitingListDto
   {
+    [JsonIgnore]
     public int ProjectId { get; set; }
 
     public int UserId { get; set; }
+    public string Username { get; set; }
     //false
     public bool? PendingStatus { get; set; }
-
-
-
-    // public string MotivationLetter { get; set; }
+    public string MotivationLetter { get; set; }
     //id we want to accept
 
 

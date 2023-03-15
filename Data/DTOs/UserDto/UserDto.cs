@@ -1,3 +1,6 @@
+using Lagalt;
+using lagaltApp;
+
 namespace lagalt
 {
   public class UserDto
@@ -16,10 +19,11 @@ namespace lagalt
     // public List<SearchWordModel> SearchWords { get; set; } = new();
 
 
-    public List<ProjectDto> ProjectUsers { get; set; }
+    public List<ProjectUserWithoutUserDataDto> ProjectUsers { get; set; }
     public List<SkillDto> Skills { get; set; } = new();
 
     // public PhotoModel Photo { get; set; }
+    public List<UserInWaitingListDto> userInWaitingLists { get; set; }
 
 
   }

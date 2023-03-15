@@ -59,7 +59,7 @@ namespace lagalt.Controllers
         throw new Exception("User does not match existing user. Check current id", ex);
       }
     }
-    [HttpPut("User/Update")]
+    [HttpPut("User/{id}/Update")]
     public async Task<ActionResult<UserDto>> UpdateUserInformation(int id, [FromBody] UpdateAppUserDto updateAppUser)
     {
       try
@@ -72,8 +72,8 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update character");
       }
     }
-    [HttpGet("User")]
-    public async Task<ActionResult<UserDto>> GetUserAsync(int id)
+    [HttpGet("User/{id}")]
+    public async Task<ActionResult> GetUserAsync(int id)
     {
       try
       {
@@ -82,7 +82,7 @@ namespace lagalt.Controllers
       catch (Exception)
       {
 
-        throw new Exception("Couldnt update character");
+        throw new Exception("cant fetch user");
       }
     }
   }

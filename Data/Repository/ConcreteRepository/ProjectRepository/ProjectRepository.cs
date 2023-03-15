@@ -83,6 +83,7 @@ namespace lagalt
       .ThenInclude(u => u.User)
        .Include(p => p.WaitList)
        .ThenInclude(w => w.UserWaitingLists)
+       .ThenInclude(e => e.User)
       .Include(s => s.Skills)
       .Include(i => i.Industry)
       .Include(t => t.Tags)
@@ -90,7 +91,7 @@ namespace lagalt
 
       if (findProject == null) return new BadRequestObjectResult("Bad id");
 
-      
+
 
       return new OkObjectResult(_mapper.Map<ProjectDto>(findProject));
     }
