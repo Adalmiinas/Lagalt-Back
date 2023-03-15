@@ -14,11 +14,6 @@ namespace lagalt
     //update just project data
     Task<IActionResult> UpdateProjectAsync(int id, UpdateProjectDetailsDto updateProjectDto);
 
-    //Delete character from userproject list of the project
-    Task<IActionResult> RemoveCharacterFromProject(int projectId, int userId);
 
-    Task<IActionResult> AddOrRemoveUserFromProjectListAsync(int ownerId, UserInWaitingListDto userInWaitingList);
-
-    Task<IActionResult> AddUserToWaitListAsync(int Id, ApplyProjectDto applyProject);
   }
 }

@@ -138,8 +138,28 @@ namespace lagalt
 
       CreateMap<WaitListModel, UserInWaitingListModel>().ReverseMap();
 
+      //message board 
+      CreateMap<MessageBoardModel, MessageBoardDto>()
+      .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+      .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId))
+      .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username));
 
-      //      .ForMember(dest => dest.UsersInWaitingLists, opt => opt.MapFrom(src => src.WaitList.UserWaitingLists));
+      CreateMap<MessageBoardDto, MessageBoardModel>();
+      CreateMap<UserModel, MessageBoardDto>()
+      .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username));
+
+
+      CreateMap<MessageBoardModel, CreateMessageBoardDto>();
+      CreateMap<CreateMessageBoardDto, MessageBoardModel>();
+
+      CreateMap<UpdateMessageBoardDto, MessageBoardModel>();
+      CreateMap<MessageBoardModel, UpdateMessageBoardDto>()
+      .ForMember(dest => dest.messageboardId, opt => opt.MapFrom(src => src.Id));
+
+      //message board list
+      CreateMap<MessageBoardModel, MessageBoardListDto>();
+
+      CreateMap<MessageBoardListDto, MessageBoardModel>();
 
 
     }
