@@ -37,7 +37,7 @@ namespace Lagalt
     /// <param name="ownerId"></param>
     /// <param name="usersInWaitingList"></param>
     /// <returns></returns>
-    [HttpPatch("owner/{ownerId}/waitlist")]
+    [HttpPatch("owner/waitlist/users")]
     public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
     {
       try
