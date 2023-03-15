@@ -152,8 +152,6 @@ namespace lagalt.Controllers
 
       }
     }
-
-
     /// <summary>
     /// Add User to waiting list > takes user id and project id in body 
     /// </summary>
