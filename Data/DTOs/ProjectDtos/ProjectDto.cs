@@ -13,6 +13,7 @@ namespace lagalt
     public IndustryNameDto Industry { get; set; }
     public List<TagNameDto> Tags { get; set; }
     public List<SkillNameDto> Skills { get; set; }
+    public List<MessageBoardDto> messageBoards { get; set; } = new();
 
     public int? WaitListId { get; set; }
     public WaitListDto WaitList { get; set; }

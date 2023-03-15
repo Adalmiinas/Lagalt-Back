@@ -113,63 +113,9 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update the project ", ex);
       }
     }
-    /// <summary>
-    /// Remove user from project, only owner can remove
-    /// </summary>
-    /// <param name="Id"></param>
-    /// <param name="userId"></param>
-    /// <returns></returns>
-    [HttpDelete("projectUser")]
-    public async Task<IActionResult> RemoveUserFromProject([FromHeader] int Id, [FromBody] int userId)
-    {
-      try
-      {
-        return await _projectRepository.RemoveCharacterFromProject(Id, userId);
-      }
-      catch (Exception ex)
-      {
 
-        throw new Exception("Problem happened removing character", ex);
-      }
-    }
-    /// <summary>
-    /// Accept or remove user from waiting list only owner can do this
-    /// </summary>
-    /// <param name="ownerId"></param>
-    /// <param name="usersInWaitingList"></param>
-    /// <returns></returns>
-    [HttpPatch("owner/waitlist")]
-    public async Task<IActionResult> AcceptOrRemoveUserFromProject([FromHeader] int ownerId, [FromBody] UserInWaitingListDto usersInWaitingList)
-    {
-      try
-      {
-        return await _projectRepository.AddOrRemoveUserFromProjectListAsync(ownerId, usersInWaitingList);
-      }
-      catch (Exception ex)
-      {
+    
 
-        throw new Exception("Bad request CANNOT UPDATE USER LIST STATE", ex);
 
-      }
-    }
-    /// <summary>
-    /// Add User to waiting list > takes user id and project id in body 
-    /// </summary>
-    /// <param name="userId"></param>
-    /// <param name="applyProject"></param>
-    /// <returns></returns>
-    [HttpPost("User/WaitList")]
-    public async Task<IActionResult> AddUserToWaitListAsync([FromHeader] int userId, [FromBody] ApplyProjectDto applyProject)
-    {
-      try
-      {
-        return await _projectRepository.AddUserToWaitListAsync(userId, applyProject);
-      }
-      catch (Exception)
-      {
-
-        throw new Exception("BAD REQUEST");
-      }
-    }
   }
 }

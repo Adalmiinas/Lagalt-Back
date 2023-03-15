@@ -62,6 +62,7 @@ namespace Lagalt
       .ThenInclude(p => p.Industry)
       .Include(t => t.Project.Tags)
       .Include(t => t.Project.Skills)
+      .Include(m => m.Project.MessageBoards)
       .Where(pu => pu.IsOwner == true && pu.UserId == id).ToListAsync();
 
       return _mapper.Map<List<ProjectUserDto>>(ProjectOwnerProjects);

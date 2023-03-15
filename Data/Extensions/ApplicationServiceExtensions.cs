@@ -52,6 +52,8 @@ namespace lagalt.Data.Extensions
       services.AddScoped<IUserAccountRepository, RegisterUserRepository>();
       services.AddScoped<IProjectRepository, ProjectRepository>();
       services.AddScoped<IAppUserRepository, AppUserRepository>();
+      services.AddScoped<IProjectUserRepository, ProjectUserRepository>();
+      services.AddScoped<IMessageBoardRepository, MessageBoardRepository>();
 
       //automapper
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
