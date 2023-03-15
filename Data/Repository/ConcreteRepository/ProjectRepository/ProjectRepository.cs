@@ -90,6 +90,8 @@ namespace lagalt
 
       if (findProject == null) return new BadRequestObjectResult("Bad id");
 
+      
+
       return new OkObjectResult(_mapper.Map<ProjectDto>(findProject));
     }
 

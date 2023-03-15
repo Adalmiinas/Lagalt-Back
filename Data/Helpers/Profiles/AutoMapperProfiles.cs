@@ -72,8 +72,10 @@ namespace lagalt
       CreateMap<UserModel, ProjectUserDto>()
       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
       CreateMap<ProjectUserDto, ProjectUserModel>();
+
       CreateMap<UserModel, ProjectUserModel>()
-      .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id));
+      .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
+      .ForMember(dest => dest.Id, opt => opt.Ignore());
 
       //update project details
       CreateMap<UpdateProjectDetailsDto, ProjectModel>()

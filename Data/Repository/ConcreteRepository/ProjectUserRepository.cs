@@ -18,16 +18,14 @@ namespace Lagalt
 
     public async Task<IActionResult> AddOrRemoveUserFromProjectListAsync(int ownerId, UserInWaitingListDto userInWaitingList)
     {
-      //check owner id
 
-      //check project id
-      var Owner = await _dataContext.ProjectUsers.Include(pu => pu.Project).ThenInclude(p => p.WaitList).FirstOrDefaultAsync(pu => pu.UserId == ownerId && pu.IsOwner == true && pu.ProjectId == userInWaitingList.ProjectId);
-      var ApplyingUser = await _dataContext.Users.FindAsync(userInWaitingList.UserId);
+      var Owner = await _dataContext.ProjectUsers.Include(pu => pu.Project).ThenInclude(p => p.WaitList).Include(p => p.User).FirstOrDefaultAsync(pu => pu.UserId == ownerId && pu.IsOwner == true && pu.ProjectId == userInWaitingList.ProjectId);
+      var ApplyingUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == userInWaitingList.UserId);
       var exisitingProject = await _dataContext.Projects.Include(p => p.WaitList).FirstOrDefaultAsync(p => p.Id == userInWaitingList.ProjectId);
       // var ChangeStatus = exisitingProject.WaitList.UserWaitingLists.FirstOrDefault(p => p.UserId == ApplyingUser.Id);
       var WaitList = await _dataContext.UsersInWaitingLists.FirstOrDefaultAsync(uw => uw.UserId == userInWaitingList.UserId);
       var IsDuplicate = await _dataContext.ProjectUsers.Include(pu => pu.Project).FirstOrDefaultAsync(p => p.UserId == userInWaitingList.UserId && p.ProjectId == userInWaitingList.ProjectId && p.IsOwner == false);
-      var ApplyingUserDto = _mapper.Map<ProjectUserDto>(ApplyingUser);
+      //  var ApplyingUserDto = _mapper.Map<ProjectUserDto>(ApplyingUser);
 
       if (ApplyingUser == null) return new BadRequestObjectResult("Invalid User id, user does not exist");
 
