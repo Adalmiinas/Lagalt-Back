@@ -44,8 +44,9 @@ namespace lagalt
       CreateMap<ProjectImageModel, ProjectImageDto>();
 
       //project
-      CreateMap<ProjectModel, ProjectDto>().ReverseMap()
+      CreateMap<ProjectModel, ProjectDto>()
       .ForMember(dest => dest.WaitList, opt => opt.MapFrom(src => src.WaitList));
+
       CreateMap<ProjectModel, UpdateProjectDetailsDto>().ReverseMap();
       CreateMap<ProjectDto, ProjectModel>();
 
@@ -61,8 +62,9 @@ namespace lagalt
       CreateMap<ProjectSkillListDto, SkillModel>().ReverseMap()
       .ForMember(dest => dest.SkillName, opt => opt.MapFrom(src => src.SkillName));
 
-      CreateMap<ProjectListUserDto, ProjectUserModel>().ReverseMap()
+      CreateMap<ProjectUserModel, ProjectListUserDto>()
       .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Username));
+
 
       CreateMap<ProjectListUserDto, UserModel>().ReverseMap()
       .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Username));
@@ -124,6 +126,13 @@ namespace lagalt
       //userinwaitinglist
       CreateMap<UserInWaitingListDto, ProjectUserModel>();
 
+
+
+      CreateMap<UserModel, UserInWaitingListModel>()
+    .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
+     .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+
       CreateMap<UserInWaitingListModel, UserModel>()
       .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
       //  .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username));
@@ -142,6 +151,8 @@ namespace lagalt
       .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
       .ForMember(dest => dest.PendingStatus, opt => opt.Ignore());
 
+      CreateMap<ApplyProjectDto, UserInWaitingListModel>();
+      CreateMap<ApplyProjectDto, UserInWaitingListDto>();
 
       //update user
       CreateMap<UserModel, UpdateAppUserDto>();
@@ -153,10 +164,14 @@ namespace lagalt
       CreateMap<ProjectModel, ProjectDto>().ReverseMap();
       CreateMap<ProjectDto, WaitListModel>().ReverseMap();
       CreateMap<ProjectDto, WaitListDto>().ReverseMap();
-      CreateMap<WaitListModel, WaitListDto>().ReverseMap();
+      CreateMap<WaitListModel, WaitListDto>();
+
       CreateMap<UserInWaitingListModel, UserInWaitingListDto>()
       .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));
+      CreateMap<UserInWaitingListDto, UserInWaitingListModel>();
 
+      CreateMap<UserModel, UserInWaitingListDto>()
+      .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Username));
 
       CreateMap<WaitListModel, UserInWaitingListModel>().ReverseMap();
 

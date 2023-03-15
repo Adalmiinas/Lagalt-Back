@@ -16,12 +16,12 @@ namespace Lagalt
       _dataContext = dataContext;
     }
 
-/// <summary>
-/// ADD OR REMOVE USER FROM PROJECT LIST
-/// </summary>
-/// <param name="ownerId"></param>
-/// <param name="userPendingRequest"></param>
-/// <returns></returns>
+    /// <summary>
+    /// ADD OR REMOVE USER FROM PROJECT LIST
+    /// </summary>
+    /// <param name="ownerId"></param>
+    /// <param name="userPendingRequest"></param>
+    /// <returns></returns>
     public async Task<IActionResult> AddOrRemoveUserFromProjectListAsync(int ownerId, UserPendingRequestDto userPendingRequest)
     {
 
@@ -67,7 +67,6 @@ namespace Lagalt
         WaitList = existingWaitList.WaitList,
         UserId = exisitingUser.Id,
         User = exisitingUser,
-    
         MotivationLetter = applyProject.MotivationLetter
       };
       if (exisitingUser == null) return new BadRequestObjectResult("Incorrect user id");

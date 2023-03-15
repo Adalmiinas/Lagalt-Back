@@ -87,7 +87,7 @@ namespace lagalt
       .Include(s => s.Skills)
       .Include(i => i.Industry)
       .Include(t => t.Tags)
-      .FirstOrDefaultAsync(p => p.Id == id);
+      .FirstOrDefaultAsync(p => p.Id== id);
 
       if (findProject == null) return new BadRequestObjectResult("Bad id");
 

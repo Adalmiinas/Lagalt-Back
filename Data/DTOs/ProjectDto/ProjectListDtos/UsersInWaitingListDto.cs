@@ -4,6 +4,7 @@ namespace Lagalt
 {
   public class UserInWaitingListDto
   {
+    public int Id { get; set; }
     [JsonIgnore]
     public int ProjectId { get; set; }
 
