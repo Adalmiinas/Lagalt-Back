@@ -6,6 +6,6 @@ namespace lagaltApp
 
     public string TagName { get; set; }
 
-    public List <ProjectModel> Project { get; set; }
+    public List<ProjectModel> Project { get; set; } = new();
   }
 }

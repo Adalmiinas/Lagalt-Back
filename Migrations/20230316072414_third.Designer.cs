@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lagalt;
 
@@ -11,9 +12,11 @@ using lagalt;
 namespace lagalt.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230316072414_third")]
+    partial class third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,29 +112,6 @@ namespace lagalt.Migrations
                     b.ToTable("SkillModelUserModel");
                 });
 
-            modelBuilder.Entity("lagaltApp.AppliedProjectHistoryModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserModelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserModelId");
-
-                    b.ToTable("AppliedProjectHistories");
-                });
-
             modelBuilder.Entity("lagaltApp.ChatMessageModel", b =>
                 {
                     b.Property<int>("Id")
@@ -177,29 +157,6 @@ namespace lagalt.Migrations
                     b.HasIndex("ProjectModelId");
 
                     b.ToTable("Chats");
-                });
-
-            modelBuilder.Entity("lagaltApp.ClickedProjectHistoryModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserModelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
-
-                    b.HasIndex("UserModelId");
-
-                    b.ToTable("ClickedProjectHistories");
                 });
 
             modelBuilder.Entity("lagaltApp.IndustryModel", b =>
@@ -264,12 +221,12 @@ namespace lagalt.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("UserModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
+                    b.HasIndex("UserModelId")
                         .IsUnique();
 
                     b.ToTable("Photos");
@@ -373,7 +330,7 @@ namespace lagalt.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("SearchWordModel");
+                    b.ToTable("searchWords");
                 });
 
             modelBuilder.Entity("lagaltApp.SkillModel", b =>
@@ -504,21 +461,6 @@ namespace lagalt.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("lagaltApp.AppliedProjectHistoryModel", b =>
-                {
-                    b.HasOne("lagaltApp.ProjectModel", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("lagaltApp.UserModel", null)
-                        .WithMany("AppliedProjectHistories")
-                        .HasForeignKey("UserModelId");
-
-                    b.Navigation("Project");
-                });
-
             modelBuilder.Entity("lagaltApp.ChatMessageModel", b =>
                 {
                     b.HasOne("lagaltApp.ChatModel", "Chat")
@@ -547,21 +489,6 @@ namespace lagalt.Migrations
                     b.Navigation("ProjectModel");
                 });
 
-            modelBuilder.Entity("lagaltApp.ClickedProjectHistoryModel", b =>
-                {
-                    b.HasOne("lagaltApp.ProjectModel", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("lagaltApp.UserModel", null)
-                        .WithMany("ClickedProjectHistories")
-                        .HasForeignKey("UserModelId");
-
-                    b.Navigation("Project");
-                });
-
             modelBuilder.Entity("lagaltApp.MessageBoardModel", b =>
                 {
                     b.HasOne("lagaltApp.ProjectModel", "Project")
@@ -581,13 +508,13 @@ namespace lagalt.Migrations
 
             modelBuilder.Entity("lagaltApp.PhotoModel", b =>
                 {
-                    b.HasOne("lagaltApp.UserModel", "User")
+                    b.HasOne("lagaltApp.UserModel", "UserModel")
                         .WithOne("Photo")
-                        .HasForeignKey("lagaltApp.PhotoModel", "UserId")
+                        .HasForeignKey("lagaltApp.PhotoModel", "UserModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("UserModel");
                 });
 
             modelBuilder.Entity("lagaltApp.ProjectImageModel", b =>
@@ -674,10 +601,6 @@ namespace lagalt.Migrations
 
             modelBuilder.Entity("lagaltApp.UserModel", b =>
                 {
-                    b.Navigation("AppliedProjectHistories");
-
-                    b.Navigation("ClickedProjectHistories");
-
                     b.Navigation("Photo");
 
                     b.Navigation("ProjectUsers");

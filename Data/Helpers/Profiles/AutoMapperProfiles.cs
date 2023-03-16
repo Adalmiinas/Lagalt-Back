@@ -23,6 +23,9 @@ namespace lagalt
       .ForMember(dest => dest.Password, opt => opt.Ignore())
       .ForMember(dest => dest.Photo, opt => opt.Ignore())
       .ForMember(dest => dest.SearchWords, opt => opt.Ignore());
+      CreateMap<UserModel, UserDto>()
+      .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
+
 
       CreateMap<List<UserModel>, UserDto>().ReverseMap();
       CreateMap<UserModel, UserNameDto>().ReverseMap();
@@ -195,8 +198,10 @@ namespace lagalt
 
       //message board list
       CreateMap<MessageBoardModel, MessageBoardListDto>();
-
       CreateMap<MessageBoardListDto, MessageBoardModel>();
+
+//photo
+      CreateMap<PhotoModel, PhotoDto>();
 
 
     }

@@ -10,9 +10,9 @@ namespace lagaltApp
     public string Description { get; set; }
     public string GitRepositoryUrl { get; set; }
 
-    public ProjectImageModel projectImage { get; set; }
-    public IndustryModel Industry { get; set; }
-    public List<TagModel> Tags { get; set; }
+    public ProjectImageModel projectImage { get; set; } = new();
+    public IndustryModel Industry { get; set; } = new ();
+    public List<TagModel> Tags { get; set; } = new();
     public List<ChatModel> Chats { get; set; } = new();
 
     public List<ProjectUserModel> ProjectUsers { get; set; } = new();

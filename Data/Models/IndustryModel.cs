@@ -5,6 +5,6 @@ namespace lagaltApp
     public int Id { get; set; }
     public string Name { get; set; }
 
-    public List<ProjectModel> Projects { get; set; }
+    public List<ProjectModel> Projects { get; set; } = new();
   }
 }

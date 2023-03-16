@@ -25,8 +25,10 @@ namespace lagalt
     public DbSet<ChatMessageModel> ChatMessages { get; set; }
     public DbSet<SkillModel> skills { get; set; }
 
-
+    public DbSet<ClickedProjectHistoryModel> ClickedProjectHistories { get; set; }
+    public DbSet<AppliedProjectHistoryModel> AppliedProjectHistories { get; set; }
     public DbSet<UserInWaitingListModel> UsersInWaitingLists { get; set; }
+    public DbSet<SearchWordModel> SearchWords { get; set; }
     public DbSet<WaitListModel> WaitLists { get; set; }
 
   }
