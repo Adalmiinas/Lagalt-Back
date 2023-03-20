@@ -1,11 +1,29 @@
+using System.Security.Claims;
+using Keycloak.AuthServices.Authentication;
 using lagalt;
 using lagalt.Data.Extensions;
 using Lagalt;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var service = builder.Services;
+var host = builder.Host;
+// services.AddKeycloakAuthentication(configuration);
+// service.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+// .AddJwtBearer(options =>
+// {
+//   options.TokenValidationParameters = new TokenValidationParameters
+//   {
+//     IssuerSigningKeyResolver = (token, SecurityToken, kid, parameters) => 
+//     {
+
+//     }
+//   };
+// });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,6 +31,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices(builder.Configuration);
 var app = builder.Build();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapGet("/", (ClaimsPrincipal user) =>
+{
+  app.Logger.LogInformation(user.Identity.Name);
+}).RequireAuthorization();
 
 //use our custom middleware
 app.UseMiddleware<ExceptionMiddleware>();
