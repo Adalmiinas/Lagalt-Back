@@ -1,10 +1,12 @@
 using System.Reflection.Metadata.Ecma335;
 using lagalt.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace Lagalt
 {
+  [Authorize]
   public class MessageBoardController : BaseApiController
   {
     private readonly IMessageBoardRepository _messageBoardRepository;

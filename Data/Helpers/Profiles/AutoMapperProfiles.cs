@@ -10,7 +10,9 @@ namespace lagalt
     public AutoMapperProfiles()
     {
       //login
-      CreateMap<UserModel, RegisterAppUserDto>().ReverseMap();
+      CreateMap<UserModel, RegisterAppUserDto>()
+      .ForMember(dest => dest.KeycloakId, opt => opt.MapFrom(src => src.KeyCloakId));
+      CreateMap<RegisterAppUserDto, UserModel>();
       CreateMap<UserModel, LoginDto>().ReverseMap();
       //user misc
 
@@ -200,7 +202,7 @@ namespace lagalt
       CreateMap<MessageBoardModel, MessageBoardListDto>();
       CreateMap<MessageBoardListDto, MessageBoardModel>();
 
-//photo
+      //photo
       CreateMap<PhotoModel, PhotoDto>();
 
 

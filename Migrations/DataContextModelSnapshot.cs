@@ -94,6 +94,21 @@ namespace lagalt.Migrations
                     b.ToTable("ProjectModelTagModel");
                 });
 
+            modelBuilder.Entity("SearchWordModelUserModel", b =>
+                {
+                    b.Property<int>("SearchWordsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SearchWordsId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SearchWordModelUserModel");
+                });
+
             modelBuilder.Entity("SkillModelUserModel", b =>
                 {
                     b.Property<int>("SkillsId")
@@ -366,12 +381,7 @@ namespace lagalt.Migrations
                     b.Property<string>("Word")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("userId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("userId");
 
                     b.ToTable("SearchWordModel");
                 });
@@ -425,8 +435,17 @@ namespace lagalt.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsPrivate")
                         .HasColumnType("bit");
+
+                    b.Property<string>("KeyCloakId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -485,6 +504,21 @@ namespace lagalt.Migrations
                     b.HasOne("lagaltApp.TagModel", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SearchWordModelUserModel", b =>
+                {
+                    b.HasOne("lagaltApp.SearchWordModel", null)
+                        .WithMany()
+                        .HasForeignKey("SearchWordsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("lagaltApp.UserModel", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -635,17 +669,6 @@ namespace lagalt.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("lagaltApp.SearchWordModel", b =>
-                {
-                    b.HasOne("lagaltApp.UserModel", "User")
-                        .WithMany("SearchWords")
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Lagalt.WaitListModel", b =>
                 {
                     b.Navigation("UserWaitingLists");
@@ -681,8 +704,6 @@ namespace lagalt.Migrations
                     b.Navigation("Photo");
 
                     b.Navigation("ProjectUsers");
-
-                    b.Navigation("SearchWords");
 
                     b.Navigation("UsersInWaitingLists");
                 });

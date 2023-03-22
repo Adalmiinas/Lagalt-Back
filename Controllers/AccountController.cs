@@ -1,5 +1,7 @@
 using lagalt.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace lagalt
 {
@@ -7,6 +9,7 @@ namespace lagalt
   /// <summary>
   /// Control login and register
   /// </summary>
+  [Authorize]
   public class AccountController : BaseApiController
   {
     private readonly DataContext _dataContext;
@@ -29,14 +32,14 @@ namespace lagalt
     /// </summary>
     /// <param name="registerAppUserDto"></param>
     /// <returns></returns>
+    /// 
+   
     [HttpPost("register")]
     public async Task<ActionResult<RegisterAppUserDto>> Register([FromBody] RegisterAppUserDto registerAppUserDto)
     {
-
+      var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
       var IsTaken = await _userAccountRepository.RegisterAsync(registerAppUserDto);
       return IsTaken;
-
-
     }
 
     //change to use keycloak

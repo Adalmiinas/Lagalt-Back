@@ -4,8 +4,7 @@ namespace lagaltApp
   {
     public int Id { get; set; }
     public string Word { get; set; }
-
-    public int userId { get; set; }
-    public UserModel User { get; set; }
+    
+    public List<UserModel> User { get; set; }
   }
 }

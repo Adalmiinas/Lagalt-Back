@@ -5,7 +5,7 @@
 namespace lagalt.Migrations
 {
     /// <inheritdoc />
-    public partial class updatedWaitList : Migration
+    public partial class fix : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,6 +21,19 @@ namespace lagalt.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Industries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SearchWordModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Word = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SearchWordModel", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +68,11 @@ namespace lagalt.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    IsPrivate = table.Column<bool>(type: "bit", nullable: false),
+                    KeyCloakId = table.Column<int>(type: "int", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CareerTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -86,34 +103,38 @@ namespace lagalt.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserModelId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Photos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Photos_Users_UserModelId",
-                        column: x => x.UserModelId,
+                        name: "FK_Photos_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "searchWords",
+                name: "SearchWordModelUserModel",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Word = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    userId = table.Column<int>(type: "int", nullable: false)
+                    SearchWordsId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_searchWords", x => x.Id);
+                    table.PrimaryKey("PK_SearchWordModelUserModel", x => new { x.SearchWordsId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_searchWords_Users_userId",
-                        column: x => x.userId,
+                        name: "FK_SearchWordModelUserModel_SearchWordModel_SearchWordsId",
+                        column: x => x.SearchWordsId,
+                        principalTable: "SearchWordModel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SearchWordModelUserModel_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -177,7 +198,8 @@ namespace lagalt.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PendingStatus = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    MotivationLetter = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     WaitListId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -187,11 +209,37 @@ namespace lagalt.Migrations
                         name: "FK_UsersInWaitingLists_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UsersInWaitingLists_WaitLists_WaitListId",
                         column: x => x.WaitListId,
                         principalTable: "WaitLists",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppliedProjectHistories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    UserModelId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppliedProjectHistories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AppliedProjectHistories_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AppliedProjectHistories_Users_UserModelId",
+                        column: x => x.UserModelId,
+                        principalTable: "Users",
                         principalColumn: "Id");
                 });
 
@@ -215,6 +263,31 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClickedProjectHistories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    UserModelId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClickedProjectHistories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClickedProjectHistories_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClickedProjectHistories_Users_UserModelId",
+                        column: x => x.UserModelId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MessageBoards",
                 columns: table => new
                 {
@@ -225,17 +298,17 @@ namespace lagalt.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     UserModelId = table.Column<int>(type: "int", nullable: true),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
-                    ProjectModelId = table.Column<int>(type: "int", nullable: true)
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MessageBoards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MessageBoards_Projects_ProjectModelId",
-                        column: x => x.ProjectModelId,
+                        name: "FK_MessageBoards_Projects_ProjectId",
+                        column: x => x.ProjectId,
                         principalTable: "Projects",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MessageBoards_Users_UserModelId",
                         column: x => x.UserModelId,
@@ -366,6 +439,16 @@ namespace lagalt.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AppliedProjectHistories_ProjectId",
+                table: "AppliedProjectHistories",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppliedProjectHistories_UserModelId",
+                table: "AppliedProjectHistories",
+                column: "UserModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChatMessages_ChatId",
                 table: "ChatMessages",
                 column: "ChatId");
@@ -381,9 +464,19 @@ namespace lagalt.Migrations
                 column: "ProjectModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MessageBoards_ProjectModelId",
+                name: "IX_ClickedProjectHistories_ProjectId",
+                table: "ClickedProjectHistories",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClickedProjectHistories_UserModelId",
+                table: "ClickedProjectHistories",
+                column: "UserModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MessageBoards_ProjectId",
                 table: "MessageBoards",
-                column: "ProjectModelId");
+                column: "ProjectId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MessageBoards_UserModelId",
@@ -391,9 +484,9 @@ namespace lagalt.Migrations
                 column: "UserModelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Photos_UserModelId",
+                name: "IX_Photos_UserId",
                 table: "Photos",
-                column: "UserModelId",
+                column: "UserId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -433,9 +526,9 @@ namespace lagalt.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_searchWords_userId",
-                table: "searchWords",
-                column: "userId");
+                name: "IX_SearchWordModelUserModel_UserId",
+                table: "SearchWordModelUserModel",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SkillModelUserModel_UserId",
@@ -457,7 +550,13 @@ namespace lagalt.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AppliedProjectHistories");
+
+            migrationBuilder.DropTable(
                 name: "ChatMessages");
+
+            migrationBuilder.DropTable(
+                name: "ClickedProjectHistories");
 
             migrationBuilder.DropTable(
                 name: "MessageBoards");
@@ -478,7 +577,7 @@ namespace lagalt.Migrations
                 name: "ProjectUsers");
 
             migrationBuilder.DropTable(
-                name: "searchWords");
+                name: "SearchWordModelUserModel");
 
             migrationBuilder.DropTable(
                 name: "SkillModelUserModel");
@@ -491,6 +590,9 @@ namespace lagalt.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tags");
+
+            migrationBuilder.DropTable(
+                name: "SearchWordModel");
 
             migrationBuilder.DropTable(
                 name: "skills");

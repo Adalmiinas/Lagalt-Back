@@ -6,6 +6,7 @@ namespace lagalt.Controllers
   /// <summary>
   /// Handles Login and register
   /// </summary>
+  
   public class AppUserController : BaseApiController
   {
     private readonly IAppUserRepository _appUserRepository;

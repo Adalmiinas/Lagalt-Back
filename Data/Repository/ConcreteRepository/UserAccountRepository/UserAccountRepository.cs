@@ -1,9 +1,11 @@
 using AutoMapper;
 using lagaltApp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace lagalt
 {
+
   public class RegisterUserRepository : IUserAccountRepository
   {
     private readonly DataContext _dataContext;
@@ -18,31 +20,38 @@ namespace lagalt
 
     public async Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto)
     {
-      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Username == loginDto.Username && u.Password == loginDto.Password);
+      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == loginDto.KeyCloakId);
       if (IsUser == null)
       {
-        return null;
+        return new OkObjectResult("User confirmed to not exists");
       }
-      var existingUser = _mapper.Map<UserDto>(IsUser);
-      return existingUser;
+      else
+      {
+        var existingUser = _mapper.Map<UserDto>(IsUser);
+        return existingUser;
+      }
+
 
     }
 
     public async Task<ActionResult<RegisterAppUserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
-      var IsUser = await _dataContext.Users.AnyAsync(u => u.Username == registerAppUserDto.Username);
-      if (IsUser)
+      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
+      if (IsUser != null)
       {
-        return new BadRequestObjectResult("Username taken");
+        return new OkObjectResult("user has been confirmed");
       }
-      var newUser = _mapper.Map<UserModel>(registerAppUserDto);
-      _dataContext.Users.Add(newUser);
-      await _dataContext.SaveChangesAsync();
-      return new RegisterAppUserDto
+      else
       {
-        Username = newUser.Username,
-        Password = newUser.Password,
-      };
+        var newUser = _mapper.Map<UserModel>(registerAppUserDto);
+        _dataContext.Users.Add(newUser);
+        await _dataContext.SaveChangesAsync();
+        return new RegisterAppUserDto
+        {
+          Username = newUser.Username,
+        };
+      }
+
 
     }
   }

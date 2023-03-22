@@ -1,4 +1,5 @@
 using Lagalt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt.Controllers
@@ -23,6 +24,8 @@ namespace lagalt.Controllers
     /// Get list of projects
     /// </summary>
     /// <returns></returns>
+    /// 
+
     [HttpGet("List")]
     public async Task<ActionResult<List<ProjectListDto>>> Projects()
     {
@@ -43,6 +46,8 @@ namespace lagalt.Controllers
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
+    /// 
+    [Authorize]
     [HttpGet("Names")]
     public async Task<ActionResult<List<ProjectListDto>>> ProjectNames(string name)
     {
@@ -61,6 +66,7 @@ namespace lagalt.Controllers
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<ProjectDto>> GetProjectAsync(int id)
     {
@@ -114,7 +120,7 @@ namespace lagalt.Controllers
       }
     }
 
-    
+
 
 
   }
