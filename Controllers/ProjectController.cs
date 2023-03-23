@@ -47,7 +47,7 @@ namespace lagalt.Controllers
     /// <param name="name"></param>
     /// <returns></returns>
     /// 
-    [Authorize]
+   
     [HttpGet("Names")]
     public async Task<ActionResult<List<ProjectListDto>>> ProjectNames(string name)
     {
@@ -66,7 +66,7 @@ namespace lagalt.Controllers
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [Authorize]
+   
     [HttpGet("{id}")]
     public async Task<ActionResult<ProjectDto>> GetProjectAsync(int id)
     {
@@ -119,7 +119,19 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update the project ", ex);
       }
     }
+    [HttpDelete("delete")]
+    public async Task<IActionResult> DeleteProjectAsync([FromHeader] int userId, [FromBody] DeleteProjectDto deleteProject)
+    {
+      try
+      {
+        return await _projectRepository.DeleteProjectAsync(userId, deleteProject);
+      }
+      catch (Exception ex)
+      {
 
+        throw new Exception("Couldnt update the project ", ex);
+      }
+    }
 
 
 

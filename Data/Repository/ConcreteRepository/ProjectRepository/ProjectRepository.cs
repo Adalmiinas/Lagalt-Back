@@ -33,7 +33,7 @@ namespace lagalt
       .Where(t => createProjectDto.TagNames
       .Select(tn => tn.TagName).Contains(t.TagName)).ToListAsync();
 
-      var exisitingUser = await _dataContext.Users.FindAsync(id);
+      var exisitingUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
       if (exisitingUser == null) return new BadRequestObjectResult("Incorrect id / Id does not exist");
 
 
@@ -71,6 +71,20 @@ namespace lagalt
       return new CreatedAtRouteResult(nameof(CreateProjectAsync), newProj);
     }
 
+    public async Task<IActionResult> DeleteProjectAsync(int userId, DeleteProjectDto deleteProject)
+    {
+      var user = await _dataContext.ProjectUsers.Include(p => p.ProjectId == deleteProject.projectId).FirstOrDefaultAsync(u => u.UserId == userId && u.IsOwner == true);
+
+      if (user == null)
+      {
+        return new BadRequestObjectResult("No projects with that Id and ownership found");
+      }
+      var project = await _dataContext.Projects.FirstOrDefaultAsync(p => p.Id == deleteProject.projectId);
+      _dataContext.Projects.Remove(project);
+      await _dataContext.SaveChangesAsync();
+      return new NoContentResult();
+    }
+
     /// <summary>
     /// Get singular project matching the id
     /// </summary>
@@ -87,7 +101,8 @@ namespace lagalt
       .Include(s => s.Skills)
       .Include(i => i.Industry)
       .Include(t => t.Tags)
-      .FirstOrDefaultAsync(p => p.Id== id);
+      .Include(m => m.MessageBoards)
+      .FirstOrDefaultAsync(p => p.Id == id);
 
       if (findProject == null) return new BadRequestObjectResult("Bad id");
 
@@ -170,7 +185,7 @@ namespace lagalt
         Id = existingProject.Id,
         Title = updateProjectDto.Title == null ? existingProject.Title : updateProjectDto.Title,
         Description = updateProjectDto.Description == null ? existingProject.Description : updateProjectDto.Description,
-        GitRepositoryUrl = updateProjectDto.GitRepositoryUrl == null ? existingProject.GitRepositoryUrl : updateProjectDto.Description,
+        GitRepositoryUrl = updateProjectDto.GitRepositoryUrl == null ? existingProject.GitRepositoryUrl : updateProjectDto.GitRepositoryUrl,
         ProjectImage = updateProjectDto.ProjectImage == null ? _mapper.Map<ProjectImageDto>(existingProject.projectImage) : updateProjectDto.ProjectImage,
         Industry = new IndustryNameDto(),
         TagNames = new List<TagNameDto>(),

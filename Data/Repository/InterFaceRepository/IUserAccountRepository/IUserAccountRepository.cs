@@ -1,3 +1,4 @@
+using Lagalt;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt
@@ -11,5 +12,6 @@ namespace lagalt
     Task<ActionResult<RegisterAppUserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto);
 
     Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto);
+    Task<ActionResult<UserDto>> LoginDevAsync(LoginDevDto loginDev);
   }
 }

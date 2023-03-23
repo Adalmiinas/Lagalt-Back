@@ -86,10 +86,15 @@ namespace Lagalt
       .FirstOrDefaultAsync(p => p.Id == removeProjectUser.ProjectId);
       if (existingProject == null) return new BadRequestObjectResult("Incorrect project id");
 
-      var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.Id == userId);
+      //this checks header user
+      var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && pu.IsOwner == true);
+      if (user == null) throw new Exception("You cannot remove others / User does not exist");
+      //this checks added user id in body
       var exisitingUser = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == removeProjectUser.UserId && pu.IsOwner == false);
-      if (exisitingUser == null || user.IsOwner != true && user.UserId != userId) throw new Exception("You do not meet the right to remove user / User does not exist");
-      if (user.IsOwner == false && user.UserId != userId) throw new Exception("You cannot remove others / User does not exist");
+      //existing user is null or sender isnt owner, and user id does not math
+      if (exisitingUser == null) throw new Exception("You do not meet the right to remove user / User does not exist");
+      //if user inot owner  and 
+
 
       existingProject.ProjectUsers.Remove(exisitingUser);
       await _dataContext.SaveChangesAsync();

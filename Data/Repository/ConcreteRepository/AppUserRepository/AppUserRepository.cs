@@ -52,7 +52,7 @@ namespace Lagalt
 
     public async Task<List<ProjectUserDto>> UserAdminProjectsAsync(int id)
     {
-      var isUserId = await _dataContext.ProjectUsers.FindAsync(id);
+      var isUserId = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
       if (isUserId == null)
       {
         throw new Exception("Bad id");

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace Lagalt
 {
-  [Authorize]
+
   public class MessageBoardController : BaseApiController
   {
     private readonly IMessageBoardRepository _messageBoardRepository;
@@ -31,9 +31,9 @@ namespace Lagalt
       return await _messageBoardRepository.UpdateMessageBoardAsync(userId, updateMessageBoard);
     }
     [HttpDelete]
-    public async Task<ActionResult<MessageBoardDto>> CreateMessageBoardAsync([FromHeader] int userId, [FromBody] int messageBoardId)
+    public async Task<ActionResult<MessageBoardDto>> DeleteMessageBoardAsync([FromHeader] int userId, [FromBody] DeleteMessageBoardDto deleteMessageBoard)
     {
-      return await _messageBoardRepository.DeleteMessageBoardAsync(userId, messageBoardId);
+      return await _messageBoardRepository.DeleteMessageBoardAsync(userId, deleteMessageBoard);
     }
   }
 }

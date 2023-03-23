@@ -1,4 +1,5 @@
 using lagalt.Controllers;
+using Lagalt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,6 @@ namespace lagalt
   /// <summary>
   /// Control login and register
   /// </summary>
-  [Authorize]
   public class AccountController : BaseApiController
   {
     private readonly DataContext _dataContext;
@@ -33,7 +33,7 @@ namespace lagalt
     /// <param name="registerAppUserDto"></param>
     /// <returns></returns>
     /// 
-   
+
     [HttpPost("register")]
     public async Task<ActionResult<RegisterAppUserDto>> Register([FromBody] RegisterAppUserDto registerAppUserDto)
     {
@@ -54,6 +54,18 @@ namespace lagalt
     {
 
       var IsAuhtorised = await _userAccountRepository.LoginAsync(loginDto);
+      if (IsAuhtorised == null)
+      {
+        return Unauthorized("Invalid Password / Username");
+      }
+      return IsAuhtorised;
+    }
+
+    [HttpPost("loginDev")]
+    public async Task<ActionResult<UserDto>> LoginDev([FromBody] LoginDevDto loginDev)
+    {
+
+      var IsAuhtorised = await _userAccountRepository.LoginDevAsync(loginDev);
       if (IsAuhtorised == null)
       {
         return Unauthorized("Invalid Password / Username");

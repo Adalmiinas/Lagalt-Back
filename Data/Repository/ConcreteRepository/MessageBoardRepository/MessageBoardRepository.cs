@@ -37,9 +37,9 @@ namespace Lagalt
 
     }
 
-    public async Task<ActionResult<MessageBoardDto>> DeleteMessageBoardAsync(int userId, int messageBoardId)
+    public async Task<ActionResult<MessageBoardDto>> DeleteMessageBoardAsync(int userId, DeleteMessageBoardDto deleteMessageBoard)
     {
-      var findMessage = await _dataContext.MessageBoards.FirstOrDefaultAsync(mb => mb.Id == messageBoardId && mb.UserId == userId);
+      var findMessage = await _dataContext.MessageBoards.FirstOrDefaultAsync(mb => mb.Id== deleteMessageBoard.MessageBoardId && mb.UserId == userId);
       if (findMessage == null) return new BadRequestObjectResult("User cannot remove that Specific Message");
 
       _dataContext.MessageBoards.Remove(findMessage);
