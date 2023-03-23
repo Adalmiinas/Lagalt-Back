@@ -36,12 +36,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
   {
     ValidateIssuer = true,
     ValidateAudience = true,
-    ValidIssuer = "https://lagaltkeycloak.azurewebsites.net/auth/realms/Lagalt",
+    ValidIssuer = "https://lagaltkeycloak.azurewebsites.net/auth/realms/keycloak",
     ValidAudience = "account",
     IssuerSigningKeyResolver = (token, SecurityToken, kid, parameters) =>
     {
       var client = new HttpClient();
-      var keyuri = "https://lagaltkeycloak.azurewebsites.net/auth/realms/Lagalt/protocol/openid-connect/certs";
+      var keyuri = "https://lagaltkeycloak.azurewebsites.net/auth/realms/keycloak/protocol/openid-connect/certs";
       //retrieve kes from kc instance to verify token
       var response = client.GetAsync(keyuri).Result;
       var responseString = response.Content.ReadAsStringAsync().Result;
