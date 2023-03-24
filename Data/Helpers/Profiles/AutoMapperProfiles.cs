@@ -24,9 +24,15 @@ namespace lagalt
       CreateMap<UserDto, UserModel>()
       .ForMember(dest => dest.Password, opt => opt.Ignore())
       .ForMember(dest => dest.Photo, opt => opt.Ignore())
-      .ForMember(dest => dest.SearchWords, opt => opt.Ignore());
+      .ForMember(dest => dest.SearchWords, opt => opt.Ignore())
+      .ForMember(dest => dest.AppliedProjectHistories, opt => opt.MapFrom(src => src.AppliedProjectHistories))
+      .ForMember(dest => dest.ClickedProjectHistories, opt => opt.MapFrom(src => src.ClickedProjectHistories))
+      .ForMember(dest => dest.SearchWords, opt => opt.MapFrom(src => src.SearchWords));
       CreateMap<UserModel, UserDto>()
-      .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo));
+      .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo))
+      .ForMember(dest => dest.AppliedProjectHistories, opt => opt.MapFrom(src => src.AppliedProjectHistories))
+      .ForMember(dest => dest.ClickedProjectHistories, opt => opt.MapFrom(src => src.ClickedProjectHistories))
+      .ForMember(dest => dest.SearchWords, opt => opt.MapFrom(src => src.SearchWords));
 
 
       CreateMap<List<UserModel>, UserDto>().ReverseMap();
@@ -204,6 +210,30 @@ namespace lagalt
 
       //photo
       CreateMap<PhotoModel, PhotoDto>();
+
+
+      //histories 
+      CreateMap<AppliedProjectHistoryDto, AppliedProjectHistoryModel>()
+      .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId));
+
+      CreateMap<AppliedProjectHistoryModel, AppliedProjectHistoryDto>()
+.ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId));
+
+      CreateMap<ClickedProjectHistoryModel, ClickedProjectHistoryDto>()
+      .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId));
+      CreateMap<ClickedProjectHistoryDto, ClickedProjectHistoryModel>()
+.ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.ProjectId));
+
+      CreateMap<SearchWordModel, SearchWordDto>();
+
+      CreateMap<SearchWordDto, SearchWordModel>();
+
+
+
+
+      // AppliedProjectHistories = updateAppUser.AppliedProjectHistories == null ? _mapper.Map<List<AppliedProjectHistoryDto>>(IsUser.AppliedProjectHistories) : updateAppUser.AppliedProjectHistories,
+      //   ClickedProjectHistories = updateAppUser.ClickedProjectHistories == null ? _mapper.Map<List<ClickedProjectHistoryDto>>(IsUser.AppliedProjectHistories) : updateAppUser.ClickedProjectHistories,
+      //   SearchWords = updateAppUser.SearchWords == null ? _mapper.Map<List<SearchWordDto>>(IsUser.SearchWords) : updateAppUser.SearchWords
 
 
     }

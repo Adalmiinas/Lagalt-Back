@@ -1,4 +1,5 @@
 using Lagalt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lagalt.Controllers
@@ -6,7 +7,6 @@ namespace lagalt.Controllers
   /// <summary>
   /// Handles Login and register
   /// </summary>
-  
   public class AppUserController : BaseApiController
   {
     private readonly IAppUserRepository _appUserRepository;

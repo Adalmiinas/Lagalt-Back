@@ -1,4 +1,5 @@
 using lagalt;
+using lagaltApp;
 
 namespace Lagalt
 {
@@ -20,6 +21,12 @@ namespace Lagalt
 
     // public List<ProjectDto> ProjectUsers { get; set; }
     public List<SkillDto> Skills { get; set; } = new();
+
+
+    public List<AppliedProjectHistoryDto> AppliedProjectHistories { get; set; } = new();
+    public List<ClickedProjectHistoryDto> ClickedProjectHistories { get; set; } = new();
+    public List<SearchWordDto> SearchWords { get; set; } = new();
+
 
   }
 }

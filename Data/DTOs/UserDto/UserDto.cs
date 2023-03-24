@@ -26,6 +26,11 @@ namespace lagalt
     public PhotoDto Photo { get; set; }
     public List<UserInWaitingListDto> userInWaitingLists { get; set; }
 
+      //WIP 
+    public List<AppliedProjectHistoryDto> AppliedProjectHistories { get; set; } = new();
+    public List<ClickedProjectHistoryDto> ClickedProjectHistories { get; set; } = new();
+    public List<SearchWordDto> SearchWords { get; set; } = new();
+
 
   }
 }

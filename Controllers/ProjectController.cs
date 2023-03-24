@@ -7,6 +7,8 @@ namespace lagalt.Controllers
   /// <summary>
   /// Project controller to handle project related commands
   /// </summary>
+
+
   public class ProjectController : BaseApiController
   {
     private readonly IProjectRepository _projectRepository;
@@ -25,7 +27,7 @@ namespace lagalt.Controllers
     /// </summary>
     /// <returns></returns>
     /// 
-
+    [AllowAnonymous]
     [HttpGet("List")]
     public async Task<ActionResult<List<ProjectListDto>>> Projects()
     {
@@ -47,7 +49,7 @@ namespace lagalt.Controllers
     /// <param name="name"></param>
     /// <returns></returns>
     /// 
-   
+
     [HttpGet("Names")]
     public async Task<ActionResult<List<ProjectListDto>>> ProjectNames(string name)
     {
@@ -66,7 +68,7 @@ namespace lagalt.Controllers
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-   
+
     [HttpGet("{id}")]
     public async Task<ActionResult<ProjectDto>> GetProjectAsync(int id)
     {

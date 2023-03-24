@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace Lagalt
 {
-
   public class MessageBoardController : BaseApiController
   {
     private readonly IMessageBoardRepository _messageBoardRepository;

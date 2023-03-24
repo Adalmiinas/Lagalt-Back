@@ -35,7 +35,7 @@ namespace lagalt
     /// 
 
     [HttpPost("register")]
-    public async Task<ActionResult<RegisterAppUserDto>> Register([FromBody] RegisterAppUserDto registerAppUserDto)
+    public async Task<ActionResult<UserDto>> Register([FromBody] RegisterAppUserDto registerAppUserDto)
     {
       var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
       var IsTaken = await _userAccountRepository.RegisterAsync(registerAppUserDto);

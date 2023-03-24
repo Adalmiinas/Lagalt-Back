@@ -9,7 +9,7 @@ namespace lagalt
   /// </summary>
   public interface IUserAccountRepository
   {
-    Task<ActionResult<RegisterAppUserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto);
+    Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto);
 
     Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto);
     Task<ActionResult<UserDto>> LoginDevAsync(LoginDevDto loginDev);

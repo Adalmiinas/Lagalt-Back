@@ -49,7 +49,7 @@ namespace lagalt
       }
     }
 
-    public async Task<ActionResult<RegisterAppUserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
+    public async Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
       if (IsUser != null)
@@ -61,10 +61,7 @@ namespace lagalt
         var newUser = _mapper.Map<UserModel>(registerAppUserDto);
         _dataContext.Users.Add(newUser);
         await _dataContext.SaveChangesAsync();
-        return new RegisterAppUserDto
-        {
-          Username = newUser.Username,
-        };
+        return _mapper.Map<UserDto>(newUser);
       }
 
 

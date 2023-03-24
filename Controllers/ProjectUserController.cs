@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lagalt
 {
-
   public class ProjectUserController : BaseApiController
   {
     private readonly IProjectUserRepository _projectUserRepository;
