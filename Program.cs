@@ -3,13 +3,12 @@ using lagalt.Data.Extensions;
 using Lagalt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
-
 var builder = WebApplication.CreateBuilder(args);
 // var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddMemoryCache();
 var service = builder.Services;
-
-
 builder.Services.AddCors(options =>
 {
   options.AddDefaultPolicy(builder =>
@@ -58,12 +57,6 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// app.MapGet("/", (ClaimsPrincipal user) =>
-// {
-//   app.Logger.LogInformation(user.Identity.Name);
-// }).RequireAuthorization();
-
-//use our custom middleware
 app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
@@ -73,8 +66,6 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
-
-
 app.MapControllers();
 
 //try to read a json file and populate database with 10 movies, characters and fransises 

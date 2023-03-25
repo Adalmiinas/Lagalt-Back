@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Lagalt;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -24,12 +26,14 @@ namespace lagalt.Data.Extensions
         option.UseSqlServer(config.GetConnectionString("Db"));
 
       });
-
       //ADD INTERFACE REPO / CONCRETE REPO
       services.AddControllers().AddJsonOptions(options =>
       {
         options.JsonSerializerOptions.ReferenceHandler = null;
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
       });
+
 
       //swagger for documentation
       services.AddSwaggerGen(c =>
@@ -48,7 +52,6 @@ namespace lagalt.Data.Extensions
       });
       services.AddSwaggerExamplesFromAssemblyOf<Program>();
       services.AddCors();
-
       services.AddScoped<IUserAccountRepository, RegisterUserRepository>();
       services.AddScoped<IProjectRepository, ProjectRepository>();
       services.AddScoped<IAppUserRepository, AppUserRepository>();

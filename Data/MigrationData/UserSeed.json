@@ -2,7 +2,7 @@
   {
     "Username": "Jmike",
     "Email": "Test@lol.com",
-    "Password": "test123",
+    "KeyCloakId": "12",
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
@@ -73,7 +73,7 @@
   {
     "Username": "John Doe",
     "Email": "Test@lol.com",
-    "Password": "test123",
+    "KeyCloakId": "123",
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
@@ -150,7 +150,7 @@
   {
     "Username": "Elisabet",
     "Email": "Test@lol.com",
-    "Password": "test123",
+    "KeyCloakId": "1234",
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
@@ -216,7 +216,7 @@
   {
     "Username": "Cuckerino",
     "Email": "Test@lol.com",
-    "Password": "test123",
+    "KeyCloakId": "12345",
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
@@ -275,7 +275,7 @@
   {
     "Username": "John mow",
     "Email": "Test@lol.com",
-    "Password": "test123",
+    "KeyCloakId": "123456",
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",
@@ -345,7 +345,7 @@
   {
     "Username": "candice",
     "Email": "Test@lol.com",
-    "Password": "test123",
+    "KeyCloakId": "1235678",
     "Portfolio": "portfolio.pdf",
     "Description": "I'm flash",
     "CareerTitle": ".net full stack developer",

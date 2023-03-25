@@ -62,15 +62,9 @@ namespace Lagalt
     [HttpDelete("/project")]
     public async Task<IActionResult> RemoveUserFromProject([FromHeader] int userId, [FromBody] RemoveProjectUserDto removeProjectUser)
     {
-      try
-      {
-        return await _projectUserRepository.RemoveProjectUserFromProject(userId, removeProjectUser);
-      }
-      catch (Exception ex)
-      {
 
-        throw new Exception("Problem happened removing character", ex);
-      }
+      return await _projectUserRepository.RemoveProjectUserFromProject(userId, removeProjectUser);
+
     }
   }
 }

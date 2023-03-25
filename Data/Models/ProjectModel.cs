@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Lagalt;
 
 namespace lagaltApp
@@ -6,12 +7,15 @@ namespace lagaltApp
   {
     public int Id { get; set; }
 
+    [Required]
     public string Title { get; set; }
+
+    [StringLength(300)]
     public string Description { get; set; }
     public string GitRepositoryUrl { get; set; }
 
     public ProjectImageModel projectImage { get; set; } = new();
-    public IndustryModel Industry { get; set; } = new ();
+    public IndustryModel Industry { get; set; } = new();
     public List<TagModel> Tags { get; set; } = new();
     public List<ChatModel> Chats { get; set; } = new();
 

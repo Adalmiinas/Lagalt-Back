@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Lagalt;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,20 +9,22 @@ namespace lagaltApp
     public int Id { get; set; }
     public bool IsPrivate { get; set; } = false;
 
-
+   
     public string KeyCloakId { get; set; }
+
+
     public string Username { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string CareerTitle { get; set; }
 
 
-    public string Password { get; set; }
-
+ 
+    [EmailAddress]
     public string Email { get; set; }
 
     public string Portfolio { get; set; }
-
+    [StringLength(200)]
     public string Description { get; set; }
 
     public List<ProjectUserModel> ProjectUsers { get; set; } = new();

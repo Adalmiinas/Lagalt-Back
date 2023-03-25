@@ -22,7 +22,6 @@ namespace lagalt
 
 
       CreateMap<UserDto, UserModel>()
-      .ForMember(dest => dest.Password, opt => opt.Ignore())
       .ForMember(dest => dest.Photo, opt => opt.Ignore())
       .ForMember(dest => dest.SearchWords, opt => opt.Ignore())
       .ForMember(dest => dest.AppliedProjectHistories, opt => opt.MapFrom(src => src.AppliedProjectHistories))

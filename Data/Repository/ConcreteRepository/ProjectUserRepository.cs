@@ -87,12 +87,12 @@ namespace Lagalt
       if (existingProject == null) return new BadRequestObjectResult("Incorrect project id");
 
       //this checks header user
-      var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && pu.IsOwner == true);
-      if (user == null) throw new Exception("You cannot remove others / User does not exist");
+      var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && userId == removeProjectUser.UserId);
+      if (user == null) return new BadRequestObjectResult("You cannot remove others / User does not exist");
       //this checks added user id in body
       var exisitingUser = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == removeProjectUser.UserId && pu.IsOwner == false);
       //existing user is null or sender isnt owner, and user id does not math
-      if (exisitingUser == null) throw new Exception("You do not meet the right to remove user / User does not exist");
+      if (exisitingUser == null) return new BadRequestObjectResult("You do not meet the right to remove user / User does not exist");
       //if user inot owner  and 
 
 

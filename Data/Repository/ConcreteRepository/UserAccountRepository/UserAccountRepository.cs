@@ -51,10 +51,13 @@ namespace lagalt
 
     public async Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
+      
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
+
+      
       if (IsUser != null)
       {
-        return new OkObjectResult("user has been confirmed");
+        return new OkObjectResult("User already exists.");
       }
       else
       {
