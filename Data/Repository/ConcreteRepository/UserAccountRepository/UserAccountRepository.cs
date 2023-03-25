@@ -21,7 +21,7 @@ namespace lagalt
 
     public async Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto)
     {
-      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == loginDto.KeyCloakId);
+      var IsUser = await _dataContext.Users.Include(u => u.Skills).Include(s => s.SearchWords).Include(u => u.UsersInWaitingLists).Include(pu => pu.ProjectUsers).FirstOrDefaultAsync(u => u.KeyCloakId == loginDto.KeyCloakId);
       if (IsUser == null)
       {
         return new OkObjectResult("User confirmed to not exists");
@@ -51,10 +51,10 @@ namespace lagalt
 
     public async Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
-      
+
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
 
-      
+
       if (IsUser != null)
       {
         return new OkObjectResult("User already exists.");
