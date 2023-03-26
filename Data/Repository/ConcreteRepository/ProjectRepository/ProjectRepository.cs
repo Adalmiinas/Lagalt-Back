@@ -73,13 +73,18 @@ namespace lagalt
 
     public async Task<IActionResult> DeleteProjectAsync(int userId, DeleteProjectDto deleteProject)
     {
-      var user = await _dataContext.ProjectUsers.Include(p => p.ProjectId == deleteProject.projectId).FirstOrDefaultAsync(u => u.UserId == userId && u.IsOwner == true);
+      // var user = await _dataContext.ProjectUsers.FirstOrDefaultAsync(u => u.UserId == userId && u.IsOwner == true);
+      var project = await _dataContext.Projects.Include(pu => pu.ProjectUsers).ThenInclude(pu => pu.User).FirstOrDefaultAsync(p => p.Id == deleteProject.projectId);
 
-      if (user == null)
+      var isUserAdmin = project.ProjectUsers.FirstOrDefault(u => u.UserId == userId && u.IsOwner == true);
+      if (project == null)
       {
-        return new BadRequestObjectResult("No projects with that Id and ownership found");
+        return new BadRequestObjectResult("No Projects found");
       }
-      var project = await _dataContext.Projects.FirstOrDefaultAsync(p => p.Id == deleteProject.projectId);
+      if (isUserAdmin == null)
+      {
+        return new BadRequestObjectResult("User is not admin cannot remove project");
+      }
       _dataContext.Projects.Remove(project);
       await _dataContext.SaveChangesAsync();
       return new NoContentResult();
