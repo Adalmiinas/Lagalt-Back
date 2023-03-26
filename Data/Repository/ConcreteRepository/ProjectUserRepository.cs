@@ -89,7 +89,9 @@ namespace Lagalt
 
       //find user to be deleted
       var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == removeProjectUser.UserId);
+      var deleterUser = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId);
 
+      if (deleterUser == null) return new BadRequestObjectResult("You cannot remove others...not even in the project...");
       if (user == null) return new BadRequestObjectResult("User not part of the project");
 
 
@@ -107,7 +109,7 @@ namespace Lagalt
         return new NoContentResult();
       }
       //user with owner status can delete all but themself
-      if (user.IsOwner)
+      if (deleterUser.IsOwner)
       {
         existingProject.ProjectUsers.Remove(user);
         await _dataContext.SaveChangesAsync();
