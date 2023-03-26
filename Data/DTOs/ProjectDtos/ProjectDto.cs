@@ -10,7 +10,7 @@ namespace lagalt
     public string Status { get; set; }
     public string Description { get; set; }
     public string GitRepositoryUrl { get; set; }
-
+    public ProjectImageDto projectImage { get; set; }
     public List<ProjectListUserDto> ProjectUsers { get; set; } = new();
     public IndustryNameDto Industry { get; set; }
     public List<TagNameDto> Tags { get; set; }

@@ -111,17 +111,12 @@ namespace lagalt.Controllers
     [HttpPut("update")]
     public async Task<IActionResult> UpdateProjectAsync([FromHeader] int id, [FromBody] UpdateProjectDetailsDto updateProjectDetails)
     {
-      try
-      {
-        return await _projectRepository.UpdateProjectAsync(id, updateProjectDetails);
-      }
-      catch (Exception ex)
-      {
 
-        throw new Exception("Couldnt update the project ", ex);
-      }
+      return await _projectRepository.UpdateProjectAsync(id, updateProjectDetails);
+
+
     }
-    [HttpPatch("update")]
+    [HttpPatch("patch")]
     public async Task<IActionResult> PatchUserStatusAsync([FromHeader] int id, [FromBody] PatchProjectStatusDto patchProjectStatus)
     {
       try

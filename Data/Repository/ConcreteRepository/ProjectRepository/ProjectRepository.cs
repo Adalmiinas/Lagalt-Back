@@ -180,7 +180,7 @@ namespace lagalt
       .Include(t => t.Tags)
       .Include(p => p.projectImage)
       .FirstOrDefaultAsync(pu => pu.Id == updateProjectDto.Id);
-
+      if (existingProject == null) return new BadRequestObjectResult("Incorrect project id given");
       var IsOwner = await _dataContext.ProjectUsers.FirstOrDefaultAsync(pu => pu.UserId == id && pu.IsOwner == true && existingProject.Id == pu.ProjectId);
       // var existingProject = await _dataContext.Projects.FindAsync(existingProject.ProjectId);
       if (IsOwner == null) throw new Exception("Incorrect Id, you do not have right to modify this project ");
@@ -193,26 +193,35 @@ namespace lagalt
         Description = updateProjectDto.Description == null ? existingProject.Description : updateProjectDto.Description,
         GitRepositoryUrl = updateProjectDto.GitRepositoryUrl == null ? existingProject.GitRepositoryUrl : updateProjectDto.GitRepositoryUrl,
         ProjectImage = updateProjectDto.ProjectImage == null ? _mapper.Map<ProjectImageDto>(existingProject.projectImage) : updateProjectDto.ProjectImage,
-        Industry = new IndustryNameDto(),
-        TagNames = new List<TagNameDto>(),
-        SkillNames = new List<SkillNameDto>()
+        Industry = _mapper.Map(existingProject.Industry, updateProjectDto.Industry),
+        TagNames = _mapper.Map<List<TagNameDto>>(existingProject.Tags),
+        SkillNames = _mapper.Map<List<SkillNameDto>>(existingProject.Skills)
       };
 
-      foreach (var tag in updateProjectDto.TagNames)
+      if (updateProjectDto.TagNames != null)
       {
-        //if doesnt find then create new else add existing
-        var isNewTag = await _dataContext.Tags.FirstOrDefaultAsync(t => t.TagName == tag.TagName);
-        UpdateDetails.TagNames.Add(isNewTag == null ? _mapper.Map<TagNameDto>(tag) : _mapper.Map<TagNameDto>(isNewTag));
+        foreach (var tag in updateProjectDto.TagNames)
+        {
+          //if doesnt find then create new else add existing
+          var isNewTag = await _dataContext.Tags.FirstOrDefaultAsync(t => t.TagName == tag.TagName);
+          UpdateDetails.TagNames.Add(isNewTag == null ? tag : _mapper.Map<TagNameDto>(isNewTag));
+        }
       }
 
-      foreach (var skill in updateProjectDto.SkillNames)
+      if (updateProjectDto.SkillNames != null)
       {
-        var isNewSkill = existingSkills.FirstOrDefault(p => p.SkillName == skill.SkillName);
-        UpdateDetails.SkillNames.Add(isNewSkill == null ? _mapper.Map<SkillNameDto>(skill) : _mapper.Map<SkillNameDto>(isNewSkill));
+        foreach (var skill in updateProjectDto.SkillNames)
+        {
+          var isNewSkill = existingSkills.FirstOrDefault(p => p.SkillName == skill.SkillName);
+          UpdateDetails.SkillNames.Add(isNewSkill == null ? skill : _mapper.Map<SkillNameDto>(isNewSkill));
+        }
       }
-      var isNewIndustry = await _dataContext.Industries.FirstOrDefaultAsync(i => i.Name == updateProjectDto.Industry.IndustryName);
-      UpdateDetails.Industry = isNewIndustry != null ? _mapper.Map<IndustryNameDto>(isNewIndustry) : _mapper.Map<IndustryNameDto>(updateProjectDto.Industry);
 
+      if (updateProjectDto.Industry != null)
+      {
+        var isNewIndustry = await _dataContext.Industries.FirstOrDefaultAsync(i => i.Name == updateProjectDto.Industry.IndustryName);
+        UpdateDetails.Industry = isNewIndustry != null ? _mapper.Map<IndustryNameDto>(isNewIndustry) : updateProjectDto.Industry;
+      }
       _mapper.Map(UpdateDetails, existingProject);
 
       _dataContext.Entry(existingProject).State = EntityState.Modified;
@@ -221,7 +230,7 @@ namespace lagalt
     }
 
 
-    public async Task<IActionResult>  PatchProjectStatusAsync(int userId, PatchProjectStatusDto patchProjectStatus)
+    public async Task<IActionResult> PatchProjectStatusAsync(int userId, PatchProjectStatusDto patchProjectStatus)
     {
       //valid user 
 

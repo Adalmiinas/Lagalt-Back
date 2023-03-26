@@ -49,8 +49,20 @@ namespace lagalt
       CreateMap<SkillModel, SkillNameDto>().ReverseMap();
       CreateMap<List<SkillDto>, SkillModel>().ReverseMap();
       CreateMap<SkillDto, SkillNameDto>().ReverseMap();
+      CreateMap<UpdateProjectDetailsDto, ProjectModel>()
+      .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.TagNames))
+      .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillNames))
+      .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.Industry));
+      CreateMap<ProjectModel, UpdateProjectDetailsDto>();
 
-
+      CreateMap<ProjectDto, UpdateProjectDetailsDto>()
+      .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.Industry))
+      .ForMember(dest => dest.TagNames, opt => opt.MapFrom(src => src.Tags))
+      .ForMember(dest => dest.SkillNames, opt => opt.MapFrom(src => src.Skills));
+      CreateMap<UpdateProjectDetailsDto, ProjectDto>()
+     .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.Industry))
+      .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.TagNames))
+      .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillNames));
 
       //project image 
       CreateMap<ProjectImageDto, ProjectImageModel>();
@@ -58,10 +70,15 @@ namespace lagalt
 
       //project
       CreateMap<ProjectModel, ProjectDto>()
-      .ForMember(dest => dest.WaitList, opt => opt.MapFrom(src => src.WaitList));
+      .ForMember(dest => dest.WaitList, opt => opt.MapFrom(src => src.WaitList))
+      .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags))
+      .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.Skills))
+      .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.Industry));
 
-      CreateMap<ProjectModel, UpdateProjectDetailsDto>().ReverseMap();
-      CreateMap<ProjectDto, ProjectModel>();
+      CreateMap<ProjectDto, ProjectModel>()
+      .ForMember(dest => dest.Tags, opt => opt.MapFrom(src => src.Tags))
+      .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.Skills))
+      .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.Industry));
 
       CreateMap<ProjectUserModel, ProjectUserWithoutUserDataDto>()
       .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Project.Title));
@@ -112,6 +129,21 @@ namespace lagalt
       .ForMember(dest => dest.Skills, opt => opt.MapFrom(src => src.SkillNames))
       .ForMember(dest => dest.Industry, opt => opt.MapFrom(src => src.Industry))
       .ForMember(dest => dest.projectImage, opt => opt.MapFrom(src => src.ProjectImage));
+
+      CreateMap<TagNameDto, TagModel>()
+      .ForMember(dest => dest.TagName, opt => opt.MapFrom(src => src.TagName));
+      CreateMap<TagModel, TagNameDto>()
+      .ForMember(dest => dest.TagName, opt => opt.MapFrom(src => src.TagName));
+
+      CreateMap<SkillNameDto, SkillModel>()
+      .ForMember(dest => dest.SkillName, opt => opt.MapFrom(src => src.SkillName));
+      CreateMap<SkillModel, SkillNameDto>()
+      .ForMember(dest => dest.SkillName, opt => opt.MapFrom(src => src.SkillName));
+
+      CreateMap<IndustryNameDto, IndustryModel>()
+      .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.IndustryName));
+      CreateMap<IndustryModel, IndustryNameDto>()
+      .ForMember(dest => dest.IndustryName, opt => opt.MapFrom(src => src.Name));
 
 
       //Industry
