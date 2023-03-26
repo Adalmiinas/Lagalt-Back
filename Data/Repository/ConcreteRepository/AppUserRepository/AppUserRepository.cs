@@ -42,11 +42,9 @@ namespace Lagalt
       var updateInformation = new UserDto
       {
         Id = IsUser.Id,
-        Username = updateAppUser.Username == null ? IsUser.Username : updateAppUser.Username,
         CareerTitle = updateAppUser.CareerTitle == null ? IsUser.CareerTitle : updateAppUser.CareerTitle,
         Description = updateAppUser.Description == null ? IsUser.Description : updateAppUser.Description,
         Portfolio = updateAppUser.Portfolio == null ? IsUser.Portfolio : updateAppUser.Portfolio,
-        Email = updateAppUser.Email == null ? IsUser.Email : updateAppUser.Email,
         Skills = updateAppUser.Skills == null ? _mapper.Map<List<SkillDto>>(IsUser.Skills) : updateAppUser.Skills,
         AppliedProjectHistories = updateAppUser.AppliedProjectHistories == null ? _mapper.Map<List<AppliedProjectHistoryDto>>(IsUser.AppliedProjectHistories) : updateAppUser.AppliedProjectHistories,
         ClickedProjectHistories = updateAppUser.ClickedProjectHistories == null ? _mapper.Map<List<ClickedProjectHistoryDto>>(IsUser.AppliedProjectHistories) : updateAppUser.ClickedProjectHistories,
