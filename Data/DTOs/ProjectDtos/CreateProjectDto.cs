@@ -8,6 +8,8 @@ namespace Lagalt
     // public int OwnerId { get; set; }
     // public UserNameDto Owner { get; set; }
     public string Title { get; set; }
+
+    public string Status { get; set; }
     public string Description { get; set; }
     public string GitRepositoryUrl { get; set; }
 

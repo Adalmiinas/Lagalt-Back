@@ -184,6 +184,7 @@ namespace lagalt
       {
         Id = existingProject.Id,
         Title = updateProjectDto.Title == null ? existingProject.Title : updateProjectDto.Title,
+        Status = updateProjectDto.Status == null ? existingProject.Status : updateProjectDto.Status,
         Description = updateProjectDto.Description == null ? existingProject.Description : updateProjectDto.Description,
         GitRepositoryUrl = updateProjectDto.GitRepositoryUrl == null ? existingProject.GitRepositoryUrl : updateProjectDto.GitRepositoryUrl,
         ProjectImage = updateProjectDto.ProjectImage == null ? _mapper.Map<ProjectImageDto>(existingProject.projectImage) : updateProjectDto.ProjectImage,

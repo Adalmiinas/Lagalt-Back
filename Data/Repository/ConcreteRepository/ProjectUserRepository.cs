@@ -83,22 +83,42 @@ namespace Lagalt
       //find user id in project and remove 
       var existingProject = await _dataContext.Projects
       .Include(p => p.ProjectUsers)
+      .ThenInclude(u => u.User)
       .FirstOrDefaultAsync(p => p.Id == removeProjectUser.ProjectId);
       if (existingProject == null) return new BadRequestObjectResult("Incorrect project id");
 
-      //this checks header user
-      var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && userId == removeProjectUser.UserId);
-      if (user == null) return new BadRequestObjectResult("You cannot remove others / User does not exist");
-      //this checks added user id in body
-      var exisitingUser = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == removeProjectUser.UserId && pu.IsOwner == false);
-      //existing user is null or sender isnt owner, and user id does not math
-      if (exisitingUser == null) return new BadRequestObjectResult("You do not meet the right to remove user / User does not exist");
-      //if user inot owner  and 
+      //find user to be deleted
+      var user = existingProject.ProjectUsers.FirstOrDefault(pu => pu.UserId == removeProjectUser.UserId);
+
+      if (user == null) return new BadRequestObjectResult("User not part of the project");
 
 
-      existingProject.ProjectUsers.Remove(exisitingUser);
-      await _dataContext.SaveChangesAsync();
-      return new NoContentResult();
+      if (user.IsOwner && user.UserId == userId)
+      {
+        // User is owner and trying to remove themselves
+        return new BadRequestObjectResult("Owners cannot remove themselves from the project");
+      }
+
+      //user can delete themself but not others
+      if (user.UserId == userId)
+      {
+        existingProject.ProjectUsers.Remove(user);
+        await _dataContext.SaveChangesAsync();
+        return new NoContentResult();
+      }
+      //user with owner status can delete all but themself
+      if (user.IsOwner)
+      {
+        existingProject.ProjectUsers.Remove(user);
+        await _dataContext.SaveChangesAsync();
+        return new NoContentResult();
+      }
+      else
+      {
+        return new BadRequestObjectResult("Something went wrong deleting selected user from project");
+      }
+      //self delete ok or user is owner but to be deleted user is not owne
+
     }
 
   }

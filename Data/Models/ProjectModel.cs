@@ -7,6 +7,8 @@ namespace lagaltApp
   {
     public int Id { get; set; }
 
+    public string Status { get; set; }
+
     [Required]
     public string Title { get; set; }
 
