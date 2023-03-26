@@ -58,6 +58,17 @@ namespace Lagalt
 
       return new OkResult();
     }
+    public async Task<ActionResult<UserDto>> PatchUserStatusAsync(int userId, PatchUserStatusDto patchUserStatus)
+    {
+      var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+      if (user == null) return new BadRequestObjectResult("User cannot be modified");
+
+      user.IsPrivate = patchUserStatus.IsPrivate;
+      _dataContext.Entry(user).State = EntityState.Modified;
+      await _dataContext.SaveChangesAsync();
+      return new OkResult();
+    }
 
     public async Task<List<ProjectUserDto>> UserAdminProjectsAsync(int id)
     {

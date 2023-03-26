@@ -10,5 +10,6 @@ namespace Lagalt
 
     Task<ActionResult> GetUserAsync(int id);
     Task<ActionResult<UserDto>> UpdateUserAsync(int id, UpdateAppUserDto updateAppUser);
+    Task<ActionResult<UserDto>> PatchUserStatusAsync(int id, PatchUserStatusDto patchUserStatus);
   }
 }

@@ -19,7 +19,10 @@ namespace lagalt
       CreateMap<UserModel, UserDto>();
       // .ForMember(dest => dest.ProjectUsers, opt => opt.MapFrom(src => src.ProjectUsers))
       // .ForMember(dest => dest.userInWaitingLists, opt => opt.MapFrom(src => src.UsersInWaitingLists));
-
+      CreateMap<UserModel, PatchUserStatusDto>()
+      .ForMember(dest => dest.IsPrivate, opt => opt.MapFrom(src => src.IsPrivate));
+      CreateMap<PatchUserStatusDto, UserModel>()
+      .ForMember(dest => dest.IsPrivate, opt => opt.MapFrom(src => src.IsPrivate));
 
       CreateMap<UserDto, UserModel>()
       .ForMember(dest => dest.Photo, opt => opt.Ignore())

@@ -219,6 +219,23 @@ namespace lagalt
       await _dataContext.SaveChangesAsync();
       return new OkObjectResult(_mapper.Map<UpdateProjectDetailsDto>(UpdateDetails));
     }
+
+
+    public async Task<IActionResult>  PatchProjectStatusAsync(int userId, PatchProjectStatusDto patchProjectStatus)
+    {
+      //valid user 
+
+      var project = await _dataContext.Projects.Include(pu => pu.ProjectUsers).FirstOrDefaultAsync(u => u.Id == patchProjectStatus.Id);
+      var user = project.ProjectUsers.FirstOrDefault(pu => pu.UserId == userId && pu.IsOwner == true);
+      if (project == null) return new BadRequestObjectResult("incorrect project");
+      if (user == null) return new BadRequestObjectResult("incorrect user, not owner");
+
+      project.Status = patchProjectStatus.Status;
+      _dataContext.Entry(project).State = EntityState.Modified;
+      await _dataContext.SaveChangesAsync();
+      return new OkResult();
+    }
+
   }
 }
 

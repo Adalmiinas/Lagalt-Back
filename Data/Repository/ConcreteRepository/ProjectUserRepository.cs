@@ -52,14 +52,34 @@ namespace Lagalt
       return new NoContentResult();
     }
 
+
+    /// <summary>
+    /// id = user id
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <param name="applyProject"></param>
+    /// <returns></returns>
     public async Task<IActionResult> AddUserToWaitListAsync(int Id, ApplyProjectDto applyProject)
     {
       //find user 
       //find 
-      var exisitingUser = await _dataContext.Users.FindAsync(Id);
-      var existingWaitList = await _dataContext.Projects.Include(p => p.WaitList).ThenInclude(uw => uw.UserWaitingLists).FirstOrDefaultAsync(p => p.Id == applyProject.ProjectId);
+      var exisitingUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == Id);
+      if (exisitingUser == null) return new BadRequestObjectResult("Incorrect user id");
+      var existingWaitList = await _dataContext.Projects.Include(pu => pu.ProjectUsers).Include(p => p.WaitList).ThenInclude(uw => uw.UserWaitingLists).FirstOrDefaultAsync(p => p.Id == applyProject.ProjectId);
+      if (existingWaitList == null) return new BadRequestObjectResult("wait list does not exist");
+      //find if user is already in list 
+      var isUserInWaitingListProject = existingWaitList.WaitList.UserWaitingLists.FirstOrDefault(p => p.UserId == exisitingUser.Id);
+      var isUserInProject = existingWaitList.ProjectUsers.FirstOrDefault(p => p.UserId == exisitingUser.Id);
+
+      if (isUserInProject != null) return new BadRequestObjectResult("User is already in the project");
+
+      if (isUserInWaitingListProject != null) return new BadRequestObjectResult("User already in the waiting list");
+
+      //find if user is owner
+
+      //find if user is already in the project
       // var existingProjectWaitLIst = await _dataContext.WaitLists.FirstOrDefaultAsync(uw => uw.Id == existingWaitList.WaitList.Id);
-      var wl = await _dataContext.WaitLists.Include(wl => wl.UserWaitingLists).FirstOrDefaultAsync(wl => wl.Id == existingWaitList.WaitListId);
+      // var wl = await _dataContext.WaitLists.Include(wl => wl.UserWaitingLists).FirstOrDefaultAsync(wl => wl.Id == existingWaitList.WaitListId);
       var userInWaiting = new UserInWaitingListModel()
       {
         PendingStatus = true,
@@ -69,8 +89,7 @@ namespace Lagalt
         User = exisitingUser,
         MotivationLetter = applyProject.MotivationLetter
       };
-      if (exisitingUser == null) return new BadRequestObjectResult("Incorrect user id");
-      if (existingWaitList == null) return new BadRequestObjectResult("User does not exist in list");
+
       _dataContext.UsersInWaitingLists.Add(userInWaiting);
       await _dataContext.SaveChangesAsync();
       return new OkResult();

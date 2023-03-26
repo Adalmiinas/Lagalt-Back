@@ -73,6 +73,20 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update character");
       }
     }
+    [HttpPatch("User/{id}")]
+    public async Task<ActionResult<UserDto>> PatchUserStatus(int id, [FromBody] PatchUserStatusDto patchUserStatus)
+    {
+      try
+      {
+        return await _appUserRepository.PatchUserStatusAsync(id, patchUserStatus);
+      }
+      catch (Exception)
+      {
+
+        throw new Exception("Couldnt update character");
+      }
+    }
+    
     [HttpGet("User/{id}")]
     public async Task<ActionResult> GetUserAsync(int id)
     {

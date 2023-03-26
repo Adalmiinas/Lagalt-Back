@@ -13,6 +13,7 @@ namespace lagalt
 
     //update just project data
     Task<IActionResult> UpdateProjectAsync(int id, UpdateProjectDetailsDto updateProjectDto);
+    Task<IActionResult> PatchProjectStatusAsync(int userId, PatchProjectStatusDto patchProjectStatus);
 
     Task<IActionResult> DeleteProjectAsync(int userId, DeleteProjectDto deleteProject);
 

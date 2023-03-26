@@ -121,6 +121,19 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update the project ", ex);
       }
     }
+    [HttpPatch("update")]
+    public async Task<IActionResult> PatchUserStatusAsync([FromHeader] int id, [FromBody] PatchProjectStatusDto patchProjectStatus)
+    {
+      try
+      {
+        return await _projectRepository.PatchProjectStatusAsync(id, patchProjectStatus);
+      }
+      catch (Exception ex)
+      {
+
+        throw new Exception("Couldnt update the project ", ex);
+      }
+    }
     [HttpDelete("delete")]
     public async Task<IActionResult> DeleteProjectAsync([FromHeader] int userId, [FromBody] DeleteProjectDto deleteProject)
     {
