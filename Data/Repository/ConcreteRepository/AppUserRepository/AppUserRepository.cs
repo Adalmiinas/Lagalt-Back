@@ -42,6 +42,9 @@ namespace Lagalt
       var updateInformation = new UserDto
       {
         Id = IsUser.Id,
+        Username = IsUser.Username,
+        Email = IsUser.Email,
+        IsPrivate = IsUser.IsPrivate,
         CareerTitle = updateAppUser.CareerTitle == null ? IsUser.CareerTitle : updateAppUser.CareerTitle,
         Description = updateAppUser.Description == null ? IsUser.Description : updateAppUser.Description,
         Portfolio = updateAppUser.Portfolio == null ? IsUser.Portfolio : updateAppUser.Portfolio,

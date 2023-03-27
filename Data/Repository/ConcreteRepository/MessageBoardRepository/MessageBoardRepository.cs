@@ -15,7 +15,7 @@ namespace Lagalt
       _mapper = mapper;
       _dataContext = dataContext;
     }
-
+   
     public async Task<ActionResult<MessageBoardDto>> CreateMessageBoardAsync(int userId, CreateMessageBoardDto createMessageBoard)
     {
       //check user id > and also check if user in project 
@@ -31,6 +31,7 @@ namespace Lagalt
       newMessage.UserId = IsUser.UserId;
 
       Project.MessageBoards.Add(newMessage);
+      // _dataContext.Entry(Project).State = EntityState.Modified;
       await _dataContext.SaveChangesAsync();
 
       return new CreatedResult("CreateMessageBoard", "Message Created Successfully");
@@ -39,7 +40,7 @@ namespace Lagalt
 
     public async Task<ActionResult<MessageBoardDto>> DeleteMessageBoardAsync(int userId, DeleteMessageBoardDto deleteMessageBoard)
     {
-      var findMessage = await _dataContext.MessageBoards.FirstOrDefaultAsync(mb => mb.Id== deleteMessageBoard.MessageBoardId && mb.UserId == userId);
+      var findMessage = await _dataContext.MessageBoards.FirstOrDefaultAsync(mb => mb.Id == deleteMessageBoard.MessageBoardId && mb.UserId == userId);
       if (findMessage == null) return new BadRequestObjectResult("User cannot remove that Specific Message");
 
       _dataContext.MessageBoards.Remove(findMessage);
