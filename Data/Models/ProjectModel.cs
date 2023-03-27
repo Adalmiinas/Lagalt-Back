@@ -7,7 +7,7 @@ namespace lagaltApp
   {
     public int Id { get; set; }
 
-    public string Status { get; set; }
+    public string Status { get; set; } = "Ongoing";
 
     [Required]
     public string Title { get; set; }
