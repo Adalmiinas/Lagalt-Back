@@ -9,6 +9,8 @@ namespace lagalt
     public bool IsPrivate { get; set; }
     public string Username { get; set; }
     public string CareerTitle { get; set; }
+
+
     public string PhotoUrl { get; set; }
     public string Email { get; set; }
 
@@ -23,10 +25,9 @@ namespace lagalt
     public List<ProjectUserWithoutUserDataDto> ProjectUsers { get; set; }
     public List<SkillDto> Skills { get; set; } = new();
 
-    public PhotoDto Photo { get; set; }
     public List<UserInWaitingListDto> userInWaitingLists { get; set; }
 
-      //WIP 
+    //WIP 
     public List<AppliedProjectHistoryDto> AppliedProjectHistories { get; set; } = new();
     public List<ClickedProjectHistoryDto> ClickedProjectHistories { get; set; } = new();
     public List<SearchWordDto> SearchWords { get; set; } = new();

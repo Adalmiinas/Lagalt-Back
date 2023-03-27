@@ -29,7 +29,7 @@ namespace Lagalt
       .Include(sw => sw.SearchWords).FirstOrDefaultAsync(u => u.Id == id);
 
       if (IsUser == null) return new BadRequestObjectResult("Incorrect Id");
-
+     
       return new OkObjectResult(_mapper.Map<UserDto>(IsUser));
     }
 
@@ -38,11 +38,12 @@ namespace Lagalt
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
       if (IsUser == null) return new BadRequestObjectResult("Incorrect Id");
-
+      
       var updateInformation = new UserDto
       {
         Id = IsUser.Id,
         Username = IsUser.Username,
+        PhotoUrl = updateAppUser.PhotoUrl == null ? IsUser.Photo : updateAppUser.PhotoUrl,
         Email = IsUser.Email,
         IsPrivate = IsUser.IsPrivate,
         CareerTitle = updateAppUser.CareerTitle == null ? IsUser.CareerTitle : updateAppUser.CareerTitle,

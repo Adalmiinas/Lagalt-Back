@@ -9,7 +9,7 @@ namespace lagaltApp
     public int Id { get; set; }
     public bool IsPrivate { get; set; } = false;
 
-   
+
     public string KeyCloakId { get; set; }
 
 
@@ -17,9 +17,10 @@ namespace lagaltApp
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string CareerTitle { get; set; }
+    public string Photo { get; set; }
 
 
- 
+
     [EmailAddress]
     public string Email { get; set; }
 
@@ -30,7 +31,7 @@ namespace lagaltApp
     public List<ProjectUserModel> ProjectUsers { get; set; } = new();
     public List<SkillModel> Skills { get; set; } = new();
 
-    public PhotoModel Photo { get; set; } = new();
+
 
     public List<UserInWaitingListModel> UsersInWaitingLists { get; set; } = new();
 

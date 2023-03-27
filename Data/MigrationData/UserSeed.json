@@ -10,16 +10,13 @@
       {
         "PendingStatus": true,
         "UserId": 1
-    
       },
       {
         "PendingStatus": true,
         "UserId": 1
       }
     ],
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
+    "Photo": "https://randomPic.com",
 
     "SearchWordList": [
       {
@@ -87,9 +84,7 @@
         "UserId": 2
       }
     ],
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
+    "Photo": "https://randomPic.com",
 
     "SearchWordList": [
       {
@@ -160,9 +155,7 @@
         "UserId": 3
       }
     ],
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
+    "Photo": "https://randomPic.com",
 
     "SearchWordList": [
       {
@@ -226,9 +219,7 @@
         "UserId": 4
       }
     ],
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
+    "Photo": "https://randomPic.com",
     "SearchWordList": [
       {
         "Word": "Web Developement"
@@ -289,9 +280,7 @@
         "UserId": 5
       }
     ],
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
+    "Photo": "https://randomPic.com",
 
     "SearchWordList": [
       {
@@ -359,9 +348,7 @@
         "UserId": 6
       }
     ],
-    "Photo": {
-      "Url": "https://randomPic.com"
-    },
+    "Photo": "https://randomPic.com",
 
     "SearchWordList": [
       {

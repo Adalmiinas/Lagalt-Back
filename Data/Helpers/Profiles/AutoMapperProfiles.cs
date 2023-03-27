@@ -16,7 +16,7 @@ namespace lagalt
       CreateMap<UserModel, LoginDto>().ReverseMap();
       //user misc
 
-      CreateMap<UserModel, UserDto>();
+
       // .ForMember(dest => dest.ProjectUsers, opt => opt.MapFrom(src => src.ProjectUsers))
       // .ForMember(dest => dest.userInWaitingLists, opt => opt.MapFrom(src => src.UsersInWaitingLists));
       CreateMap<UserModel, PatchUserStatusDto>()
@@ -25,13 +25,13 @@ namespace lagalt
       .ForMember(dest => dest.IsPrivate, opt => opt.MapFrom(src => src.IsPrivate));
 
       CreateMap<UserDto, UserModel>()
-      .ForMember(dest => dest.Photo, opt => opt.Ignore())
+      .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.PhotoUrl))
       .ForMember(dest => dest.SearchWords, opt => opt.Ignore())
       .ForMember(dest => dest.AppliedProjectHistories, opt => opt.MapFrom(src => src.AppliedProjectHistories))
       .ForMember(dest => dest.ClickedProjectHistories, opt => opt.MapFrom(src => src.ClickedProjectHistories))
       .ForMember(dest => dest.SearchWords, opt => opt.MapFrom(src => src.SearchWords));
       CreateMap<UserModel, UserDto>()
-      .ForMember(dest => dest.Photo, opt => opt.MapFrom(src => src.Photo))
+      .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.Photo))
       .ForMember(dest => dest.AppliedProjectHistories, opt => opt.MapFrom(src => src.AppliedProjectHistories))
       .ForMember(dest => dest.ClickedProjectHistories, opt => opt.MapFrom(src => src.ClickedProjectHistories))
       .ForMember(dest => dest.SearchWords, opt => opt.MapFrom(src => src.SearchWords));
@@ -43,6 +43,10 @@ namespace lagalt
       CreateMap<ProjectUserModel, List<ProjectDto>>();
 
       CreateMap<ProjectModel, List<ProjectUserModel>>().ReverseMap();
+      CreateMap<UpdateAppUserDto, UserDto>()
+      .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl));
+      CreateMap<UserDto, UpdateAppUserDto>()
+      .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl));
 
       //skills
       CreateMap<SkillModel, SkillDto>().ReverseMap();

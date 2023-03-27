@@ -1,5 +1,6 @@
 using lagalt;
 using lagaltApp;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Lagalt
 {
@@ -12,7 +13,9 @@ namespace Lagalt
 
     public string Description { get; set; }
 
-  
+    public string PhotoUrl { get; set; }
+
+
     // public List<SearchWordModel> SearchWords { get; set; } = new();
 
 
