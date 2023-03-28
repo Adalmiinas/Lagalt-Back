@@ -45,7 +45,9 @@ namespace Lagalt
 
       if (userPendingRequest.PendingStatus == false)
       {
-        Owner.Project.ProjectUsers.Add(_mapper.Map<ProjectUserModel>(ApplyingUser));
+        var applyingUser = _mapper.Map<ProjectUserModel>(ApplyingUser);
+        applyingUser.IsOwner = false;
+        Owner.Project.ProjectUsers.Add(_mapper.Map<ProjectUserModel>(applyingUser));
       }
       _dataContext.UsersInWaitingLists.Remove(WaitList);
       await _dataContext.SaveChangesAsync();
@@ -75,11 +77,6 @@ namespace Lagalt
 
       if (isUserInWaitingListProject != null) return new BadRequestObjectResult("User already in the waiting list");
 
-      //find if user is owner
-
-      //find if user is already in the project
-      // var existingProjectWaitLIst = await _dataContext.WaitLists.FirstOrDefaultAsync(uw => uw.Id == existingWaitList.WaitList.Id);
-      // var wl = await _dataContext.WaitLists.Include(wl => wl.UserWaitingLists).FirstOrDefaultAsync(wl => wl.Id == existingWaitList.WaitListId);
       var userInWaiting = new UserInWaitingListModel()
       {
         PendingStatus = true,

@@ -52,7 +52,7 @@ namespace lagalt.Controllers
     {
       try
       {
-        var projects = await _appUserRepository.UserAdminProjectsAsync(id);
+        var projects = await _appUserRepository.UserProjectsAsync(id);
         return Ok(projects);
       }
       catch (Exception ex)
@@ -99,7 +99,7 @@ namespace lagalt.Controllers
         throw new Exception("Couldnt update character");
       }
     }
-    
+
     [HttpGet("User/{id}")]
     public async Task<ActionResult> GetUserAsync(int id)
     {

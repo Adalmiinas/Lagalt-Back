@@ -20,12 +20,12 @@
 
     "SearchWordList": [
       {
-        "Word": "Web Developement"
+        "Word": "Web-Developement"
       }
     ],
     "Skills": [
       {
-        "SkillName": "Fast man"
+        "SkillName": "First Aid"
       }
     ],
     "ProjectUsers": [
@@ -33,8 +33,8 @@
         "UserId": 1,
         "IsOwner": true,
         "Project": {
-          "Title": "Doom app 😁",
-          "Description": "Full stack app,",
+          "Title": "Lost ark - auction house api",
+          "Description": "We in the west are SUFFERING, amazon has released api for lost ark lets make it happen. need bunch of developers with passion!",
           "WaitList": {
             "UserWaitingLists": [
               {
@@ -49,17 +49,17 @@
             "Url": "Https://random.com"
           },
           "Industry": {
-            "Name": "Art"
+            "Name": "Web-Developement"
           },
           "Tags": [
             {
-              "TagName": "CS"
+              "TagName": "Save the world"
             }
           ],
           "ChatMessagesBoards": [
             {
               "Title": "Hello world",
-              "Body": "I love programming",
+              "Body": "I love lmao",
               "Username": "Tomtom"
             }
           ]
@@ -112,14 +112,14 @@
               }
             ]
           },
-          "Title": "Hello world with momoko 🙄",
-          "Description": "Full stack app,",
+          "Title": "New seach engine for web",
+          "Description": "We are in the matrix in order to find a way  out we need to improve search engine and make more ethical engines",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
             "Url": "Https://random.com"
           },
           "Industry": {
-            "Name": "Art"
+            "Name": "Web-Developement"
           },
           "Tags": [
             {
@@ -182,13 +182,13 @@
             ]
           },
           "Title": "Finance app",
-          "Description": "Full stack app,",
+          "Description": "Lets create web 3 app with Finance theme. app will serve as a bank. users can send money receive money, sell stocks buy stocks and also cryptos",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
             "Url": "Https://random.com"
           },
           "Industry": {
-            "Name": "Art"
+            "Name": "Web-Developement"
           },
           "Tags": [
             {
@@ -238,18 +238,18 @@
               }
             ]
           },
-          "Title": "Sad song app",
-          "Description": "Full stack app,",
+          "Title": "Lets form a band",
+          "Description": "My dream is to tour around the world playing music for people and make many smiles along the way Looking for 4 individuals to join me and my dream lets make it happen",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
             "Url": "Https://random.com"
           },
           "Industry": {
-            "Name": "Art"
+            "Name": "Music"
           },
           "Tags": [
             {
-              "TagName": "CS"
+              "TagName": "pop"
             }
           ],
           "ChatMessagesBoards": [
@@ -307,13 +307,13 @@
             ]
           },
           "Title": "Roblox mmo rpg",
-          "Description": "Full stack app,",
+          "Description": "Lets create Roblox mmo Rpg where we can slay monsters,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
             "Url": "Https://random.com"
           },
           "Industry": {
-            "Name": "Art"
+            "Name": "Web-Developement"
           },
           "Tags": [
             {
@@ -370,17 +370,17 @@
             ]
           },
           "Title": "Golf ball gps app",
-          "Description": "Full stack app,",
+          "Description": "Track golf balls when they get lost,",
           "GitRepositoryUrl": "Https://github.com",
           "ProjectImage": {
             "Url": "Https://random.com"
           },
           "Industry": {
-            "Name": "Art"
+            "Name": "Web Developement"
           },
           "Tags": [
             {
-              "TagName": "CS"
+              "TagName": "Magic"
             }
           ],
           "ChatMessagesBoards": [

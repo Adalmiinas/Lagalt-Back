@@ -96,19 +96,14 @@ namespace Lagalt
     {
 
       //check user id validity
-      var isUserId = await _dataContext.ProjectUsers.FindAsync(id);
+      var isUserId = await _dataContext.ProjectUsers.FirstOrDefaultAsync(u => u.UserId == id);
       if (isUserId == null)
       {
         throw new Exception("Bad id");
       }
 
-      var ProjectOwnerProjects = await _dataContext.ProjectUsers
-     .Include(pu => pu.Project)
-     .ThenInclude(p => p.Industry)
-     .Include(t => t.Project.Tags)
-     .Include(t => t.Project.Skills)
-     .Where(pu => pu.UserId == id).ToListAsync();
-
+      var ProjectOwnerProjects = await _dataContext.ProjectUsers.Include(p => p.Project).Where(pu => pu.User.Id == id && pu.IsOwner == false).ToListAsync();
+      
       return _mapper.Map<List<ProjectUserDto>>(ProjectOwnerProjects);
     }
 

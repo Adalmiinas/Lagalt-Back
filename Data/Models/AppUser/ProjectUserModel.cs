@@ -12,6 +12,6 @@ namespace lagaltApp
     public int ProjectId { get; set; }
     public ProjectModel Project { get; set; }
 
-    public bool IsOwner { get; set; }
+    public bool IsOwner { get; set; } 
   }
 }
