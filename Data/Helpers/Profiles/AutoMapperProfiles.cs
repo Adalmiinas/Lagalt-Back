@@ -1,3 +1,4 @@
+using System.Net.Security;
 using AutoMapper;
 using Lagalt;
 using lagaltApp;
@@ -35,6 +36,15 @@ namespace lagalt
       .ForMember(dest => dest.AppliedProjectHistories, opt => opt.MapFrom(src => src.AppliedProjectHistories))
       .ForMember(dest => dest.ClickedProjectHistories, opt => opt.MapFrom(src => src.ClickedProjectHistories))
       .ForMember(dest => dest.SearchWords, opt => opt.MapFrom(src => src.SearchWords));
+
+
+      CreateMap<PatchUserHistoryDto, ClickedProjectHistoryModel>()
+      .ForMember(dest => dest.ProjectId, opt => opt.MapFrom(src => src.Id));
+
+
+
+      CreateMap<ClickedProjectHistoryModel, PatchUserHistoryDto>()
+      .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ProjectId));
 
 
       CreateMap<List<UserModel>, UserDto>().ReverseMap();

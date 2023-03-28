@@ -21,7 +21,15 @@ namespace lagalt
 
     public async Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto)
     {
-      var IsUser = await _dataContext.Users.Include(u => u.Skills).Include(s => s.SearchWords).Include(u => u.UsersInWaitingLists).Include(pu => pu.ProjectUsers).FirstOrDefaultAsync(u => u.KeyCloakId == loginDto.KeyCloakId);
+      var IsUser = await _dataContext.Users.
+  Include(p => p.ProjectUsers).
+  ThenInclude(u => u.Project)
+  .Include(s => s.Skills)
+  .Include(w => w.UsersInWaitingLists)
+  .Include(c => c.ClickedProjectHistories).ThenInclude(p => p.Project)
+  .Include(a => a.AppliedProjectHistories)
+  .Include(sw => sw.SearchWords).FirstOrDefaultAsync(u => u.KeyCloakId == loginDto.KeyCloakId);
+
       if (IsUser == null)
       {
         return new OkObjectResult("User confirmed to not exists");
@@ -52,7 +60,14 @@ namespace lagalt
     public async Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
 
-      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
+      var IsUser = await _dataContext.Users.
+      Include(p => p.ProjectUsers).
+      ThenInclude(u => u.Project)
+      .Include(s => s.Skills)
+      .Include(w => w.UsersInWaitingLists)
+      .Include(c => c.ClickedProjectHistories).ThenInclude(p => p.Project)
+      .Include(a => a.AppliedProjectHistories)
+      .Include(sw => sw.SearchWords).FirstOrDefaultAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
 
 
       if (IsUser != null)

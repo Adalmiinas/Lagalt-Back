@@ -24,12 +24,12 @@ namespace Lagalt
       ThenInclude(u => u.Project)
       .Include(s => s.Skills)
       .Include(w => w.UsersInWaitingLists)
-      .Include(c => c.ClickedProjectHistories)
+      .Include(c => c.ClickedProjectHistories).ThenInclude(p => p.Project)
       .Include(a => a.AppliedProjectHistories)
       .Include(sw => sw.SearchWords).FirstOrDefaultAsync(u => u.Id == id);
 
       if (IsUser == null) return new BadRequestObjectResult("Incorrect Id");
-     
+
       return new OkObjectResult(_mapper.Map<UserDto>(IsUser));
     }
 
@@ -38,7 +38,7 @@ namespace Lagalt
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
       if (IsUser == null) return new BadRequestObjectResult("Incorrect Id");
-      
+
       var updateInformation = new UserDto
       {
         Id = IsUser.Id,
@@ -110,6 +110,25 @@ namespace Lagalt
      .Where(pu => pu.UserId == id).ToListAsync();
 
       return _mapper.Map<List<ProjectUserDto>>(ProjectOwnerProjects);
+    }
+
+    public async Task<ActionResult<UserDto>> PatchUserHistoryAsync(int id, PatchUserHistoryDto patchUserHistory)
+    {
+      var user = await _dataContext.Users.Include(u => u.ClickedProjectHistories).FirstOrDefaultAsync(u => u.Id == id);
+
+      var project = await _dataContext.Projects.FirstOrDefaultAsync(p => p.Id == patchUserHistory.Id);
+      if (user == null) return new BadRequestObjectResult("User cannot be modified");
+      var newItem = new ClickedProjectHistoryModel
+      {
+        Id = 0,
+        ProjectId = patchUserHistory.Id,
+        Project = project
+
+      };
+      user.ClickedProjectHistories.Add(newItem);
+      _dataContext.Entry(user).State = EntityState.Modified;
+      await _dataContext.SaveChangesAsync();
+      return new OkResult();
     }
   }
 }
