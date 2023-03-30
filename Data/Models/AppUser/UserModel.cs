@@ -12,7 +12,7 @@ namespace lagaltApp
 
     public string KeyCloakId { get; set; }
 
-
+    [Required]
     public string Username { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -20,7 +20,7 @@ namespace lagaltApp
     public string Photo { get; set; }
 
 
-
+    [Required]
     [EmailAddress]
     public string Email { get; set; }
 

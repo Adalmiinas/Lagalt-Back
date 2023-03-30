@@ -3,7 +3,7 @@ using lagalt.Data.Extensions;
 using Lagalt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
+
 using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 // var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -13,34 +13,38 @@ builder.Services.AddCors(options =>
 {
   options.AddDefaultPolicy(builder =>
   {
-    builder.WithOrigins("http://localhost:3000", "lagaltkeycloak.azurewebsites.net")
-          .AllowAnyHeader()
-          .AllowAnyMethod();
+
+    builder.WithOrigins("https://lagalt-projects.netlify.app/", "http://localhost:3000", "lagaltkeycloak.azurewebsites.net")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
   });
 });
 
 var host = builder.Host;
 // services.AddKeycloakAuthentication(configuration);
-
+builder.Configuration.AddUserSecrets<Program>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices(builder.Configuration);
 // builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
 .AddJwtBearer(options =>
 {
+  var keyUri = builder.Configuration["KeyUri"];
+  var ValidIssuer = builder.Configuration["ValidIssuer"];
   options.TokenValidationParameters = new TokenValidationParameters
   {
     ValidateIssuer = true,
     ValidateAudience = true,
-    ValidIssuer = "https://lagaltkeycloak.azurewebsites.net/auth/realms/keycloak",
+    ValidIssuer = ValidIssuer,
     ValidAudience = "account",
     IssuerSigningKeyResolver = (token, SecurityToken, kid, parameters) =>
     {
       var client = new HttpClient();
-      var keyuri = "https://lagaltkeycloak.azurewebsites.net/auth/realms/keycloak/protocol/openid-connect/certs";
+      var keyuri = keyUri;
       //retrieve kes from kc instance to verify token
       var response = client.GetAsync(keyuri).Result;
       var responseString = response.Content.ReadAsStringAsync().Result;
@@ -52,7 +56,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 });
 var app = builder.Build();
-app.UseCors();
+app.UseCors(builder =>
+{
+  builder.AllowAnyOrigin()
+         .AllowAnyMethod()
+         .AllowAnyHeader();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

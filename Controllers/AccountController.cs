@@ -1,6 +1,5 @@
 using lagalt.Controllers;
-using Lagalt;
-using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -46,23 +45,23 @@ namespace lagalt
     public async Task<ActionResult<UserDto>> Register([FromBody] RegisterAppUserDto registerAppUserDto)
     {
 
-      var isUser =await _dataContext.Users.AnyAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
+      var isUser = await _dataContext.Users.AnyAsync(u => u.KeyCloakId == registerAppUserDto.KeycloakId);
       if (isUser)
       {
         return new BadRequestObjectResult("User already exists no need to register, prevent this totally later phases");
       }
 
-      // var cacheKey = "registerDto:" + registerAppUserDto.KeycloakId;
-      // var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(2));
+      var cacheKey = "registerDto:" + registerAppUserDto.KeycloakId;
+      var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(3));
 
-      // // Check if the request is a duplicate
-      // if (_memoryCache.TryGetValue(cacheKey, out _))
-      // {
-      //   return BadRequest("Duplicate request detected");
-      // }
+      // Check if the request is a duplicate
+      if (_memoryCache.TryGetValue(cacheKey, out _))
+      {
+        return BadRequest("Duplicate request detected");
+      }
 
-      // // Store the request in the cache
-      // _memoryCache.Set(cacheKey, DateTime.UtcNow, cacheEntryOptions);
+      // Store the request in the cache
+      _memoryCache.Set(cacheKey, DateTime.UtcNow, cacheEntryOptions);
       var IsTaken = await _userAccountRepository.RegisterAsync(registerAppUserDto);
       return new OkObjectResult(IsTaken);
     }
@@ -86,16 +85,6 @@ namespace lagalt
       return Ok(IsAuhtorised);
     }
 
-    [HttpPost("loginDev")]
-    public async Task<ActionResult<UserDto>> LoginDev([FromBody] LoginDevDto loginDev)
-    {
 
-      var IsAuhtorised = await _userAccountRepository.LoginDevAsync(loginDev);
-      if (IsAuhtorised == null)
-      {
-        return Unauthorized("Invalid Password / Username");
-      }
-      return IsAuhtorised;
-    }
   }
 }

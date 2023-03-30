@@ -91,7 +91,14 @@ namespace Lagalt
       await _dataContext.SaveChangesAsync();
       return new OkResult();
     }
+    
 
+    /// <summary>
+    /// Remove user from project
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="removeProjectUser"></param>
+    /// <returns></returns>
     public async Task<IActionResult> RemoveProjectUserFromProject(int userId, RemoveProjectUserDto removeProjectUser)
     {
       //1. find project id 

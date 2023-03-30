@@ -1,7 +1,5 @@
 using AutoMapper;
-using Lagalt;
 using lagaltApp;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace lagalt
@@ -19,6 +17,11 @@ namespace lagalt
       _dataContext = dataContext;
     }
 
+    /// <summary>
+    /// lOGIN USER and return data
+    /// </summary>
+    /// <param name="loginDto"></param>
+    /// <returns></returns>
     public async Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto)
     {
       var IsUser = await _dataContext.Users.
@@ -40,23 +43,7 @@ namespace lagalt
         return existingUser;
       }
 
-
     }
-
-    public async Task<ActionResult<UserDto>> LoginDevAsync(LoginDevDto loginDev)
-    {
-      var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Username == loginDev.Username);
-      if (IsUser == null)
-      {
-        return new OkObjectResult("User confirmed to not exists");
-      }
-      else
-      {
-        var existingUser = _mapper.Map<UserDto>(IsUser);
-        return existingUser;
-      }
-    }
-
     public async Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto)
     {
 

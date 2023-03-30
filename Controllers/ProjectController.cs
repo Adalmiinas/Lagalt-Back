@@ -116,6 +116,12 @@ namespace lagalt.Controllers
 
 
     }
+    /// <summary>
+    /// Patch project status string
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="patchProjectStatus"></param>
+    /// <returns></returns>
     [HttpPatch("patch")]
     public async Task<IActionResult> PatchUserStatusAsync([FromHeader] int id, [FromBody] PatchProjectStatusDto patchProjectStatus)
     {
@@ -124,6 +130,13 @@ namespace lagalt.Controllers
 
 
     }
+
+    /// <summary>
+    /// Deelte project > not in use
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="deleteProject"></param>
+    /// <returns></returns>
     [HttpDelete("delete")]
     public async Task<IActionResult> DeleteProjectAsync([FromHeader] int userId, [FromBody] DeleteProjectDto deleteProject)
     {

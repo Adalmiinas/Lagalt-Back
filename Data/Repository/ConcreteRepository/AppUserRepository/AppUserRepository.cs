@@ -16,7 +16,13 @@ namespace Lagalt
       _mapper = mapper;
       _dataContext = dataContext;
     }
+   
 
+   /// <summary>
+   /// Get user 
+   /// </summary>
+   /// <param name="id"></param>
+   /// <returns></returns>
     public async Task<ActionResult> GetUserAsync(int id)
     {
       var IsUser = await _dataContext.Users.
@@ -33,6 +39,12 @@ namespace Lagalt
       return new OkObjectResult(_mapper.Map<UserDto>(IsUser));
     }
 
+    /// <summary>
+    /// Update user details
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="updateAppUser"></param>
+    /// <returns></returns>
     public async Task<ActionResult<UserDto>> UpdateUserAsync(int id, UpdateAppUserDto updateAppUser)
     {
       var IsUser = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -62,6 +74,13 @@ namespace Lagalt
 
       return new OkResult();
     }
+
+    /// <summary>
+    /// Patch user status
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="patchUserStatus"></param>
+    /// <returns></returns>
     public async Task<ActionResult<UserDto>> PatchUserStatusAsync(int userId, PatchUserStatusDto patchUserStatus)
     {
       var user = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
@@ -74,6 +93,12 @@ namespace Lagalt
       return new OkResult();
     }
 
+
+    /// <summary>
+    /// Get users own projects
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<List<ProjectUserDto>> UserAdminProjectsAsync(int id)
     {
       var isUserId = await _dataContext.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -92,6 +117,12 @@ namespace Lagalt
 
       return _mapper.Map<List<ProjectUserDto>>(ProjectOwnerProjects);
     }
+
+    /// <summary>
+    /// Projects that user is part of
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public async Task<List<ProjectUserDto>> UserProjectsAsync(int id)
     {
 
@@ -107,6 +138,13 @@ namespace Lagalt
       return _mapper.Map<List<ProjectUserDto>>(ProjectOwnerProjects);
     }
 
+
+    /// <summary>
+    /// Patch user history list 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="patchUserHistory"></param>
+    /// <returns></returns>
     public async Task<ActionResult<UserDto>> PatchUserHistoryAsync(int id, PatchUserHistoryDto patchUserHistory)
     {
       var user = await _dataContext.Users.Include(u => u.ClickedProjectHistories).FirstOrDefaultAsync(u => u.Id == id);

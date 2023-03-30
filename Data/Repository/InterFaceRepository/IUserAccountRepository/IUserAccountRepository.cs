@@ -12,6 +12,6 @@ namespace lagalt
     Task<ActionResult<UserDto>> RegisterAsync(RegisterAppUserDto registerAppUserDto);
 
     Task<ActionResult<UserDto>> LoginAsync(LoginDto loginDto);
-    Task<ActionResult<UserDto>> LoginDevAsync(LoginDevDto loginDev);
+
   }
 }

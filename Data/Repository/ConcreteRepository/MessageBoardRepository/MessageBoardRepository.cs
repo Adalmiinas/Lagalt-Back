@@ -15,7 +15,12 @@ namespace Lagalt
       _mapper = mapper;
       _dataContext = dataContext;
     }
-   
+   /// <summary>
+   /// Create message board
+   /// </summary>
+   /// <param name="userId"></param>
+   /// <param name="createMessageBoard"></param>
+   /// <returns></returns>
     public async Task<ActionResult<MessageBoardDto>> CreateMessageBoardAsync(int userId, CreateMessageBoardDto createMessageBoard)
     {
       //check user id > and also check if user in project 
@@ -38,6 +43,12 @@ namespace Lagalt
 
     }
 
+    /// <summary>
+    /// delete message
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="deleteMessageBoard"></param>
+    /// <returns></returns>
     public async Task<ActionResult<MessageBoardDto>> DeleteMessageBoardAsync(int userId, DeleteMessageBoardDto deleteMessageBoard)
     {
       var findMessage = await _dataContext.MessageBoards.FirstOrDefaultAsync(mb => mb.Id == deleteMessageBoard.MessageBoardId && mb.UserId == userId);
@@ -47,7 +58,11 @@ namespace Lagalt
       await _dataContext.SaveChangesAsync();
       return new NoContentResult();
     }
-
+    /// <summary>
+    /// get message boards
+    /// </summary>
+    /// <param name="ProjectId"></param>
+    /// <returns></returns>
     public async Task<ActionResult<List<MessageBoardDto>>> ReadMessageBoardAsync(int ProjectId)
     {
       var messages = await _dataContext.MessageBoards.Where(p => p.ProjectId == ProjectId).ToListAsync();
@@ -55,7 +70,12 @@ namespace Lagalt
 
       return new OkObjectResult(_mapper.Map<List<MessageBoardDto>>(messages));
     }
-
+    /// <summary>
+    /// Update 
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="updateMessageBoard"></param>
+    /// <returns></returns>
     public async Task<ActionResult<MessageBoardDto>> UpdateMessageBoardAsync(int userId, UpdateMessageBoardDto updateMessageBoard)
     {
       //check user id > and also check if user in project 

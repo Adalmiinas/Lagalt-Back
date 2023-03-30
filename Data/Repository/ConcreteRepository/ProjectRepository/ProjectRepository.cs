@@ -71,9 +71,14 @@ namespace lagalt
       return new CreatedAtRouteResult(nameof(CreateProjectAsync), newProj);
     }
 
+    /// <summary>
+    /// Delete project
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="deleteProject"></param>
+    /// <returns></returns>
     public async Task<IActionResult> DeleteProjectAsync(int userId, DeleteProjectDto deleteProject)
     {
-      // var user = await _dataContext.ProjectUsers.FirstOrDefaultAsync(u => u.UserId == userId && u.IsOwner == true);
       var project = await _dataContext.Projects.Include(pu => pu.ProjectUsers).ThenInclude(pu => pu.User).FirstOrDefaultAsync(p => p.Id == deleteProject.projectId);
 
       var isUserAdmin = project.ProjectUsers.FirstOrDefault(u => u.UserId == userId && u.IsOwner == true);
@@ -229,7 +234,12 @@ namespace lagalt
       return new OkObjectResult(_mapper.Map<UpdateProjectDetailsDto>(UpdateDetails));
     }
 
-
+    /// <summary>
+    /// Patch project status
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="patchProjectStatus"></param>
+    /// <returns></returns>
     public async Task<IActionResult> PatchProjectStatusAsync(int userId, PatchProjectStatusDto patchProjectStatus)
     {
       //valid user 
