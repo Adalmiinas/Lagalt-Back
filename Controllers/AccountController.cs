@@ -1,5 +1,5 @@
 using lagalt.Controllers;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -9,8 +9,10 @@ namespace lagalt
 
   /// <summary>
   /// Control login and register
+  /// just authorize login and register 
   /// </summary>
 
+  [Authorize]
   public class AccountController : BaseApiController
   {
     private readonly DataContext _dataContext;
