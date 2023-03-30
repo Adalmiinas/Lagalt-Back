@@ -11,6 +11,8 @@
 ## 1. Introduction 
 The purpose of this project was to develop a website which will be used to facilitate connecting individuals in creative fields with project that need their specific skill sets. Frontend, backend and SQL-databasse must interact with each other including authentication. This repository is backend part of the Lagalt project.
 
+Link to frontend repository: [Lagalt-Frontend](https://github.com/Adalmiinas/Lagalt-Front)
+
 <a name="tech"></a>
 ## 2. Technologies 
 * ASP.NET
@@ -37,4 +39,4 @@ The purpose of this project was to develop a website which will be used to facil
 
 <a name="sou"></a>
 ## 5. Sources
-Project was an final assignment done during education program created by Noroff Education
+Project was the final assignment done during education program created by Noroff Education
