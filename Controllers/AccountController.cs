@@ -2,7 +2,7 @@ using lagalt.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
+
 
 namespace lagalt
 {
@@ -17,8 +17,6 @@ namespace lagalt
   {
     private readonly DataContext _dataContext;
     private readonly IUserAccountRepository _userAccountRepository;
-    private readonly MemoryCache _memoryCache;
-
 
     /// <summary>
     /// Register and check if user tries to duplicate the code
@@ -52,23 +50,10 @@ namespace lagalt
       {
         return new BadRequestObjectResult("User already exists no need to register, prevent this totally later phases");
       }
-
-      var cacheKey = "registerDto:" + registerAppUserDto.KeycloakId;
-      var cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(3));
-
-      // Check if the request is a duplicate
-      if (_memoryCache.TryGetValue(cacheKey, out _))
-      {
-        return BadRequest("Duplicate request detected");
-      }
-
-      // Store the request in the cache
-      _memoryCache.Set(cacheKey, DateTime.UtcNow, cacheEntryOptions);
       var IsTaken = await _userAccountRepository.RegisterAsync(registerAppUserDto);
       return new OkObjectResult(IsTaken);
     }
 
-    //change to use keycloak
 
     /// <summary>
     /// Login user with correct login data
